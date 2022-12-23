@@ -1,0 +1,41 @@
+.nav {
+    grid-area: n;
+    background-color: rgb(247, 204, 151);
+    padding: 10px;
+
+}
+
+.item a {
+    color: white;
+    text-decoration:none;
+}
+
+
+.item a:focus {
+    color: gold;}
+
+.fNav{
+    color:rgb(51, 155, 120);
+    margin-top: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.Fr{
+    color:rgb(157, 50, 167);
+    margin-top: 50px;
+    text-align: center;
+
+}
+
+.Link a{
+    color:rgb(51, 155, 120);
+    text-decoration: none;
+}
+
+.avatar{
+    width:20px;
+    height: 20px;
+}

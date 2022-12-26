@@ -4,20 +4,24 @@ import {Routes, Route} from 'react-router-dom';
 import './App.css';
 import s from './Content.module.css';
 import Dialogs from './Components/Dialogs/Dialogs';
-import {State, textArreaValueforDialogs, TsarType} from "./Redux/state";
+import {Profilepage, State, textArreaValueforDialogs, TsarType} from "./Redux/state";
 import Profile from "./Components/Profile/Profile";
 import Header from "./Components/Header/Header";
 import Navbar from "./Components/Navbar/Navbar";
+import {RootState, store, useAppSelector} from '../src/Redux/store'
+import {useSelector} from "react-redux";
+import PresentationForDialogs from "./Components/Dialogs/PresentationForDialogs";
 
 
-// type AppPropsType = {
-//     state: State
-//     textArreaText: string
-//     textArreaValueforDialogs:string
-//     dispatch: (action: TsarType) => void
-// }
 
-const AppWithRedux: React.FC<AppPropsType> = () => {
+
+
+const AppWithRedux = () => {
+
+    // const profilePage = useSelector<RootState, Profilepage>((state) => state.profilePage)
+
+    const profilePage = useAppSelector(state=>state.profilePage)
+    const messagePage = useAppSelector(state => state.messagesPage)
 
     return (
         <BrowserRouter>
@@ -29,15 +33,15 @@ const AppWithRedux: React.FC<AppPropsType> = () => {
                     <Routes>
                         <Route path="/"
                                element={<Profile
-                                   postData={props.state.profilePage.postData}
-                                   textArreaText={props.state.profilePage.textArreaText}
-                                   dispatch={props.dispatch}
+                                   postData={profilePage.postData}
+                                   textArreaText={profilePage.textArreaText}
+                                   dispatch={store.dispatch.bind(store)}
                                />}/>
                         <Route path="/dialogs"
-                               element={<Dialogs users={props.state.messagesPage.users}
-                                                 messages={props.state.messagesPage.messages}
-                                                 textArreaValueforDialogs={props.textArreaValueforDialogs}
-                                                 dispatch={props.dispatch}
+                               element={<PresentationForDialogs users={messagePage.users}
+                                                 messages={messagePage.messages}
+                                                 textArreaValueforDialogs={messagePage.textArreaDialog}
+                                                 dispatch={store.dispatch.bind(store)}
                                />}/>
                         {/*<Route path="/news/news.jsx/"*/}
                         {/*       element={<News />} />*/}
@@ -52,4 +56,4 @@ const AppWithRedux: React.FC<AppPropsType> = () => {
     );
 }
 
-export default App;
+export default AppWithRedux;

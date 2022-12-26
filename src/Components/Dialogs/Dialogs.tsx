@@ -4,12 +4,14 @@ import s from './Dialogs.module.css';
 import {Messages, textArreaValueforDialogs, TsarType, Users} from "../../Redux/state";
 import Dialogusers from "./Dialogusers/Dialogusers";
 import Message from "./Messages/Messages";
+import {ChangeDialogValueAC, NewMessageAC} from "../../Redux/dialogReducer";
 
 type DialoguserspropsType = {
     users: Array<Users>
     messages: Array<Messages>
-    dispatch: (action: TsarType) => void
-    textArreaValueforDialogs: string
+    sendMessage:()=>void
+    takeValueFoo:(event:string)=>void
+    textArreaValueforDialogs:string
 }
 
 
@@ -23,17 +25,13 @@ const Dialogs = (props: DialoguserspropsType) => {
     let messagesMap = props.messages
         .map((m, index) => (<Message key={index} message={m.message}/>))
 
-    // let textArrea = React.createRef<HTMLTextAreaElement>()
 
-    let sendMessage = () => {
-        // let textArrea1 = textArreaValueforDialogs
-        props.dispatch({
-            type: 'ADD-NEW-MESSAGE', newMessage: props.textArreaValueforDialogs
-        })
+    const sendMessage = () => {
+        props.sendMessage()
     }
 
     const takeValueFoo = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type: 'CHANGE-DIALOG-VALUE', textArreaValue: e.currentTarget.value})
+        props.takeValueFoo(e.currentTarget.value)
     }
 
     //DIALOG RESULT V V V V

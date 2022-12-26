@@ -24,7 +24,7 @@ export type Profilepage = {
     textArreaText: string
 }
 export type Postdata = {
-    postText: string //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    postText: string
     likesCount: number
 }
 //---------messagesPage
@@ -80,7 +80,6 @@ const NewMessageAC = (newMessage: string) => {
         type: 'ADD-NEW-MESSAGE',
         newMessage
     } as const
-
 }
 
 type ChangeDialogValue = ReturnType<typeof ChangeDialogValueAC>
@@ -90,7 +89,6 @@ const ChangeDialogValueAC = (textArreaValue: string) => {
         type: 'CHANGE-DIALOG-VALUE',
         textArreaValue
     } as const
-
 }
 
 // ---------------------------ACTION CREATORS--------------------------
@@ -130,20 +128,9 @@ let store: store = {
 
 
     dispatch(action) {
-        // //функция добавляющая новый пост
-        // case'ADD-POST': {
-        //     let newObj: Postdata = {postText: action.newPostMessage, likesCount: 0}
-        //     let newPost = this._state.profilePage.postData.push(newObj)
-        //     this.subscribe(this._state)
-        //     this._state.profilePage.textArreaText = ''
-        //
-        //     return newPost
-        // }
-
-        profileReducer(this._state, action)
-        dialogReducer(this._state, action)
+        // profileReducer(this._state, action)
+        // dialogReducer(this._state, action)
         this._rerenderEntireTree(this._state)
-
     },
 
 

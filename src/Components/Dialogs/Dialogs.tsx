@@ -1,21 +1,20 @@
 import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css';
-
-import {Messages, textArreaValueforDialogs, TsarType, Users} from "../../Redux/state";
 import Dialogusers from "./Dialogusers/Dialogusers";
 import Message from "./Messages/Messages";
-import {ChangeDialogValueAC, NewMessageAC} from "../../Redux/dialogReducer";
+import {DialogsUsersType} from "./ContaineerForDialogs";
 
-type DialoguserspropsType = {
-    users: Array<Users>
-    messages: Array<Messages>
-    sendMessage:()=>void
-    takeValueFoo:(event:string)=>void
-    textArreaValueforDialogs:string
-}
+// type DialoguserspropsType = {
+//     users: Array<Users>
+//     messages: Array<Messages>
+//     sendMessage:()=>void
+//     takeValueFoo:(event:string)=>void
+//     textArreaValueforDialogs:string
+// }
 
 
-const Dialogs = (props: DialoguserspropsType) => {
+const Dialogs = (props: DialogsUsersType) => {
+    console.log(props)
     // USERS
     let messageUser = props.users
         .map(user =>
@@ -27,7 +26,9 @@ const Dialogs = (props: DialoguserspropsType) => {
 
 
     const sendMessage = () => {
-        props.sendMessage()
+        if(props.textArreaValueforDialogs.length) {
+            props.sendMessage(props.textArreaValueforDialogs)
+        }
     }
 
     const takeValueFoo = (e: ChangeEvent<HTMLTextAreaElement>) => {

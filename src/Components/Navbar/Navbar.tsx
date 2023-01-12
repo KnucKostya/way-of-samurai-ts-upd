@@ -8,6 +8,9 @@ const Navbar = () => {
         <div className={s.item}>
             <Link to='./' >Profile</Link>
         </div>
+        <div className={s.item}>
+            <Link to='./users' >Users</Link>
+        </div>
         <div className={`${s.item}`}>
             <Link to='./Dialogs'>Messages</Link>
         </div>

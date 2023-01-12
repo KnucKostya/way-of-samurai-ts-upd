@@ -6,7 +6,8 @@ import { Provider } from 'react-redux'
 import AppWithRedux from "./AppWithRedux";
 
 
-//сделать контейнерную компоненту для редьюсера
+// доделать профайл коннект
+
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement);

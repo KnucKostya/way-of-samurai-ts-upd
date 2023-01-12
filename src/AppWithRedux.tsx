@@ -8,19 +8,17 @@ import {Profilepage, State, textArreaValueforDialogs, TsarType} from "./Redux/st
 import Profile from "./Components/Profile/Profile";
 import Header from "./Components/Header/Header";
 import Navbar from "./Components/Navbar/Navbar";
-import {RootState, store, useAppSelector} from '../src/Redux/store'
-import {useSelector} from "react-redux";
-import PresentationForDialogs from "./Components/Dialogs/PresentationForDialogs";
-
-
-
+import {store, useAppSelector} from '../src/Redux/store'
+import ContaineerForDialogs from "./Components/Dialogs/ContaineerForDialogs";
+import Users from "./Components/Users/Users";
+import UsersContainer from "./Components/Users/UsersContainer";
 
 
 const AppWithRedux = () => {
 
     // const profilePage = useSelector<RootState, Profilepage>((state) => state.profilePage)
 
-    const profilePage = useAppSelector(state=>state.profilePage)
+    const profilePage = useAppSelector(state => state.profilePage)
     const messagePage = useAppSelector(state => state.messagesPage)
 
     return (
@@ -32,17 +30,13 @@ const AppWithRedux = () => {
                 <div className={s.content}>
                     <Routes>
                         <Route path="/"
-                               element={<Profile
-                                   postData={profilePage.postData}
-                                   textArreaText={profilePage.textArreaText}
-                                   dispatch={store.dispatch.bind(store)}
-                               />}/>
+                               element={<Profile/>}/>
+
                         <Route path="/dialogs"
-                               element={<PresentationForDialogs users={messagePage.users}
-                                                 messages={messagePage.messages}
-                                                 textArreaValueforDialogs={messagePage.textArreaDialog}
-                                                 dispatch={store.dispatch.bind(store)}
-                               />}/>
+                               element={<ContaineerForDialogs/>}/>
+
+                        <Route path = "/users"
+                               element={<UsersContainer/>}/>
                         {/*<Route path="/news/news.jsx/"*/}
                         {/*       element={<News />} />*/}
                         {/*<Route path="/music/music.jsx"*/}

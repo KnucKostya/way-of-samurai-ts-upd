@@ -3,23 +3,19 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post'
 import {Postdata, TsarType} from "../../../Redux/state";
 import {AddPostAC, ChangeValueAC} from "../../../Redux/profileReducer";
-
-type MyPostPropsType = {
-    postData: Array<Postdata>
-    textArreaText: string
-    addPost: () => void
-    changeValueFunc: (event:string) => void
-}
+import {combineType} from "./ContaineerMyPostComponent";
 
 
-const MyPosts = (props: MyPostPropsType) => {
+
+
+const MyPosts = (props: combineType) => {
 
     let mapPost = props.postData
         .map((p, index) => (<Post key={index} message={p.postText} like={p.likesCount}/>))
 
 
     const addPost = () => {
-        props.addPost()
+        props.addPost(props.textArreaText)
     }
 
 

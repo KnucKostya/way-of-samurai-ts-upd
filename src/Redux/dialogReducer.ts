@@ -21,15 +21,15 @@ export const dialogReducer = ( state:Messagespage = initialState , action:combin
 
     switch (action.type){
         case "ADD-NEW-MESSAGE": {
-
+            console.log(action.newMessage)
             if(state.textArreaDialog ===''){
                 return state
             }
 
             let newMessage = {id:v1(),message: action.newMessage}
-            state.messages.push(newMessage)
+            // state.messages.push(newMessage)
             state.textArreaDialog = ''
-            return {...state}
+            return {...state,messages:[...state.messages,newMessage]}
         }
         case "CHANGE-DIALOG-VALUE":{
             return {...state,textArreaDialog:action.textArreaValue};

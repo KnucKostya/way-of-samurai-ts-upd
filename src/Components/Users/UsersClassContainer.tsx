@@ -13,7 +13,7 @@ class UsersClassContainer extends React.Component<combineType> {
 
     componentDidMount() {
         this.props.setLoadingStatus(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.count}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users`)
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.setTotalCount(response.data.totalCount);
@@ -34,7 +34,8 @@ class UsersClassContainer extends React.Component<combineType> {
     }
 
     render() {
-        return(
+        // debugger
+        return (
             <>
                 {this.props.isLoading && <img src={infinity} alt=""/>}
                 <Users onPageChangedMethod={this.onPageChangedMethod}
@@ -46,9 +47,7 @@ class UsersClassContainer extends React.Component<combineType> {
                        currentPage={this.props.currentPage}
                 />
             </>
-            )
-        
-        
+        )
     }
 }
 

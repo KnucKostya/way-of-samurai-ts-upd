@@ -3,18 +3,20 @@ import {combineType} from "./UsersContainer";
 import s from './users.module.css'
 import defaultLogo from '../../logo.svg'
 import {APIusersType} from "../../Redux/usersReducer";
+import {Link} from "react-router-dom";
+import {debug} from "util";
 
 export type UsersPropsType = {
-    onPageChangedMethod:(m:number)=>void
-    totalCount:number
-    count:number
-    unfollow:(id:number)=>void
-    follow:(id:number)=>void
+    onPageChangedMethod: (m: number) => void
+    totalCount: number
+    count: number
+    unfollow: (id: number) => void
+    follow: (id: number) => void
     users: APIusersType[]
-    currentPage:number
+    currentPage: number
 }
 
-const Users = (props:UsersPropsType) => {
+const Users = (props: UsersPropsType) => {
 
     //ФУНКЦИЯ СЧИТАЮЩАЯ ОБЩЕЕ КОЛИЧЕСТВО СТРАНИЦ
     let countPagesArr: number[] = []
@@ -25,12 +27,13 @@ const Users = (props:UsersPropsType) => {
         countPagesArr.push(i)
     }
 
+
     return (
         <div>
             <div>
                 {countPagesArr.map((m, i) => {
                     return <span key={i} className={props.currentPage === m ? s.spanBold : s.span}
-                                 onClick={()=>props.onPageChangedMethod(m)}>{m}</span>
+                                 onClick={() => props.onPageChangedMethod(m)}>{m}</span>
                     //нужно организовать выдиление цифры на которой находится ползьователь
                     //проблема с класснеймом и числом страницы
                 })}
@@ -48,7 +51,10 @@ const Users = (props:UsersPropsType) => {
                     <div>
                         {m.name}
                     </div>
-                    <img src={m.photos.small || defaultLogo} className={s.avatar}/>
+
+                    <Link to={'/profile'+ m.id}>
+                        <img src={m.photos.small || defaultLogo} className={s.avatar}/>
+                    </Link>
 
                     <div>{m.status ? m.status : 'default Status'}</div>
                     <div>{'m.location.city'}</div>

@@ -37,9 +37,6 @@ const mapStateToProps = (state:RootState) => {
 //   }
 // }
 
-//zhmerenka
-
-
 
 const mapDispatchToProps = {follow,unfollow,setUsers,setCurrentPage,setTotalCount,setLoadingStatus}
 

@@ -1,0 +1,9 @@
+.avatar{
+    border-radius: 12px;
+    width: 30px;
+    height: 30px;
+}
+
+.selectPageSpan{
+    font-weight: bold;
+}

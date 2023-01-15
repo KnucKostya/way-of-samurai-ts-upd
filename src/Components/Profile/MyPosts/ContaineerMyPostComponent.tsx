@@ -10,7 +10,8 @@ import {AppDispatch, RootState} from "../../../Redux/store";
 const mapStateToProps = (state:RootState) :Profilepage=> {
     return {
         postData:state.profilePage.postData,
-        textArreaText:state.profilePage.textArreaText
+        textArreaText:state.profilePage.textArreaText,
+        photos:state.profilePage.photos
     }
 }
 

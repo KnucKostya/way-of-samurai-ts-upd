@@ -1,11 +1,6 @@
 import React, {ChangeEvent} from 'react';
-import s from './MyPosts.module.css';
 import Post from './Post/Post'
-import {Postdata, TsarType} from "../../../Redux/state";
-import {AddPostAC, ChangeValueAC} from "../../../Redux/profileReducer";
 import {combineType} from "./ContaineerMyPostComponent";
-
-
 
 
 const MyPosts = (props: combineType) => {

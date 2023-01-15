@@ -1,5 +1,4 @@
-import {Postdata, Profilepage, State, TsarType} from "./state";
-import {v1} from "uuid";
+import {Postdata, Profilepage} from "./state";
 
 
 const initialState:Profilepage = {
@@ -8,7 +7,11 @@ const initialState:Profilepage = {
             {postText: 'Hello Kostya', likesCount: 12},
             {postText: 'Hello Komk', likesCount: 41}
         ],
-        textArreaText: ''
+        textArreaText: '',
+    photos:{
+            small:'',
+            large:''
+    }
 }
 
 export const profileReducer = (state:Profilepage = initialState , action:combinerTypes):Profilepage => {
@@ -49,4 +52,8 @@ export const ChangeValueAC = (textArreaValue: string) => {
         type: 'CHANGE-VALUE',
         textArreaValue
     } as const
+}
+
+export const setPhoto = (url:string) => {
+    return{type:'SET-PHOTO',url}
 }

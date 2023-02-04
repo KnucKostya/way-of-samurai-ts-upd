@@ -4,6 +4,7 @@ import {v1} from "uuid";
 import {profileReducer} from "./profileReducer";
 import {dialogReducer} from "./dialogReducer";
 import {responseDataType} from "../Components/Profile/ProfileClassComponent";
+import {initStateType} from "./authReducer";
 
 // export type store = {
 //     _state: State
@@ -18,6 +19,7 @@ export type WholeStateType = {
     profilePage: ProfilePageDataType
     messagesPage: Messagespage
     sideBar: Sidebartype
+    auth:initStateType
 }
 
 // -----------------------------------Types-------------------------------

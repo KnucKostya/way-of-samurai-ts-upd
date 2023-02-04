@@ -8,13 +8,14 @@ import Navbar from "./Components/Navbar/Navbar";
 import ContaineerForDialogs from "./Components/Dialogs/ContaineerForDialogs";
 import UsersContainer from "./Components/Users/UsersContainer";
  import ProfileClassComponent from "./Components/Profile/ProfileClassComponent";
+import HeaderContainer from "./Components/Header/HeaderContainer";
 
 
 const AppWithRedux = () => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
-                <Header/>
+                <HeaderContainer/>
                 <Navbar/>
 
                 <div className={s.content}>

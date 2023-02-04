@@ -75,12 +75,9 @@ class ProfileClassComponent extends React.Component<CommonType> {
 
     componentDidMount() {
         let userID = this.props.match.params.userID
-        console.log(this.props)
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userID}`)
             .then(response =>{
-                console.log(response)
                 this.props.setUserProfile(response.data)
-
             })
     }
 

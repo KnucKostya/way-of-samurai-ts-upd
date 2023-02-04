@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {combineType} from "./UsersContainer";
 import axios from 'axios'
 import Users from "./Users";
@@ -13,7 +13,7 @@ class UsersClassContainer extends React.Component<combineType> {
 
     componentDidMount() {
         this.props.setLoadingStatus(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users`,{withCredentials:true})
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.setTotalCount(response.data.totalCount);
@@ -25,7 +25,7 @@ class UsersClassContainer extends React.Component<combineType> {
     onPageChangedMethod = (currentPage: number) => {
         this.props.setLoadingStatus(true)
         this.props.setCurrentPage(currentPage)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.count}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.count}`,{withCredentials:true})
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.setLoadingStatus(false)

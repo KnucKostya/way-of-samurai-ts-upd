@@ -9,6 +9,7 @@ export type initStateType = {
     messages: string[],
     fieldsErrors: null,
     resultCode: number|null,
+    isLogined:boolean
 }
 
 const initialState:initStateType = {
@@ -20,6 +21,7 @@ const initialState:initStateType = {
     messages: [''],
     fieldsErrors: null,
     resultCode: null,
+    isLogined:false
 }
 
 const authReducer = (state:initStateType = initialState, action: UserAuthType):initStateType => {
@@ -27,7 +29,8 @@ const authReducer = (state:initStateType = initialState, action: UserAuthType):i
     switch (action.type) {
         case "USER-AUTH" : {
             console.log(action.data.login)
-            return {...state,data:{...state.data,...action.data}}
+            return {...state,data:{...state.data,...action.data}
+            ,isLogined:true}
             //??????????????????????????????????????pravil`no??????????????^^^^^^^^^^^^
         }
         default:

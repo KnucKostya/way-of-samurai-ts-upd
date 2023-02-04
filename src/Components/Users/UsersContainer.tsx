@@ -1,9 +1,6 @@
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/store";
-import {Dispatch} from "redux";
-import Users from "./Users";
 import {
-    APIusersType, combinerTypes,
     follow,
     setCurrentPage, setLoadingStatus,
     setTotalCount,
@@ -23,20 +20,6 @@ const mapStateToProps = (state:RootState) => {
         //users это обьект ДАТА с вложенным массивом АЙТЕМС
     }
 }
-
-// const mapDispatchToProps = (dispatch:Dispatch) => {
-//   return{
-//       // follow:(userID:number)=>dispatch(followAC(userID)),
-//       // unfollow:(userID:number)=>dispatch(unfollowAC(userID)),
-//       // setUsers:(users:APIusersType[])=>dispatch(setUsersAC(users)),
-//       // setCurrentPage:(currentPage:number)=>dispatch(setCurrentPageAC(currentPage)),
-//       // setTotalCount:(totalCount:number)=>dispatch(setTotalCountAC(totalCount)),
-//       // setLoadingStatus:(isLoadingStatus:boolean)=>dispatch(setLoadingStatusAC(isLoadingStatus)),
-//
-//
-//   }
-// }
-
 
 const mapDispatchToProps = {follow,unfollow,setUsers,setCurrentPage,setTotalCount,setLoadingStatus}
 

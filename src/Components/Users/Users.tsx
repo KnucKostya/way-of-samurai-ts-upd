@@ -3,6 +3,7 @@ import s from './users.module.css'
 import defaultLogo from '../../logo.svg'
 import {APIusersType} from "../../Redux/usersReducer";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 export type UsersPropsType = {
     onPageChangedMethod: (m: number) => void
@@ -32,8 +33,7 @@ const Users = (props: UsersPropsType) => {
                 {countPagesArr.map((m, i) => {
                     return <span key={i} className={props.currentPage === m ? s.spanBold : s.span}
                                  onClick={() => props.onPageChangedMethod(m)}>{m}</span>
-                    //нужно организовать выдиление цифры на которой находится ползьователь
-                    //проблема с класснеймом и числом страницы
+
                 })}
 
             </div>
@@ -41,9 +41,22 @@ const Users = (props: UsersPropsType) => {
             {props.users.map(m =>
                 <div key={m.id}>
                     <div>
-                        {m.followed ?
-                            <button onClick={() => props.unfollow(m.id)}>Unfollow</button> :
-                            <button onClick={() => props.follow(m.id)}>Follow</button>
+                        {
+                            m.followed ?
+                            <button onClick={() => {
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${m.id}`, {withCredentials: true})
+                                    .then(res => {
+                                        if(res.data.resultCode === 0){
+                                            props.unfollow(m.id)
+                                        }})}}>Unfollow</button>
+                            :
+                            <button onClick={() =>{
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${m.id}`,{},{withCredentials:true})
+                                    .then(res=>{
+                                        if(res.data.resultCode===0){
+                                            props.follow(m.id)
+                                        }
+                                    })}}>Follow</button>
                         }
                     </div>
                     <div>

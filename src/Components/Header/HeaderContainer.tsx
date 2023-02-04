@@ -20,8 +20,11 @@ class HeaderContainer extends React.Component<commonType> {
 
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,{withCredentials:true})
             .then(response=>{
-                let {id,login,email} = response.data.data
-                this.props.SetUserAuth(id,login,email)
+                if(response.data.resultCode === 0) {
+                    let {id,login,email} = response.data.data
+                    this.props.SetUserAuth(id,login,email)
+                }
+
         })
     }
 
@@ -37,10 +40,10 @@ class HeaderContainer extends React.Component<commonType> {
 //почему тип не initStateType
 const mstp = (state:WholeStateType) => {
     return {
-        login:state.auth.data.login
+        login:state.auth.data.login,
+        isLogined:state.auth.isLogined
     }
 }
 const mdtp = {SetUserAuth}
 
 export default connect(mstp,mdtp)(HeaderContainer);
-//mayami

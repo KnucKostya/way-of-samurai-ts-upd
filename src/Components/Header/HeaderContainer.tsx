@@ -43,3 +43,4 @@ const mstp = (state:WholeStateType) => {
 const mdtp = {SetUserAuth}
 
 export default connect(mstp,mdtp)(HeaderContainer);
+//mayami

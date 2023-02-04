@@ -1,27 +1,27 @@
 import React from 'react';
 import s from './Navbar.module.css';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 const Navbar = () => {
     return <nav className={s.nav}>
         <div className={s.item}>
-            <Link to='./profile' >Profile</Link>
+            <NavLink to='/profile' >Profile</NavLink>
         </div>
         <div className={s.item}>
-            <Link to='./users' >Users</Link>
+            <NavLink to='/users' >Users</NavLink>
         </div>
         <div className={`${s.item}`}>
-            <Link to='./Dialogs'>Messages</Link>
+            <NavLink to='/Dialogs'>Messages</NavLink>
         </div>
         <div className={s.item}>
-            <Link to='./news/news.jsx'>News</Link>
+            <NavLink to='/news/news.jsx'>News</NavLink>
         </div>
         <div className={s.item}>
-            <Link to='./music/music.jsx'>Music</Link>
+            <NavLink to='/music/music.jsx'>Music</NavLink>
         </div>
         <div className={s.item}>
-            <Link to='./settings/settings.jsx'>Settings</Link>
+            <NavLink to='/settings/settings.jsx'>Settings</NavLink>
         </div>
 
     </nav>
@@ -30,9 +30,9 @@ const Navbar = () => {
 
         {/*</div>*/}
         {/*<div className={s.fNav}>*/}
-        {/*  <div className={s.Link}><Link to ='#'>{props.state.sideBar.user1}</Link></div>*/}
-        {/*  <div className={s.Link}><Link to ='#'>{props.state.sideBar.user2}</Link></div>*/}
-        {/*  <div className={s.Link}><Link to ='#'>{props.state.sideBar.user3}</Link></div>*/}
+        {/*  <div className={s.NavLink}><NavLink to ='#'>{props.state.sideBar.user1}</NavLink></div>*/}
+        {/*  <div className={s.NavLink}><NavLink to ='#'>{props.state.sideBar.user2}</NavLink></div>*/}
+        {/*  <div className={s.NavLink}><NavLink to ='#'>{props.state.sideBar.user3}</NavLink></div>*/}
         {/*</div>*/}
 
 

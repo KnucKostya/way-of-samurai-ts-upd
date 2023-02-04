@@ -1,18 +1,18 @@
-import {Profilepage} from "../../../Redux/state";
+import {ProfilePageDataType} from "../../../Redux/state";
 import MyPosts from "./MyPosts";
 import React from "react";
 import {AddPostAC, ChangeValueAC} from "../../../Redux/profileReducer";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
-import {AppDispatch, RootState} from "../../../Redux/store";
+import {RootState} from "../../../Redux/store";
 
 
-const mapStateToProps = (state:RootState) :Profilepage=> {
+const mapStateToProps = (state:RootState) :ProfilePageDataType=> {
     return {
         postData:state.profilePage.postData,
-        textArreaText:state.profilePage.textArreaText,
-        photos:state.profilePage.photos
-    }
+        textAreaText:state.profilePage.textAreaText,
+        profilePageInfo:null
+        }
 }
 
 type mapDispatchToPropsOutterType = {

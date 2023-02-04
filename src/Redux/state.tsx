@@ -3,6 +3,7 @@
 import {v1} from "uuid";
 import {profileReducer} from "./profileReducer";
 import {dialogReducer} from "./dialogReducer";
+import {responseDataType} from "../Components/Profile/ProfileClassComponent";
 
 // export type store = {
 //     _state: State
@@ -13,20 +14,20 @@ import {dialogReducer} from "./dialogReducer";
 //     // textArreaText:any
 // }
 // Type for all STATE
-// export type State = {
-//     profilePage: Profilepage
-//     messagesPage: Messagespage
-//     sideBar: Sidebartype
-// }
+export type WholeStateType = {
+    profilePage: ProfilePageDataType
+    messagesPage: Messagespage
+    sideBar: Sidebartype
+}
 
 // -----------------------------------Types-------------------------------
 
 
 //------------profilePage
-export type Profilepage = {
+export type ProfilePageDataType = {
     postData: Array<Postdata>
-    textArreaText: string
-    photos:{small:string,large:string}
+    textAreaText: string
+    profilePageInfo: responseDataType | null
 }
 export type Postdata = {
     postText: string
@@ -142,7 +143,6 @@ export type Sidebartype = {
 //     //Функия rerenderEntireTree
 //     subscribe(observer: any) {
 //         this._rerenderEntireTree = observer
-//         console.log('changed')
 //     },
 //
 //     _rerenderEntireTree() {

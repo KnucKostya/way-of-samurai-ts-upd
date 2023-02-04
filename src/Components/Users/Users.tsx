@@ -1,10 +1,8 @@
-import React, {useEffect} from 'react';
-import {combineType} from "./UsersContainer";
+import React from 'react';
 import s from './users.module.css'
 import defaultLogo from '../../logo.svg'
 import {APIusersType} from "../../Redux/usersReducer";
-import {Link} from "react-router-dom";
-import {debug} from "util";
+import {NavLink} from "react-router-dom";
 
 export type UsersPropsType = {
     onPageChangedMethod: (m: number) => void
@@ -52,9 +50,9 @@ const Users = (props: UsersPropsType) => {
                         {m.name}
                     </div>
 
-                    <Link to={'/profile'+ m.id}>
+                    <NavLink to={'/profile/'+ m.id}>
                         <img src={m.photos.small || defaultLogo} className={s.avatar}/>
-                    </Link>
+                    </NavLink>
 
                     <div>{m.status ? m.status : 'default Status'}</div>
                     <div>{'m.location.city'}</div>

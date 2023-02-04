@@ -14,7 +14,6 @@ import {DialogsUsersType} from "./ContaineerForDialogs";
 
 
 const Dialogs = (props: DialogsUsersType) => {
-    console.log(props)
     // USERS
     let messageUser = props.users
         .map(user =>

@@ -1,40 +1,44 @@
-import {Postdata, Profilepage} from "./state";
+import {Postdata, ProfilePageDataType} from "./state";
+import {responseDataType} from "../Components/Profile/ProfileClassComponent";
 
 
-const initialState:Profilepage = {
+const initialState:ProfilePageDataType = {
         postData: [
             {postText: 'Hello World', likesCount: 11},
             {postText: 'Hello Kostya', likesCount: 12},
             {postText: 'Hello Komk', likesCount: 41}
         ],
-        textArreaText: '',
-    photos:{
-            small:'',
-            large:''
-    }
+        textAreaText: '',
+        profilePageInfo : null//сюда сет из аксиос запроса
+
 }
 
-export const profileReducer = (state:Profilepage = initialState , action:combinerTypes):Profilepage => {
+export const profileReducer = (state:ProfilePageDataType = initialState , action:combinerTypes):ProfilePageDataType => {
 
     switch (action.type){
         case "ADD-POST":{
 
-            if(state.textArreaText ===''){
+            if(state.textAreaText ===''){
                 return state
             }
 
             let newObj: Postdata = {postText: action.newPostMessage, likesCount: 0}
-            state.textArreaText = ''
+            state.textAreaText = ''
             return {...state, postData:[...state.postData,newObj] }
         }
         case "CHANGE-VALUE": {
-            return {...state,textArreaText:action.textArreaValue}
+            return {...state,textAreaText:action.textArreaValue}
         }
+
+        case "SET-DATA":{
+            return {...state,profilePageInfo:action.data}
+        }
+
         default:return state
     }
 }
 
-type combinerTypes = AddPostACType | ChangeValueType
+type combinerTypes = AddPostACType | ChangeValueType | setUserProfileType
 
 
 type AddPostACType = ReturnType<typeof AddPostAC>
@@ -54,6 +58,8 @@ export const ChangeValueAC = (textArreaValue: string) => {
     } as const
 }
 
-export const setPhoto = (url:string) => {
-    return{type:'SET-PHOTO',url}
+type setUserProfileType = ReturnType<typeof setUserProfile>
+
+export const setUserProfile = (data:responseDataType) => {
+    return{type:'SET-DATA',data}as const
 }

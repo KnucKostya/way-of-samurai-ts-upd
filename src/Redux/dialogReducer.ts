@@ -21,7 +21,6 @@ export const dialogReducer = ( state:Messagespage = initialState , action:combin
 
     switch (action.type){
         case "ADD-NEW-MESSAGE": {
-            console.log(action.newMessage)
             if(state.textArreaDialog ===''){
                 return state
             }

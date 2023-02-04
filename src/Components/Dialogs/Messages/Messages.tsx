@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './../Dialogs.module.css'
-import {Messages, Messagespage} from "../../../Redux/state";
 
 type MessagespropsType = {
     message : string|undefined

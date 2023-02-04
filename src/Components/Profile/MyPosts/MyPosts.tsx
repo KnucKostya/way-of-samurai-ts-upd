@@ -10,7 +10,7 @@ const MyPosts = (props: combineType) => {
 
 
     const addPost = () => {
-        props.addPost(props.textArreaText)
+        props.addPost(props.textAreaText)
     }
 
 
@@ -25,7 +25,7 @@ const MyPosts = (props: combineType) => {
             <div>
                 <textarea
                     placeholder={'enter post text'}
-                    value={props.textArreaText}
+                    value={props.textAreaText}
                     onChange={changeValueFunc}
                 >
                 </textarea>

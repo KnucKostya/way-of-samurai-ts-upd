@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './../Dialogs.module.css'
-import { Link } from 'react-router-dom';
-import {Messagespage, Users} from "../../../Redux/state";
+import {NavLink} from 'react-router-dom';
 
 export type DialoguserspropsType = {
    id: number;
@@ -10,7 +9,7 @@ export type DialoguserspropsType = {
 
 let Dialogusers = (props:DialoguserspropsType) => {
     return <div>
-        <Link to={'/dialogs/' + props.id} className={s.dialogusers}>{props.name} </Link>
+        <NavLink to={'/dialogs/' + props.id} className={s.dialogusers}>{props.name} </NavLink>
     </div>
 
 }

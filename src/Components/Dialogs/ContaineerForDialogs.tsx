@@ -1,8 +1,8 @@
 import {Messages, Users} from "../../Redux/state";
-import {ChangeDialogValueAC, combinerTypes, NewMessageAC} from "../../Redux/dialogReducer";
+import {ChangeDialogValueAC, NewMessageAC} from "../../Redux/dialogReducer";
 import Dialogs from "./Dialogs";
-import {connect, ConnectedComponent, ConnectedProps} from "react-redux";
-import {AppDispatch, RootState} from "../../Redux/store";
+import {connect} from "react-redux";
+import {RootState} from "../../Redux/store";
 import {Dispatch} from "redux";
 import React from "react";
 

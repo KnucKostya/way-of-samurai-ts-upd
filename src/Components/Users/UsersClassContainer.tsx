@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {combineType} from "./UsersContainer";
 import axios from 'axios'
 import Users from "./Users";
-import infinity from '../../Infinity-1.1s-264px.gif'
+import Preloader from "../../Common/Preloader";
 
 class UsersClassContainer extends React.Component<combineType> {
 
@@ -34,10 +34,9 @@ class UsersClassContainer extends React.Component<combineType> {
     }
 
     render() {
-        // debugger
         return (
             <>
-                {this.props.isLoading && <img src={infinity} alt=""/>}
+                {this.props.isLoading && <Preloader/>}
                 <Users onPageChangedMethod={this.onPageChangedMethod}
                        totalCount={this.props.totalCount}
                        count={this.props.count}

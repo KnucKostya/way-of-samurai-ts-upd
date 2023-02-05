@@ -4,11 +4,8 @@ import axios from "axios";
 import {connect} from "react-redux";
 import {initStateType, SetUserAuth} from "../../Redux/authReducer";
 import {WholeStateType} from "../../Redux/state";
+import api from "../../api/api";
 
-// export const instanse = axios.create({
-//     withCredentials:true,
-//     baseURL:'https://social-network.samuraijs.com/api/1.0/'
-// })
 
 type mstpType = ReturnType<typeof mstp>
 type mdtpType = typeof mdtp
@@ -18,10 +15,10 @@ class HeaderContainer extends React.Component<commonType> {
 
     componentDidMount() {
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,{withCredentials:true})
-            .then(response=>{
-                if(response.data.resultCode === 0) {
-                    let {id,login,email} = response.data.data
+        api.authMe()
+        .then(data=>{
+                if(data.resultCode === 0) {
+                    let {id,login,email} = data.data
                     this.props.SetUserAuth(id,login,email)
                 }
 

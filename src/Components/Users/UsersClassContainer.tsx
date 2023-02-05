@@ -3,6 +3,7 @@ import {combineType} from "./UsersContainer";
 import axios from 'axios'
 import Users from "./Users";
 import Preloader from "../../Common/Preloader";
+import {followingInProgress} from "../../Redux/usersReducer";
 
 class UsersClassContainer extends React.Component<combineType> {
 
@@ -13,7 +14,7 @@ class UsersClassContainer extends React.Component<combineType> {
 
     componentDidMount() {
         this.props.setLoadingStatus(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users`,{withCredentials:true})
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users`, {withCredentials: true})
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.setTotalCount(response.data.totalCount);
@@ -25,7 +26,7 @@ class UsersClassContainer extends React.Component<combineType> {
     onPageChangedMethod = (currentPage: number) => {
         this.props.setLoadingStatus(true)
         this.props.setCurrentPage(currentPage)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.count}`,{withCredentials:true})
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.count}`, {withCredentials: true})
             .then(response => {
                 this.props.setUsers(response.data.items);
                 this.props.setLoadingStatus(false)
@@ -37,13 +38,16 @@ class UsersClassContainer extends React.Component<combineType> {
         return (
             <>
                 {this.props.isLoading && <Preloader/>}
-                <Users onPageChangedMethod={this.onPageChangedMethod}
-                       totalCount={this.props.totalCount}
-                       count={this.props.count}
-                       unfollow={this.props.unfollow}
-                       follow={this.props.follow}
-                       users={this.props.users}
-                       currentPage={this.props.currentPage}
+                <Users
+                    onPageChangedMethod={this.onPageChangedMethod}
+                    totalCount={this.props.totalCount}
+                    count={this.props.count}
+                    unfollow={this.props.unfollow}
+                    follow={this.props.follow}
+                    users={this.props.users}
+                    currentPage={this.props.currentPage}
+                    followingInProgressStatus={this.props.followingInProgressStatus}
+                    followingInProgress={this.props.followingInProgress}
                 />
             </>
         )

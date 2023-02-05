@@ -5,6 +5,8 @@ export type initialStateType = {
     count:number
     currentPage:number
     isLoading:boolean
+    followingInProgressStatus:boolean
+
 }
 
 export type APIusersType = {
@@ -25,7 +27,8 @@ const initialState: initialStateType = {
     totalCount:0,
     count:10,
     currentPage:1,
-    isLoading:false
+    isLoading:false,
+    followingInProgressStatus:false
 }
 
 
@@ -50,6 +53,9 @@ export const usersReducer = (state: initialStateType = initialState, action: com
         case "CHANGE-IS-LOADING-STATUS": {
             return {...state,isLoading:action.isLoadingStatus}
         }
+        case "IS-FOLLOWING-PROGRESS":{
+            return {...state,followingInProgressStatus:action.followingInProgressStatus}
+        }
 
         default :
             return state
@@ -58,7 +64,7 @@ export const usersReducer = (state: initialStateType = initialState, action: com
 
 export type combinerTypes = followType | unfollowType
     | setUsersType | setCurrentPageType | setTotalCountType
-    | setLoadingStatusType
+    | setLoadingStatusType | followingInProgressType
 
 export type followType = ReturnType<typeof follow>
 export type unfollowType = ReturnType<typeof unfollow>
@@ -66,6 +72,7 @@ export type setUsersType = ReturnType<typeof setUsers>
 export type setCurrentPageType = ReturnType<typeof setCurrentPage>
 export type setTotalCountType = ReturnType<typeof setTotalCount>
 export type setLoadingStatusType = ReturnType<typeof setLoadingStatus>
+export type followingInProgressType = ReturnType<typeof followingInProgress>
 
 export const follow = (userID: number) => {
     return {
@@ -92,4 +99,7 @@ export const setTotalCount = (totalCount:number)=> {
 }
 export const setLoadingStatus = (isLoadingStatus:boolean) => {
     return{type:"CHANGE-IS-LOADING-STATUS",isLoadingStatus}as const
+}
+export const followingInProgress = (followingInProgressStatus:boolean) => {
+    return{type:"IS-FOLLOWING-PROGRESS",followingInProgressStatus}as const
 }

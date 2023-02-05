@@ -5,6 +5,7 @@ import {setUserProfile} from "../../Redux/profileReducer";
 import {connect} from "react-redux";
 import {WholeStateType} from "../../Redux/state";
 import {RouteComponentProps, withRouter} from "react-router-dom";
+import api from "../../api/api";
 
 
 export type responseDataType = {
@@ -39,46 +40,14 @@ export type ParamsType = {
 
 export type CommonType = RouteComponentProps<ParamsType> & combineType
 
-// class ProfileClassComponent extends React.Component<combineType> {
-//
-//     componentDidMount() {
-//         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
-//             .then(response =>{
-//                 this.props.setUserProfile(response.data)
-//             })
-//     }
-//
-//     render() {
-//         return <div>
-//             <Profile profileUser={this.props.profilePage} />
-//         </div>
-//     }
-// }
-//
-// let mapStateToProps = (state: WholeStateType) => {
-//     return {
-//         profilePage: state.profilePage
-//     }
-// }
-//
-// let mapDispatchToProps = {setUserProfile}
-//
-// export type mapStateToPropsType = ReturnType<typeof mapStateToProps>
-// export type mapDispatchToPropsType = typeof mapDispatchToProps
-// export type combineType = mapStateToPropsType & mapDispatchToPropsType
-//
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(WthRouterLessonFunctionWrapper(ProfileClassComponent));
-
 
 class ProfileClassComponent extends React.Component<CommonType> {
 
     componentDidMount() {
         let userID = this.props.match.params.userID
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userID}`)
-            .then(response =>{
-                this.props.setUserProfile(response.data)
-            })
+        api.getUsers(userID).then(data=>{
+            setUserProfile(data)
+        })
     }
 
     render() {

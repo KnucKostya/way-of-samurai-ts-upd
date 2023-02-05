@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/store";
 import {
-    follow,
+    follow, followingInProgress,
     setCurrentPage, setLoadingStatus,
     setTotalCount,
     setUsers,
@@ -17,11 +17,12 @@ const mapStateToProps = (state:RootState) => {
         count: state.usersPage.count,
         currentPage:state.usersPage.currentPage,
         isLoading:state.usersPage.isLoading,
+        followingInProgressStatus:state.usersPage.followingInProgressStatus,
         //users это обьект ДАТА с вложенным массивом АЙТЕМС
     }
 }
 
-const mapDispatchToProps = {follow,unfollow,setUsers,setCurrentPage,setTotalCount,setLoadingStatus}
+const mapDispatchToProps = {follow,unfollow,setUsers,setCurrentPage,setTotalCount,setLoadingStatus,followingInProgress}
 
 export type mapStateToPropsType = ReturnType<typeof mapStateToProps>
 export type mapDispatchToPropsType = typeof mapDispatchToProps

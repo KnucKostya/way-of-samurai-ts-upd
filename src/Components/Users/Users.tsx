@@ -3,7 +3,7 @@ import s from './users.module.css'
 import defaultLogo from '../../logo.svg'
 import {APIusersType} from "../../Redux/usersReducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
+import api from "../../api/api";
 
 export type UsersPropsType = {
     onPageChangedMethod: (m: number) => void
@@ -13,6 +13,8 @@ export type UsersPropsType = {
     follow: (id: number) => void
     users: APIusersType[]
     currentPage: number
+    followingInProgressStatus: boolean
+    followingInProgress: (followingInProgressStatus: boolean) => void
 }
 
 const Users = (props: UsersPropsType) => {
@@ -43,27 +45,35 @@ const Users = (props: UsersPropsType) => {
                     <div>
                         {
                             m.followed ?
-                            <button onClick={() => {
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${m.id}`, {withCredentials: true})
-                                    .then(res => {
-                                        if(res.data.resultCode === 0){
-                                            props.unfollow(m.id)
-                                        }})}}>Unfollow</button>
-                            :
-                            <button onClick={() =>{
-                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${m.id}`,{},{withCredentials:true})
-                                    .then(res=>{
-                                        if(res.data.resultCode===0){
-                                            props.follow(m.id)
-                                        }
-                                    })}}>Follow</button>
+                                <button disabled={props.followingInProgressStatus} className={s.buttDisable}
+                                        onClick={() => {
+                                            props.followingInProgress(true)
+                                            api.unfollow(m.id)
+                                                .then(data => {
+                                                    if (data.resultCode === 0) {
+                                                        props.unfollow(m.id)
+                                                    }
+                                                    props.followingInProgress(false)
+                                                })
+                                        }}>Unfollow</button>
+                                :
+                                <button disabled={props.followingInProgressStatus} onClick={() => {
+                                    props.followingInProgress(true)
+                                    api.follow(m.id)
+                                        .then(data => {
+                                            if (data.resultCode === 0) {
+                                                props.follow(m.id)
+                                            }
+                                            props.followingInProgress(false)
+                                        })
+                                }}>Follow</button>
                         }
                     </div>
                     <div>
                         {m.name}
                     </div>
 
-                    <NavLink to={'/profile/'+ m.id}>
+                    <NavLink to={'/profile/' + m.id}>
                         <img src={m.photos.small || defaultLogo} className={s.avatar}/>
                     </NavLink>
 

@@ -43,7 +43,6 @@ const authReducer = (state:initStateType = initialState, action: UserAuthType):i
 export type UserAuthType = ReturnType<typeof SetUserAuth>
 
 export const SetUserAuth = (id: number, login: string, email: string) => {
-    debugger
     return {
         type: 'USER-AUTH',
          data :{id, login, email}

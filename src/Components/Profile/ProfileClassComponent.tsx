@@ -1,6 +1,5 @@
 import React from 'react';
 import Profile from "./Profile";
-import axios from "axios";
 import {setUserProfile} from "../../Redux/profileReducer";
 import {connect} from "react-redux";
 import {WholeStateType} from "../../Redux/state";
@@ -35,7 +34,7 @@ export type mapDispatchToPropsType = typeof mapDispatchToProps
 export type combineType = mapStateToPropsType & mapDispatchToPropsType
 
 export type ParamsType = {
-    userID:string
+    userID: string
 }
 
 export type CommonType = RouteComponentProps<ParamsType> & combineType
@@ -45,22 +44,23 @@ class ProfileClassComponent extends React.Component<CommonType> {
 
     componentDidMount() {
         let userID = this.props.match.params.userID
-        api.getUsers(userID).then(data=>{
-            setUserProfile(data)
-        })
+        api.getUsersProfile(userID)
+            .then(data => {
+                this.props.setUserProfile(data)
+            })
     }
 
     render() {
         return <div>
-            <Profile profileUser={this.props.profilePage} />
+            <Profile profileUser={this.props.profilePage}/>
         </div>
     }
 }
 
 let mapStateToProps = (state: WholeStateType) => {
-        return {
+    debugger
+    return {
         profilePage: state.profilePage
-
     }
 }
 let mapDispatchToProps = {setUserProfile}

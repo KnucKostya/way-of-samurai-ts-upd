@@ -13,8 +13,8 @@ export type UsersPropsType = {
     follow: (id: number) => void
     users: APIusersType[]
     currentPage: number
-    followingInProgressStatus: boolean
-    followingInProgress: (followingInProgressStatus: boolean) => void
+    followingInProgressStatus: number[]
+    followingInProgress: (isFetching:boolean,userID:number) => void
 }
 
 const Users = (props: UsersPropsType) => {
@@ -45,26 +45,26 @@ const Users = (props: UsersPropsType) => {
                     <div>
                         {
                             m.followed ?
-                                <button disabled={props.followingInProgressStatus} className={s.buttDisable}
+                                <button disabled={props.followingInProgressStatus.some(id=>id===m.id)} className={s.buttDisable}
                                         onClick={() => {
-                                            props.followingInProgress(true)
+                                            props.followingInProgress(true,m.id)
                                             api.unfollow(m.id)
                                                 .then(data => {
                                                     if (data.resultCode === 0) {
                                                         props.unfollow(m.id)
                                                     }
-                                                    props.followingInProgress(false)
+                                                    props.followingInProgress(false,m.id)
                                                 })
                                         }}>Unfollow</button>
                                 :
-                                <button disabled={props.followingInProgressStatus} onClick={() => {
-                                    props.followingInProgress(true)
+                                <button disabled={props.followingInProgressStatus.some(id=>id===m.id)} onClick={() => {
+                                    props.followingInProgress(true,m.id)
                                     api.follow(m.id)
                                         .then(data => {
                                             if (data.resultCode === 0) {
                                                 props.follow(m.id)
                                             }
-                                            props.followingInProgress(false)
+                                            props.followingInProgress(false,m.id)
                                         })
                                 }}>Follow</button>
                         }

@@ -13,7 +13,7 @@ const initialState:ProfilePageDataType = {
 
 }
 
-export const profileReducer = (state:ProfilePageDataType = initialState , action:combinerTypes):ProfilePageDataType => {
+export const profileReducer = (state:ProfilePageDataType = initialState , action:CombinerProfileActionTypes):ProfilePageDataType => {
 
     switch (action.type){
         case "ADD-POST":{
@@ -38,7 +38,7 @@ export const profileReducer = (state:ProfilePageDataType = initialState , action
     }
 }
 
-type combinerTypes = AddPostACType | ChangeValueType | setUserProfileType
+export type CombinerProfileActionTypes = AddPostACType | ChangeValueType | setUserProfileType
 
 
 type AddPostACType = ReturnType<typeof AddPostAC>

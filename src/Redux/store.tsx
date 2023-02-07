@@ -1,28 +1,37 @@
-import {combineReducers, createStore, Dispatch} from "redux";
-import {profileReducer} from "./profileReducer";
-import {dialogReducer} from "./dialogReducer";
+import {combineReducers, createStore, Dispatch, applyMiddleware} from "redux";
+import {CombinerProfileActionTypes, profileReducer} from "./profileReducer";
+import {CombinerDialogsActionTypes, dialogReducer} from "./dialogReducer";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
-import {usersReducer} from "./usersReducer";
-import authReducer from "./authReducer";
+import {CombinerUserActionTypes, usersReducer} from "./usersReducer";
+import authReducer, {CombinerAuthActionsType} from "./authReducer";
+import thunk, {ThunkAction} from "redux-thunk";
 
 export type RootReducersType = ReturnType<typeof rootReducer>
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 
 
-
-
 let rootReducer = combineReducers({
-    profilePage:profileReducer,
-    messagesPage:dialogReducer,
-    usersPage:usersReducer,
-    auth:authReducer,
+    profilePage: profileReducer,
+    messagesPage: dialogReducer,
+    usersPage: usersReducer,
+    auth: authReducer,
 })
 
 
-export let store = createStore(rootReducer)
+export let store = createStore(rootReducer, applyMiddleware(thunk))
 export const useAppDispatch: () => Dispatch = useDispatch
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
+
+export type RootActionsType = CombinerUserActionTypes | CombinerProfileActionTypes
+    | CombinerDialogsActionTypes | CombinerAuthActionsType
+
+
+export type RootThunkType<ReturnType = void> = ThunkAction<ReturnType, RootReducersType, unknown, RootActionsType>
+//1) что возвращает ф-ция (void)
+//2) тип стейта (всего)
+//3) екстра-аргументы(не используется, всегда unknown)
+//4) типы всех экшенов
 // @ts-ignore
 window.store = store

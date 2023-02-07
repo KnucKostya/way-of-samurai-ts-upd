@@ -20,6 +20,7 @@ const {profileUser} = props;
             </div>
             <div>
                 <img src={profileUser.profilePageInfo?.photos.small} alt="small Image"/>
+                <img src={profileUser.profilePageInfo?.photos.large} alt="large Image"/>
                 <h4>{profileUser.profilePageInfo?.fullName}</h4>
                 <p>{profileUser.profilePageInfo?.aboutMe}</p>
             </div>
@@ -33,6 +34,7 @@ const {profileUser} = props;
 
             <div>
                 Contacts: <hr/>
+                <p>{profileUser.profilePageInfo?.userId}</p>
                 <a href={profileUser.profilePageInfo?.contacts.facebook}>facebook</a>
                 <hr/>
                 <a href={profileUser.profilePageInfo?.contacts.vk}>vk</a>

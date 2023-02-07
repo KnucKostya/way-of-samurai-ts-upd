@@ -1,4 +1,3 @@
-import React from "react";
 
 export type initStateType = {
     data:{
@@ -24,7 +23,7 @@ const initialState:initStateType = {
     isLogined:false
 }
 
-const authReducer = (state:initStateType = initialState, action: UserAuthType):initStateType => {
+const authReducer = (state:initStateType = initialState, action: CombinerAuthActionsType):initStateType => {
 
     switch (action.type) {
         case "USER-AUTH" : {
@@ -39,6 +38,8 @@ const authReducer = (state:initStateType = initialState, action: UserAuthType):i
 
     return state
 }
+
+export type CombinerAuthActionsType = UserAuthType
 
 export type UserAuthType = ReturnType<typeof SetUserAuth>
 

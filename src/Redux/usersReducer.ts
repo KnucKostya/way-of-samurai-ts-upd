@@ -1,12 +1,13 @@
+import api from "../api/api";
+import {RootThunkType} from "./store";
 
 export type initialStateType = {
     users: APIusersType[]
-    totalCount:number
-    count:number
-    currentPage:number
-    isLoading:boolean
-    followingInProgressStatus:boolean
-
+    totalCount: number
+    count: number
+    currentPage: number
+    isLoading: boolean
+    followingInProgressStatus: number[]
 }
 
 export type APIusersType = {
@@ -24,15 +25,13 @@ export type APIusersType = {
 
 const initialState: initialStateType = {
     users: [],
-    totalCount:0,
-    count:10,
-    currentPage:1,
-    isLoading:false,
-    followingInProgressStatus:false
+    totalCount: 0,
+    count: 10,
+    currentPage: 1,
+    isLoading: false,
+    followingInProgressStatus: []
 }
-
-
-export const usersReducer = (state: initialStateType = initialState, action: combinerTypes): initialStateType => {
+export const usersReducer = (state: initialStateType = initialState, action: CombinerUserActionTypes): initialStateType => {
 
     switch (action.type) {
         case "FOLLOW" : {
@@ -42,19 +41,23 @@ export const usersReducer = (state: initialStateType = initialState, action: com
             return {...state, users: state.users.map(m => m.id === action.userID ? {...m, followed: false} : m)}
         }
         case "SET-USERS" : {
-            return {...state, users:action.users}
+            return {...state, users: action.users}
         }
         case "SET-CURRENT-PAGE": {
-            return {...state,currentPage:action.currentPage}
+            return {...state, currentPage: action.currentPage}
         }
-        case "SET-TOTAL-COUNT":{
-            return{...state,totalCount:action.totalCount}
+        case "SET-TOTAL-COUNT": {
+            return {...state, totalCount: action.totalCount}
         }
         case "CHANGE-IS-LOADING-STATUS": {
-            return {...state,isLoading:action.isLoadingStatus}
+            return {...state, isLoading: action.isLoadingStatus}
         }
-        case "IS-FOLLOWING-PROGRESS":{
-            return {...state,followingInProgressStatus:action.followingInProgressStatus}
+        case "IS-FOLLOWING-PROGRESS": {
+            return {
+                ...state, followingInProgressStatus: action.isFetching
+                    ? [...state.followingInProgressStatus, action.userID]
+                    : state.followingInProgressStatus.filter(id => id !== action.userID)
+            }
         }
 
         default :
@@ -62,7 +65,7 @@ export const usersReducer = (state: initialStateType = initialState, action: com
     }
 }
 
-export type combinerTypes = followType | unfollowType
+export type CombinerUserActionTypes = followType | unfollowType
     | setUsersType | setCurrentPageType | setTotalCountType
     | setLoadingStatusType | followingInProgressType
 
@@ -89,17 +92,31 @@ export const setUsers = (users: APIusersType[]) => {
         type: 'SET-USERS', users
     } as const
 }
-export const setCurrentPage = (currentPage:number) => {
-    return{
-        type:'SET-CURRENT-PAGE',currentPage
-    }as const
+export const setCurrentPage = (currentPage: number) => {
+    return {
+        type: 'SET-CURRENT-PAGE', currentPage
+    } as const
 }
-export const setTotalCount = (totalCount:number)=> {
-    return{type:'SET-TOTAL-COUNT',totalCount}as const
+export const setTotalCount = (totalCount: number) => {
+    return {type: 'SET-TOTAL-COUNT', totalCount} as const
 }
-export const setLoadingStatus = (isLoadingStatus:boolean) => {
-    return{type:"CHANGE-IS-LOADING-STATUS",isLoadingStatus}as const
+export const setLoadingStatus = (isLoadingStatus: boolean) => {
+    return {type: "CHANGE-IS-LOADING-STATUS", isLoadingStatus} as const
 }
-export const followingInProgress = (followingInProgressStatus:boolean) => {
-    return{type:"IS-FOLLOWING-PROGRESS",followingInProgressStatus}as const
+export const followingInProgress = (isFetching: boolean, userID: number) => {
+    return {type: "IS-FOLLOWING-PROGRESS", isFetching, userID} as const
 }
+
+// ------------------------------thunk
+
+
+export let thunkCreator = () : RootThunkType => {
+    return (dispatch) => {
+        dispatch (setLoadingStatus(true))
+    api.getUsers()
+        .then(response => {
+            dispatch (setUsers(response.data.items));
+            dispatch (setTotalCount(response.data.totalCount));
+            dispatch (setLoadingStatus(false))
+        })
+}}

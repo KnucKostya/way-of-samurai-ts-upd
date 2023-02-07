@@ -1,4 +1,3 @@
-import React from 'react';
 import axios from "axios";
 
 const instance = axios.create({
@@ -11,7 +10,7 @@ const instance = axios.create({
 
 const api = {
 
-    getUsers: function (userID: string) {
+    getUsersProfile: function (userID: string) {
         return instance.get(`/profile/${userID}`)
             .then(response => {
                 return response.data
@@ -35,6 +34,13 @@ const api = {
         return instance.post(`/follow/${userId}`)
             .then(response=>{
                 return response.data
+            })
+    },
+    getUsers() {
+       return instance.get(`users`)
+            .then(response=>{
+                console.log(response)
+                return response
             })
     }
 

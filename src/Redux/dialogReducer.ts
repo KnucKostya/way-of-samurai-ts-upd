@@ -17,7 +17,7 @@ let initialState:Messagespage = {
 }
 
 
-export const dialogReducer = ( state:Messagespage = initialState , action:combinerTypes):Messagespage => {
+export const dialogReducer = ( state:Messagespage = initialState , action:CombinerDialogsActionTypes):Messagespage => {
 
     switch (action.type){
         case "ADD-NEW-MESSAGE": {
@@ -37,7 +37,7 @@ export const dialogReducer = ( state:Messagespage = initialState , action:combin
     }
 }
 
-export type combinerTypes = NewMessagesType | ChangeDialogValue
+export type CombinerDialogsActionTypes = NewMessagesType | ChangeDialogValue
 
 
 type NewMessagesType = ReturnType<typeof NewMessageAC>

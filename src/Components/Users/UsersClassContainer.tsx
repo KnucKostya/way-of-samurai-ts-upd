@@ -3,23 +3,23 @@ import {combineType} from "./UsersContainer";
 import axios from 'axios'
 import Users from "./Users";
 import Preloader from "../../Common/Preloader";
-import {followingInProgress} from "../../Redux/usersReducer";
+
 
 class UsersClassContainer extends React.Component<combineType> {
-
     // constructor(props:combineType) {
     //     super(props);
     // } и т.к в конструкторе уже не происходит АЯЙКС запрос, то его и мето супер
     // уже писать не обязательно, это проихсрдит за кадром
 
     componentDidMount() {
-        this.props.setLoadingStatus(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users`, {withCredentials: true})
-            .then(response => {
-                this.props.setUsers(response.data.items);
-                this.props.setTotalCount(response.data.totalCount);
-                this.props.setLoadingStatus(false)
-            })
+        this.props.thunkCreator()
+        // this.props.setLoadingStatus(true)
+        // api.getUsers()
+        //     .then(response => {
+        //         this.props.setUsers(response.data.items);
+        //         this.props.setTotalCount(response.data.totalCount);
+        //         this.props.setLoadingStatus(false)
+        //     })
 
     }
 

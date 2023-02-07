@@ -4,10 +4,13 @@ import {
     follow, followingInProgress,
     setCurrentPage, setLoadingStatus,
     setTotalCount,
-    setUsers,
+    setUsers, thunkCreator,
     unfollow
 } from "../../Redux/usersReducer";
 import UsersClassContainer from "./UsersClassContainer";
+import {compose} from "redux";
+import React from "react";
+import {withRouter} from "react-router-dom";
 
 
 const mapStateToProps = (state:RootState) => {
@@ -22,12 +25,14 @@ const mapStateToProps = (state:RootState) => {
     }
 }
 
-const mapDispatchToProps = {follow,unfollow,setUsers,setCurrentPage,setTotalCount,setLoadingStatus,followingInProgress}
+const mapDispatchToProps = {follow,unfollow,setUsers,setCurrentPage,
+    setTotalCount,setLoadingStatus,followingInProgress,thunkCreator}
+
 
 export type mapStateToPropsType = ReturnType<typeof mapStateToProps>
 export type mapDispatchToPropsType = typeof mapDispatchToProps
 export type combineType = mapStateToPropsType & mapDispatchToPropsType
 
-export default connect(mapStateToProps,mapDispatchToProps)(UsersClassContainer)
+export default compose<React.FC>(connect(mapStateToProps,mapDispatchToProps),withRouter)(UsersClassContainer)
     //сокращённо и приавильно mapDispatchToProps нужно писать вот так
     // приставка AC не используетс в проектах, поэтому её нуэно удалить

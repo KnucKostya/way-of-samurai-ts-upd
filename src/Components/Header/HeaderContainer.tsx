@@ -1,10 +1,9 @@
 import React from 'react';
 import Header from "./Header";
-import axios from "axios";
 import {connect} from "react-redux";
-import {initStateType, SetUserAuth} from "../../Redux/authReducer";
+import {LoginisationThunk, SetUserAuth} from "../../Redux/authReducer";
 import {WholeStateType} from "../../Redux/state";
-import api from "../../api/api";
+import {compose} from "redux";
 
 
 type mstpType = ReturnType<typeof mstp>
@@ -14,15 +13,7 @@ export type commonType = mstpType & mdtpType
 class HeaderContainer extends React.Component<commonType> {
 
     componentDidMount() {
-
-        api.authMe()
-        .then(data=>{
-                if(data.resultCode === 0) {
-                    let {id,login,email} = data.data
-                    this.props.SetUserAuth(id,login,email)
-                }
-
-        })
+        this.props.LoginisationThunk()
     }
 
     render() {
@@ -41,6 +32,6 @@ const mstp = (state:WholeStateType) => {
         isLogined:state.auth.isLogined
     }
 }
-const mdtp = {SetUserAuth}
+const mdtp = {SetUserAuth,LoginisationThunk}
 
-export default connect(mstp,mdtp)(HeaderContainer);
+export default compose<React.FC>(connect(mstp,mdtp))(HeaderContainer);

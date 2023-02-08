@@ -1,3 +1,5 @@
+import api from "../api/api";
+import {RootThunkType} from "./store";
 
 export type initStateType = {
     data:{
@@ -30,7 +32,6 @@ const authReducer = (state:initStateType = initialState, action: CombinerAuthAct
             console.log(action.data.login)
             return {...state,data:{...state.data,...action.data}
             ,isLogined:true}
-            //??????????????????????????????????????pravil`no??????????????^^^^^^^^^^^^
         }
         default:
             return state
@@ -51,3 +52,18 @@ export const SetUserAuth = (id: number, login: string, email: string) => {
 }
 
 export default authReducer
+
+
+// ------------------------------------------thunk's
+
+export const LoginisationThunk = ():RootThunkType => {
+    return (dispatch) => {
+        api.authMe()
+            .then(data=>{
+                if(data.resultCode === 0) {
+                    let {id,login,email} = data.data
+                    dispatch(SetUserAuth(id,login,email))
+                }
+            })
+    }
+}

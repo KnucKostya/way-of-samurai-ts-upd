@@ -1,5 +1,7 @@
 import {Postdata, ProfilePageDataType} from "./state";
 import {responseDataType} from "../Components/Profile/ProfileClassComponent";
+import {RootThunkType} from "./store";
+import api from "../api/api";
 
 
 const initialState:ProfilePageDataType = {
@@ -62,4 +64,13 @@ type setUserProfileType = ReturnType<typeof setUserProfile>
 
 export const setUserProfile = (data:responseDataType) => {
     return{type:'SET-DATA',data}as const
+}
+
+export const GetUserProfileThunk = (userID:string):RootThunkType => {
+    return (dispatch) => {
+        api.getUsersProfile(userID)
+            .then(data => {
+                dispatch(setUserProfile(data))
+            })
+    }
 }

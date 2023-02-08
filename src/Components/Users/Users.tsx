@@ -1,12 +1,12 @@
 import React from 'react';
 import s from './users.module.css'
 import defaultLogo from '../../logo.svg'
-import {APIusersType} from "../../Redux/usersReducer";
+import {APIusersType, FollowUserThunk, UnfollowUserThunk} from "../../Redux/usersReducer";
 import {NavLink} from "react-router-dom";
 import api from "../../api/api";
 
 export type UsersPropsType = {
-    onPageChangedMethod: (m: number) => void
+    onPageChangedMethod: (currentPage: number) => void
     totalCount: number
     count: number
     unfollow: (id: number) => void
@@ -15,6 +15,8 @@ export type UsersPropsType = {
     currentPage: number
     followingInProgressStatus: number[]
     followingInProgress: (isFetching:boolean,userID:number) => void
+    UnfollowUserThunk:(userID:number)=>void
+    FollowUserThunk:(userID:number)=>void
 }
 
 const Users = (props: UsersPropsType) => {
@@ -28,45 +30,26 @@ const Users = (props: UsersPropsType) => {
         countPagesArr.push(i)
     }
 
-
+    console.log(props.followingInProgressStatus)
     return (
         <div>
             <div>
                 {countPagesArr.map((m, i) => {
                     return <span key={i} className={props.currentPage === m ? s.spanBold : s.span}
                                  onClick={() => props.onPageChangedMethod(m)}>{m}</span>
-
                 })}
-
             </div>
-
-            {props.users.map(m =>
-                <div key={m.id}>
+            {props.users.map(m => {
+                return     <div key={m.id}>
                     <div>
                         {
-                            m.followed ?
+                            m.followed
+                                ?
                                 <button disabled={props.followingInProgressStatus.some(id=>id===m.id)} className={s.buttDisable}
-                                        onClick={() => {
-                                            props.followingInProgress(true,m.id)
-                                            api.unfollow(m.id)
-                                                .then(data => {
-                                                    if (data.resultCode === 0) {
-                                                        props.unfollow(m.id)
-                                                    }
-                                                    props.followingInProgress(false,m.id)
-                                                })
-                                        }}>Unfollow</button>
+                                        onClick={() => props.UnfollowUserThunk(m.id)}>Unfollow</button>
                                 :
-                                <button disabled={props.followingInProgressStatus.some(id=>id===m.id)} onClick={() => {
-                                    props.followingInProgress(true,m.id)
-                                    api.follow(m.id)
-                                        .then(data => {
-                                            if (data.resultCode === 0) {
-                                                props.follow(m.id)
-                                            }
-                                            props.followingInProgress(false,m.id)
-                                        })
-                                }}>Follow</button>
+                                <button disabled={props.followingInProgressStatus.some(id=>id===m.id)}
+                                        onClick={() =>  props.FollowUserThunk(m.id)}>Follow</button>
                         }
                     </div>
                     <div>
@@ -74,7 +57,7 @@ const Users = (props: UsersPropsType) => {
                     </div>
 
                     <NavLink to={'/profile/' + m.id}>
-                        <img src={m.photos.small || defaultLogo} className={s.avatar}/>
+                        <img src={m.photos.small || defaultLogo} className={s.avatar} alt={'image not loaded:('}/>
                     </NavLink>
 
                     <div>{m.status ? m.status : 'default Status'}</div>
@@ -82,6 +65,8 @@ const Users = (props: UsersPropsType) => {
                     <div>{'m.location.country'}</div>
 
                 </div>
+                }
+
             )}
 
         </div>

@@ -65,6 +65,7 @@ export const usersReducer = (state: initialStateType = initialState, action: Com
     }
 }
 
+// --------------------------------types AC`s
 export type CombinerUserActionTypes = followType | unfollowType
     | setUsersType | setCurrentPageType | setTotalCountType
     | setLoadingStatusType | followingInProgressType
@@ -77,6 +78,7 @@ export type setTotalCountType = ReturnType<typeof setTotalCount>
 export type setLoadingStatusType = ReturnType<typeof setLoadingStatus>
 export type followingInProgressType = ReturnType<typeof followingInProgress>
 
+// --------------------------------------AC`s
 export const follow = (userID: number) => {
     return {
         type: 'FOLLOW', userID
@@ -107,16 +109,56 @@ export const followingInProgress = (isFetching: boolean, userID: number) => {
     return {type: "IS-FOLLOWING-PROGRESS", isFetching, userID} as const
 }
 
-// ------------------------------thunk
+// ------------------------------thunks
 
-
-export let thunkCreator = () : RootThunkType => {
+export let getUsersThunk = (): RootThunkType => {
     return (dispatch) => {
-        dispatch (setLoadingStatus(true))
-    api.getUsers()
-        .then(response => {
-            dispatch (setUsers(response.data.items));
-            dispatch (setTotalCount(response.data.totalCount));
-            dispatch (setLoadingStatus(false))
-        })
-}}
+        dispatch(setLoadingStatus(true))
+        api.getUsers()
+            .then(response => {
+                dispatch(setUsers(response.data.items));
+                dispatch(setTotalCount(response.data.totalCount));
+                dispatch(setLoadingStatus(false))
+            })
+    }
+}
+// -------------------------------------------------thunk`s
+
+export const PageChangedThunk = (currentPage: number, count: number): RootThunkType => {
+    return (dispatch) => {
+        dispatch(setLoadingStatus(true))
+        dispatch(setCurrentPage(currentPage))
+        api.getUsersForCurrentPage(currentPage, count)
+            .then(response => {
+                dispatch(setUsers(response.data.items));
+                dispatch(setLoadingStatus(false))
+            })
+    }
+}
+
+export const UnfollowUserThunk = (userID: number): RootThunkType => {
+    return  (dispatch) => {
+        dispatch(followingInProgress(true, userID))
+        api.unfollow(userID)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(unfollow(userID))
+                    dispatch(followingInProgress(false, userID))
+                }
+            })
+    }
+}
+
+export const FollowUserThunk = (userID: number): RootThunkType => {
+    return (dispatch) => {
+        dispatch(followingInProgress(true, userID))
+        api.follow(userID)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(follow(userID))
+                    dispatch(followingInProgress(false, userID))
+                }
+            })
+
+    }
+}

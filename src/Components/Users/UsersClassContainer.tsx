@@ -1,8 +1,8 @@
 import React from 'react';
 import {combineType} from "./UsersContainer";
-import axios from 'axios'
 import Users from "./Users";
 import Preloader from "../../Common/Preloader";
+import {FollowUserThunk, UnfollowUserThunk} from "../../Redux/usersReducer";
 
 
 class UsersClassContainer extends React.Component<combineType> {
@@ -12,26 +12,11 @@ class UsersClassContainer extends React.Component<combineType> {
     // уже писать не обязательно, это проихсрдит за кадром
 
     componentDidMount() {
-        this.props.thunkCreator()
-        // this.props.setLoadingStatus(true)
-        // api.getUsers()
-        //     .then(response => {
-        //         this.props.setUsers(response.data.items);
-        //         this.props.setTotalCount(response.data.totalCount);
-        //         this.props.setLoadingStatus(false)
-        //     })
-
+        this.props.getUsersThunk()
     }
 
     onPageChangedMethod = (currentPage: number) => {
-        this.props.setLoadingStatus(true)
-        this.props.setCurrentPage(currentPage)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.count}`, {withCredentials: true})
-            .then(response => {
-                this.props.setUsers(response.data.items);
-                this.props.setLoadingStatus(false)
-            })
-
+        this.props.PageChangedThunk(currentPage, this.props.count)
     }
 
     render() {
@@ -48,6 +33,8 @@ class UsersClassContainer extends React.Component<combineType> {
                     currentPage={this.props.currentPage}
                     followingInProgressStatus={this.props.followingInProgressStatus}
                     followingInProgress={this.props.followingInProgress}
+                    UnfollowUserThunk={this.props.UnfollowUserThunk}
+                    FollowUserThunk={this.props.FollowUserThunk}
                 />
             </>
         )

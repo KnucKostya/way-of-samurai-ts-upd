@@ -1,10 +1,10 @@
 import React from 'react';
 import Profile from "./Profile";
-import {setUserProfile} from "../../Redux/profileReducer";
+import {GetUserProfileThunk, setUserProfile} from "../../Redux/profileReducer";
 import {connect} from "react-redux";
 import {WholeStateType} from "../../Redux/state";
 import {RouteComponentProps, withRouter} from "react-router-dom";
-import api from "../../api/api";
+import {compose} from "redux";
 
 
 export type responseDataType = {
@@ -44,10 +44,7 @@ class ProfileClassComponent extends React.Component<CommonType> {
 
     componentDidMount() {
         let userID = this.props.match.params.userID
-        api.getUsersProfile(userID)
-            .then(data => {
-                this.props.setUserProfile(data)
-            })
+        this.props.GetUserProfileThunk(userID)
     }
 
     render() {
@@ -58,13 +55,12 @@ class ProfileClassComponent extends React.Component<CommonType> {
 }
 
 let mapStateToProps = (state: WholeStateType) => {
-    debugger
     return {
         profilePage: state.profilePage
     }
 }
-let mapDispatchToProps = {setUserProfile}
+let mapDispatchToProps = {setUserProfile,GetUserProfileThunk}
 
 let ProfileClassComponentWithRoute = withRouter(ProfileClassComponent)
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileClassComponentWithRoute);
+export default compose<React.FC>(connect(mapStateToProps, mapDispatchToProps))(ProfileClassComponentWithRoute);

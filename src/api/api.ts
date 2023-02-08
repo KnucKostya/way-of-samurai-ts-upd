@@ -42,6 +42,9 @@ const api = {
                 console.log(response)
                 return response
             })
+    },
+    getUsersForCurrentPage(currentPage:number,count:number) {
+        return instance.get(`users?page=${currentPage}&count=${count}`)
     }
 
 };

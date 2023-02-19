@@ -2,7 +2,6 @@ import React from 'react';
 import {combineType} from "./UsersContainer";
 import Users from "./Users";
 import Preloader from "../../Common/Preloader";
-import {FollowUserThunk, UnfollowUserThunk} from "../../Redux/usersReducer";
 
 
 class UsersClassContainer extends React.Component<combineType> {

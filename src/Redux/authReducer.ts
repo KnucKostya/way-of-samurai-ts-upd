@@ -10,7 +10,7 @@ export type initStateType = {
     messages: string[],
     fieldsErrors: null,
     resultCode: number|null,
-    isLogined:boolean
+    isAuth:boolean
 }
 
 const initialState:initStateType = {
@@ -22,7 +22,7 @@ const initialState:initStateType = {
     messages: [''],
     fieldsErrors: null,
     resultCode: null,
-    isLogined:false
+    isAuth:false
 }
 
 const authReducer = (state:initStateType = initialState, action: CombinerAuthActionsType):initStateType => {
@@ -31,7 +31,7 @@ const authReducer = (state:initStateType = initialState, action: CombinerAuthAct
         case "USER-AUTH" : {
             console.log(action.data.login)
             return {...state,data:{...state.data,...action.data}
-            ,isLogined:true}
+            ,isAuth:true}
         }
         default:
             return state
@@ -54,7 +54,7 @@ export const SetUserAuth = (id: number, login: string, email: string) => {
 export default authReducer
 
 
-// ------------------------------------------thunk's
+// --------------------thunk's------------------------
 
 export const LoginisationThunk = ():RootThunkType => {
     return (dispatch) => {

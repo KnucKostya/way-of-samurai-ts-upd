@@ -2,8 +2,10 @@ import React from 'react';
 import s from './users.module.css'
 import defaultLogo from '../../logo.svg'
 import {APIusersType, FollowUserThunk, UnfollowUserThunk} from "../../Redux/usersReducer";
-import {NavLink} from "react-router-dom";
-import api from "../../api/api";
+import {NavLink, Redirect} from "react-router-dom";
+
+
+<Redirect to={'login'}/>
 
 export type UsersPropsType = {
     onPageChangedMethod: (currentPage: number) => void
@@ -18,6 +20,7 @@ export type UsersPropsType = {
     UnfollowUserThunk:(userID:number)=>void
     FollowUserThunk:(userID:number)=>void
 }
+
 
 const Users = (props: UsersPropsType) => {
 

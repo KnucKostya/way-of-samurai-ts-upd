@@ -29,7 +29,7 @@ class HeaderContainer extends React.Component<commonType> {
 const mstp = (state:WholeStateType) => {
     return {
         login:state.auth.data.login,
-        isLogined:state.auth.isLogined
+        isAuth:state.auth.isAuth
     }
 }
 const mdtp = {SetUserAuth,LoginisationThunk}

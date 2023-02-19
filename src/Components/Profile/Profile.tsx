@@ -2,6 +2,7 @@ import React from 'react';
 import Prepostcontent from "./Prepostcontent/Prepostcontent";
 import ContaineerMyPostComponent from "./MyPosts/ContaineerMyPostComponent";
 import {ProfilePageDataType} from "../../Redux/state";
+import {Redirect} from "react-router-dom";
 
 
 type ProfilePropsType = {
@@ -9,6 +10,7 @@ type ProfilePropsType = {
 }
 
 const Profile = (props:ProfilePropsType) => {
+
 
     return <div>
         <Prepostcontent profileUser={props.profileUser}/>

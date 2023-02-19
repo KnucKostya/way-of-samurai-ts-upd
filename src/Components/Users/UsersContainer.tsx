@@ -10,7 +10,10 @@ import {
 import UsersClassContainer from "./UsersClassContainer";
 import {compose} from "redux";
 import React from "react";
+import withAuthRedirect from "../hoc/AuthRedirect";
 
+const mapAuthRedirect = (state:RootState) => {
+    return{isAuth:state.auth.isAuth}}
 
 const mapStateToProps = (state:RootState) => {
     return{
@@ -28,11 +31,16 @@ const mapDispatchToProps = {follow,unfollow,setUsers,setCurrentPage,
     setTotalCount,setLoadingStatus,followingInProgress,getUsersThunk,
     PageChangedThunk,UnfollowUserThunk,FollowUserThunk}
 
-
+export type mapAuthRedirectToPropsType = ReturnType<typeof mapAuthRedirect>
 export type mapStateToPropsType = ReturnType<typeof mapStateToProps>
 export type mapDispatchToPropsType = typeof mapDispatchToProps
 export type combineType = mapStateToPropsType & mapDispatchToPropsType
 
-export default compose<React.FC>(connect(mapStateToProps,mapDispatchToProps))(UsersClassContainer)
+
+let AuthRedirectComponent = withAuthRedirect(UsersClassContainer)
+AuthRedirectComponent = connect(mapAuthRedirect)(AuthRedirectComponent)
+
+
+export default compose<React.FC>(connect(mapStateToProps,mapDispatchToProps))(AuthRedirectComponent)
     //сокращённо и приавильно mapDispatchToProps нужно писать вот так
     // приставка AC не используетс в проектах, поэтому её нуэно удалить

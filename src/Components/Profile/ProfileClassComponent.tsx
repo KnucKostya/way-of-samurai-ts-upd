@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {WholeStateType} from "../../Redux/state";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
+import withAuthRedirect from "../hoc/AuthRedirect";
 
 
 export type responseDataType = {
@@ -48,15 +49,17 @@ class ProfileClassComponent extends React.Component<CommonType> {
     }
 
     render() {
+        // if(this.props.isAuth === false){return <Redirect to={'/login'}/>}
         return <div>
-            <Profile profileUser={this.props.profilePage}/>
+            <Profile profileUser={this.props.profilePage} />
         </div>
     }
 }
 
 let mapStateToProps = (state: WholeStateType) => {
     return {
-        profilePage: state.profilePage
+        profilePage: state.profilePage,
+        isAuth: state.auth.isAuth,
     }
 }
 let mapDispatchToProps = {setUserProfile,GetUserProfileThunk}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, Redirect} from 'react-router-dom';
 import {Route} from 'react-router-dom';
 import './App.css';
 import s from './Content.module.css';
@@ -9,6 +9,7 @@ import ContaineerForDialogs from "./Components/Dialogs/ContaineerForDialogs";
 import UsersContainer from "./Components/Users/UsersContainer";
  import ProfileClassComponent from "./Components/Profile/ProfileClassComponent";
 import HeaderContainer from "./Components/Header/HeaderContainer";
+import {LoginPage} from "./Components/Login/LoginPage";
 
 
 const AppWithRedux = () => {
@@ -19,8 +20,8 @@ const AppWithRedux = () => {
                 <Navbar/>
 
                 <div className={s.content}>
-                        {/*<Route path="/profile"*/}
-                        {/*       element={<ProfileClassComponent/>}/>*/}
+                        <Route exact path="/"
+                               render={()=><UsersContainer/>}/>
                         <Route path="/profile/:userID?"
                                render={()=><ProfileClassComponent/>}/>
 
@@ -35,6 +36,9 @@ const AppWithRedux = () => {
                         {/*       element={<Music />} />*/}
                         {/*<Route path="/settings/settings.jsx"*/}
                         {/*       element={<Settings />} />*/}
+                    <Route path={'/login'}
+                    render={()=><LoginPage/>}
+                    ></Route>
                 </div>
             </div>
         </BrowserRouter>

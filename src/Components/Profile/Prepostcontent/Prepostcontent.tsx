@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Prepostcontent.module.css';
 import Preloader from "../../../Common/Preloader";
 import {ProfilePageDataType} from "../../../Redux/state";
+import EditableStatus from "./EditableStatus";
 
 type PrepostcontentType = {
     profileUser: ProfilePageDataType
@@ -27,10 +28,19 @@ const {profileUser} = props;
             {
                 profileUser.profilePageInfo?.lookingForAJob &&
                     <div>
-                        {`${'Шукаю роботу'}${<span>{profileUser.profilePageInfo.lookingForAJobDescription}.toString()</span>}`}
+                        {`Шукаю роботу ${profileUser.profilePageInfo.lookingForAJobDescription}`}
                     </div>
-
             }
+            <hr/>
+
+            <div>
+                'Change Status with class local State'
+                <div>
+                    <EditableStatus statusValue={'Some Status'} />
+                </div>
+            </div>
+
+            <hr/>
 
             <div>
                 Contacts: <hr/>

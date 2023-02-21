@@ -3,8 +3,8 @@ import {ChangeDialogValueAC, NewMessageAC} from "../../Redux/dialogReducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/store";
-import {Dispatch} from "redux";
-import React from "react";
+import {compose, Dispatch} from "redux";
+import React, {FC} from "react";
 import withAuthRedirect from "../hoc/AuthRedirect";
 
 
@@ -70,10 +70,10 @@ let mapDispatchToProps = (dispatch: Dispatch):MapDispatchToPropsType => {
 
 export type DialogsUsersType = MapStateToPropsType & MapDispatchToPropsType
 
-let AuthRedirectComponent = withAuthRedirect(Dialogs)
 
-const ContaineerForDialogs=connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
+export default compose<FC>(
+    connect(mapStateToProps, mapDispatchToProps)
+    ,withAuthRedirect)(Dialogs)
 
-
-export default ContaineerForDialogs;
+;
 

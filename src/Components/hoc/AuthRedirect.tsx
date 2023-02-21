@@ -1,4 +1,4 @@
-import React, {ComponentType} from 'react';
+import React, {ComponentType, FC} from 'react';
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/store";
@@ -11,7 +11,7 @@ const mstp = (state: RootState):MstpType => {
    return {isAuth:state.auth.isAuth}
 }
 
-export function WithAuthRedirect<T>(Component: ComponentType<T>) {
+export function WithAuthRedirect<T extends object>(Component: ComponentType<T>) {
 
     const RedirectComponent = (props: MstpType) => {
         let {isAuth, ...rest} = props
@@ -21,10 +21,9 @@ export function WithAuthRedirect<T>(Component: ComponentType<T>) {
         return <Component {...rest as T}/>
     }
 
-    let ConnectedRedirectComponent = connect(mstp)(RedirectComponent)
-    return ConnectedRedirectComponent
+    return connect(mstp)(RedirectComponent)
+
 
 };
 
 export default WithAuthRedirect;
-

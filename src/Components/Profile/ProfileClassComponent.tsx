@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import Profile from "./Profile";
 import {GetUserProfileThunk, setUserProfile} from "../../Redux/profileReducer";
 import {connect} from "react-redux";
@@ -29,7 +29,7 @@ export type responseDataType = {
         large: string
     }
 }
-
+//rrtryry
 export type mapStateToPropsType = ReturnType<typeof mapStateToProps>
 export type mapDispatchToPropsType = typeof mapDispatchToProps
 export type combineType = mapStateToPropsType & mapDispatchToPropsType
@@ -49,7 +49,6 @@ class ProfileClassComponent extends React.Component<CommonType> {
     }
 
     render() {
-        // if(this.props.isAuth === false){return <Redirect to={'/login'}/>}
         return <div>
             <Profile profileUser={this.props.profilePage} />
         </div>
@@ -59,11 +58,11 @@ class ProfileClassComponent extends React.Component<CommonType> {
 let mapStateToProps = (state: WholeStateType) => {
     return {
         profilePage: state.profilePage,
-        isAuth: state.auth.isAuth,
     }
 }
 let mapDispatchToProps = {setUserProfile,GetUserProfileThunk}
 
-let ProfileClassComponentWithRoute = withRouter(ProfileClassComponent)
-
-export default compose<React.FC>(connect(mapStateToProps, mapDispatchToProps))(ProfileClassComponentWithRoute);
+export default compose<FC>(
+    connect(mapStateToProps, mapDispatchToProps),
+    withRouter,
+    withAuthRedirect)(ProfileClassComponent)

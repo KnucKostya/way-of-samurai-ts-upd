@@ -25,6 +25,7 @@ export type ProfilePageDataType = {
     postData: Array<Postdata>
     textAreaText: string
     profilePageInfo: responseDataType | null
+    status:string
 }
 export type Postdata = {
     postText: string

@@ -3,9 +3,12 @@ import s from './Prepostcontent.module.css';
 import Preloader from "../../../Common/Preloader";
 import {ProfilePageDataType} from "../../../Redux/state";
 import EditableStatus from "./EditableStatus";
+import {RootThunkType} from "../../../Redux/store";
 
 type PrepostcontentType = {
     profileUser: ProfilePageDataType
+    status:string
+    updateStatus:(status:string)=>RootThunkType
 }
 const Prepostcontent = (props: PrepostcontentType) => {
 const {profileUser} = props;
@@ -13,6 +16,7 @@ const {profileUser} = props;
         return <Preloader/>
     }
 
+    console.log(props.status)
     return (
         <div className={s.content}>
             <div>
@@ -36,7 +40,7 @@ const {profileUser} = props;
             <div>
                 'Change Status with class local State'
                 <div>
-                    <EditableStatus statusValue={'Some Status'} />
+                    <EditableStatus statusValue={props.status ? props.status : 'Default status'} updateStatus={props.updateStatus} />
                 </div>
             </div>
 

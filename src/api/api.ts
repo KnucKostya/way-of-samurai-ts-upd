@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 
 const instance = axios.create({
     baseURL:`https://social-network.samuraijs.com/api/1.0/`,
@@ -9,8 +9,8 @@ const instance = axios.create({
 })
 
 const api = {
-
-    getUsersProfile: function (userID: string) {
+    getUsersProfile: function (userID: number) {
+        console.warn('must refactor method (use in profileApi)')
         return instance.get(`/profile/${userID}`)
             .then(response => {
                 return response.data
@@ -18,6 +18,7 @@ const api = {
     },
 
     authMe:function (){
+        console.warn('replace method')
         return instance.get(`auth/me`)
             .then(response=>{
                 return response.data
@@ -39,7 +40,6 @@ const api = {
     getUsers() {
        return instance.get(`users`)
             .then(response=>{
-                console.log(response)
                 return response
             })
     },
@@ -48,5 +48,26 @@ const api = {
     }
 
 };
+
+export const profileApi = {
+    getProfile:(userID: string)=>{
+        return api.getUsersProfile
+    },
+    getStatus:(userID: number)=>{
+        return instance.get<number,AxiosResponse<string>>(`profile/status/${userID}`).then(res => res.data)
+    },
+    updateStatus:(status: string )=>{
+        return instance.put(`/profile/status`,{status})
+    }
+}
+
+export const loginApi = {
+
+    login:(login:string,password:string)=>{
+        return instance.post(`auth/login`,{login,password})
+            .then(response=>response.data)
+}
+
+}
 
 export default api;

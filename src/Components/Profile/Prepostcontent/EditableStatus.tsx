@@ -36,6 +36,6 @@ class EditableStatus extends React.Component<any, any> {
             </div>
         );
     }
-};
+}
 
 export default EditableStatus;

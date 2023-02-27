@@ -1,7 +1,7 @@
 import {Postdata, ProfilePageDataType} from "./state";
 import {responseDataType} from "../Components/Profile/ProfileClassComponent";
 import {RootThunkType} from "./store";
-import api from "../api/api";
+import api, {profileApi} from "../api/api";
 
 
 const initialState:ProfilePageDataType = {
@@ -11,7 +11,8 @@ const initialState:ProfilePageDataType = {
             {postText: 'Hello Komk', likesCount: 41}
         ],
         textAreaText: '',
-        profilePageInfo : null//сюда сет из аксиос запроса
+        profilePageInfo : null,//сюда сет из аксиос запроса,
+        status:'',
 
 }
 
@@ -35,12 +36,15 @@ export const profileReducer = (state:ProfilePageDataType = initialState , action
         case "SET-DATA":{
             return {...state,profilePageInfo:action.data}
         }
+        case "SET-STATUS":{
+            return {...state,status:action.status}
+        }
 
         default:return state
     }
 }
 
-export type CombinerProfileActionTypes = AddPostACType | ChangeValueType | setUserProfileType
+export type CombinerProfileActionTypes = AddPostACType | ChangeValueType | setUserProfileType | SetStatusType
 
 
 type AddPostACType = ReturnType<typeof AddPostAC>
@@ -66,11 +70,40 @@ export const setUserProfile = (data:responseDataType) => {
     return{type:'SET-DATA',data}as const
 }
 
-export const GetUserProfileThunk = (userID:string):RootThunkType => {
+export const SetStatus = (status:string) => {
+    return {type:'SET-STATUS', status}as const
+}
+export type SetStatusType = ReturnType<typeof SetStatus>
+
+
+
+export const GetUserProfileThunk = (userID:number):RootThunkType => {
     return (dispatch) => {
         api.getUsersProfile(userID)
-            .then(data => {
-                dispatch(setUserProfile(data))
+            .then(response => {
+                dispatch(setUserProfile(response))
+            })
+    }
+}
+
+export const GetStatusThunk = (userID:number):RootThunkType => {
+    return (dispatch) => {
+        profileApi.getStatus(userID)
+            .then(response=>{
+                dispatch(SetStatus(response))
+            })
+    }
+}
+
+
+export const UpdateUserStatusThunk = (status:string):RootThunkType => {
+    return (dispatch) => {
+        profileApi.updateStatus(status)
+            .then(response=>{
+                if(response.data.resultCode === 0){
+                    dispatch(SetStatus(status))
+                }
+                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             })
     }
 }

@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import Profile from "./Profile";
-import {GetUserProfileThunk, setUserProfile} from "../../Redux/profileReducer";
+import {GetStatusThunk, GetUserProfileThunk, setUserProfile, UpdateUserStatusThunk} from "../../Redux/profileReducer";
 import {connect} from "react-redux";
 import {WholeStateType} from "../../Redux/state";
 import {RouteComponentProps, withRouter} from "react-router-dom";
@@ -40,17 +40,17 @@ export type ParamsType = {
 
 export type CommonType = RouteComponentProps<ParamsType> & combineType
 
-
 class ProfileClassComponent extends React.Component<CommonType> {
 
     componentDidMount() {
-        let userID = this.props.match.params.userID
+        let userID = +this.props.match.params.userID
         this.props.GetUserProfileThunk(userID)
+        this.props.GetStatusThunk(userID)
     }
 
     render() {
         return <div>
-            <Profile profileUser={this.props.profilePage} />
+            <Profile profileUser={this.props.profilePage} status={this.props.status} updateStatus={this.props.UpdateUserStatusThunk}/>
         </div>
     }
 }
@@ -58,9 +58,10 @@ class ProfileClassComponent extends React.Component<CommonType> {
 let mapStateToProps = (state: WholeStateType) => {
     return {
         profilePage: state.profilePage,
+        status:state.profilePage.status,
     }
 }
-let mapDispatchToProps = {setUserProfile,GetUserProfileThunk}
+let mapDispatchToProps = {setUserProfile,GetUserProfileThunk,GetStatusThunk,UpdateUserStatusThunk}
 
 export default compose<FC>(
     connect(mapStateToProps, mapDispatchToProps),

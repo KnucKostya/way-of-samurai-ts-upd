@@ -11,7 +11,8 @@ const mapStateToProps = (state:RootState) :ProfilePageDataType=> {
     return {
         postData:state.profilePage.postData,
         textAreaText:state.profilePage.textAreaText,
-        profilePageInfo:null
+        profilePageInfo:null,
+        status:state.profilePage.status
         }
 }
 

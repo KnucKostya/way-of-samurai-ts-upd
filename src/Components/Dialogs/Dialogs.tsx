@@ -1,20 +1,13 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './Dialogs.module.css';
 import Dialogusers from "./Dialogusers/Dialogusers";
 import Message from "./Messages/Messages";
 import {DialogsUsersType} from "./ContaineerForDialogs";
-
-// type DialoguserspropsType = {
-//     users: Array<Users>
-//     messages: Array<Messages>
-//     sendMessage:()=>void
-//     takeValueFoo:(event:string)=>void
-//     textArreaValueforDialogs:string
-// }
+import DialogsForm from "../Forms/DialogsForm";
 
 
 const Dialogs = (props: DialogsUsersType) => {
-    // USERS
+    //MAP USERS
     let messageUser = props.users
         .map(user =>
             (<Dialogusers key={user.id} name={user.name} id={user.id}/>)
@@ -23,16 +16,6 @@ const Dialogs = (props: DialogsUsersType) => {
     let messagesMap = props.messages
         .map((m, index) => (<Message key={index} message={m.message}/>))
 
-
-    const sendMessage = () => {
-        if(props.textArreaValueforDialogs.length) {
-            props.sendMessage(props.textArreaValueforDialogs)
-        }
-    }
-
-    const takeValueFoo = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.takeValueFoo(e.currentTarget.value)
-    }
 
     //DIALOG RESULT V V V V
 
@@ -43,15 +26,8 @@ const Dialogs = (props: DialogsUsersType) => {
         <div>
             {messagesMap}
         </div>
-
-        <textarea placeholder={'enter message'}
-                  value={props.textArreaValueforDialogs}
-                  onChange={takeValueFoo}
-        >
-        </textarea>
-        <button onClick={sendMessage}></button>
-
-
+        <DialogsForm
+              sendMessage={props.sendMessage}/>
     </div>
 }
 export default Dialogs;

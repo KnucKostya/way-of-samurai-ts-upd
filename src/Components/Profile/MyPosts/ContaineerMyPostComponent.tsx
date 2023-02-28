@@ -1,7 +1,6 @@
 import {ProfilePageDataType} from "../../../Redux/state";
 import MyPosts from "./MyPosts";
-import React from "react";
-import {AddPostAC, ChangeValueAC} from "../../../Redux/profileReducer";
+import {AddPostAC} from "../../../Redux/profileReducer";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import {RootState} from "../../../Redux/store";
@@ -10,21 +9,18 @@ import {RootState} from "../../../Redux/store";
 const mapStateToProps = (state:RootState) :ProfilePageDataType=> {
     return {
         postData:state.profilePage.postData,
-        textAreaText:state.profilePage.textAreaText,
         profilePageInfo:null,
         status:state.profilePage.status
         }
 }
 
 type mapDispatchToPropsOutterType = {
-    addPost:(text:string)=>void
-    changeValueFunc:(e:string)=>void
+    addPost:(postText:string)=>void
 }
 
 const mapDispatchToProps = (dispatch:Dispatch):mapDispatchToPropsOutterType => {
     return{
-        addPost:(textArreaText:string)=>dispatch(AddPostAC(textArreaText)),
-        changeValueFunc:(event:string)=>dispatch(ChangeValueAC(event))
+        addPost:(postText:string)=>dispatch(AddPostAC(postText)),
     }
 }
 

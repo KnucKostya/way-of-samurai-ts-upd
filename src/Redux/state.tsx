@@ -23,7 +23,6 @@ export type WholeStateType = {
 //------------profilePage
 export type ProfilePageDataType = {
     postData: Array<Postdata>
-    textAreaText: string
     profilePageInfo: responseDataType | null
     status:string
 }
@@ -35,11 +34,10 @@ export type Postdata = {
 export type Messagespage = {
     users: Array<Users>
     messages: Array<Messages>
-    textArreaDialog: string
 }
 export type Users = {
     name: string
-    id: number
+    id: string
 }
 export type Messages = {
     message: string

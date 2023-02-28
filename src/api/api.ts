@@ -63,11 +63,12 @@ export const profileApi = {
 
 export const loginApi = {
 
-    login:(login:string,password:string)=>{
-        return instance.post(`auth/login`,{login,password})
+    login:(email:string,password:string)=>{
+        return instance.post(`auth/login`,{email,password})
             .then(response=>response.data)
 }
 
 }
+
 
 export default api;

@@ -6,9 +6,6 @@ import { Provider } from 'react-redux'
 import AppWithRedux from "./AppWithRedux";
 
 
-// доделать профайл коннект
-
-
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement);
 
@@ -17,6 +14,3 @@ root.render(
         <AppWithRedux/>
     </Provider>
 )
-
-
-

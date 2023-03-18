@@ -24,9 +24,6 @@ class EditableStatus extends React.Component<any, any> {
         this.setState({status:event.currentTarget.value})
     }
 
-    // onChangeEditStatus = () => {
-    //     this.setState({isEdit:!this.state.isEdit})
-    // }
 
     render() {
         return (
@@ -35,9 +32,6 @@ class EditableStatus extends React.Component<any, any> {
                     <input type="text" autoFocus={true} value={this.state.status} onBlur={this.deactivateMode} onChange={this.onChangeStatus}/>
                     :
                     <span onDoubleClick={this.activateMode}>{this.props.statusValue}</span>
-                    // <input type="text" autoFocus={true} value={this.props.statusValue} onBlur={this.onChangeEditStatus.bind(this)} />
-                    // :
-                    // <span onDoubleClick={this.onChangeEditStatus.bind(this)}>{this.props.statusValue}</span>
                 }
             </div>
         );

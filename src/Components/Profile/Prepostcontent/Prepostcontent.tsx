@@ -38,10 +38,10 @@ const {profileUser} = props;
             <hr/>
 
             <div>
-                'Change Status with class local State'
+                {/*'Change Status with class local State'*/}
                 <div>
                     <EditableStatus statusValue={props.status ? props.status : 'Default status'} updateStatus={props.updateStatus} />
-                    <EditableStatus statusValue={'Some Status'} />
+                    {/*<EditableStatus statusValue={'Some Status'} />*/}
                 </div>
             </div>
 

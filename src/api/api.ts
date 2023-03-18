@@ -54,7 +54,7 @@ export const profileApi = {
         return api.getUsersProfile
     },
     getStatus:(userID: number)=>{
-        return instance.get<number,AxiosResponse<string>>(`profile/status/${userID}`).then(res => res.data)
+        return instance.get(`profile/status/${userID}`)
     },
     updateStatus:(status: string )=>{
         return instance.put(`/profile/status`,{status})
@@ -62,11 +62,17 @@ export const profileApi = {
 }
 
 export const loginApi = {
-
-    login:(email:string,password:string)=>{
+    auth:()=>{
+       return api.authMe()
+    },
+    login:(email:string,password:string,rememberMe:boolean)=>{
         return instance.post(`auth/login`,{email,password})
             .then(response=>response.data)
-}
+},
+    logout:()=>{
+        return instance.delete('auth/login')
+            .then(response=>response.data)
+    }
 
 }
 

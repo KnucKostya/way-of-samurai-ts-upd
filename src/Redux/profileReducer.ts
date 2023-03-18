@@ -19,11 +19,7 @@ export const profileReducer = (state:ProfilePageDataType = initialState , action
 
     switch (action.type){
         case "ADD-POST":{
-            // if(state.textAreaText ===''){
-            //     return state
-            // }
             let newObj: Postdata = {postText: action.newPostMessage, likesCount: 0}
-            // state.textAreaText = ''
             return {...state, postData:[...state.postData,newObj] }
         }
 
@@ -76,7 +72,8 @@ export const GetStatusThunk = (userID:number):RootThunkType => {
     return (dispatch) => {
         profileApi.getStatus(userID)
             .then(response=>{
-                dispatch(SetStatus(response))
+                console.log(response.status)
+                dispatch(SetStatus(response.data))
             })
     }
 }
@@ -89,7 +86,6 @@ export const UpdateUserStatusThunk = (status:string):RootThunkType => {
                 if(response.data.resultCode === 0){
                     dispatch(SetStatus(status))
                 }
-                // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             })
     }
 }

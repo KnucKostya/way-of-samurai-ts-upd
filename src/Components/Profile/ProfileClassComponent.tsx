@@ -29,7 +29,6 @@ export type responseDataType = {
         large: string
     }
 }
-//rrtryry
 export type mapStateToPropsType = ReturnType<typeof mapStateToProps>
 export type mapDispatchToPropsType = typeof mapDispatchToProps
 export type combineType = mapStateToPropsType & mapDispatchToPropsType

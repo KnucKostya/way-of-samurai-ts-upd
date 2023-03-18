@@ -13,7 +13,6 @@ type ProfilePropsType = {
 
 const Profile = (props:ProfilePropsType) => {
 
-
     return <div>
         <Prepostcontent profileUser={props.profileUser} status={props.status} updateStatus={props.updateStatus}/>
         <ContaineerMyPostComponent/>

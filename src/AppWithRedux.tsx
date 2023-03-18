@@ -9,7 +9,7 @@ import ContaineerForDialogs from "./Components/Dialogs/ContaineerForDialogs";
 import UsersContainer from "./Components/Users/UsersContainer";
  import ProfileClassComponent from "./Components/Profile/ProfileClassComponent";
 import HeaderContainer from "./Components/Header/HeaderContainer";
-import {LoginPage} from "./Components/Login/LoginPage";
+import LoginPage from "./Components/Login/LoginPage";
 
 
 const AppWithRedux = () => {
@@ -37,7 +37,7 @@ const AppWithRedux = () => {
                         {/*<Route path="/settings/settings.jsx"*/}
                         {/*       element={<Settings />} />*/}
                     <Route path={'/login'}
-                    render={()=><LoginPage/>}
+                    render={()=><LoginPage />}
                     ></Route>
                 </div>
             </div>

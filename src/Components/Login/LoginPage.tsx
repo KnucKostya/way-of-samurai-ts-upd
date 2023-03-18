@@ -3,9 +3,9 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import {RootReducersType, useAppDispatchThunk} from "../../Redux/store";
-import {initStateType, LoginThunkCreator} from "../../Redux/authReducer";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
+import {LoginThunkCreator} from "../../Redux/authReducer";
 
 
 const schema = yup.object({

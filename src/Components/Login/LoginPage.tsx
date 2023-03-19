@@ -26,7 +26,7 @@ const LoginForm = () => {
     const onSubmit: SubmitHandler<Inputs> = data => {
         dispatch(LoginThunkCreator(data.login, data.password, data.rememberMe!))
     }
-    //test commit
+    //test
 
     return (
         <div>

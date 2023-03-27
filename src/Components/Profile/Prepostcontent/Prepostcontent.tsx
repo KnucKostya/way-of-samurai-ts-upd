@@ -29,13 +29,17 @@ const {profileUser} = props;
                 <h4>{profileUser.profilePageInfo?.fullName}</h4>
                 <p>{profileUser.profilePageInfo?.aboutMe}</p>
             </div>
+
+            <div>
+                {profileUser.profilePageInfo?.fullName}
+            </div>
+
             {
                 profileUser.profilePageInfo?.lookingForAJob &&
                     <div>
                         {`Шукаю роботу ${profileUser.profilePageInfo.lookingForAJobDescription}`}
                     </div>
             }
-            <hr/>
 
             <div>
                 {/*'Change Status with class local State'*/}
@@ -45,8 +49,6 @@ const {profileUser} = props;
                 </div>
             </div>
 
-            <hr/>
-
             <div>
                 Contacts: <hr/>
                 <p>{profileUser.profilePageInfo?.userId}</p>
@@ -55,6 +57,7 @@ const {profileUser} = props;
                 <a href={profileUser.profilePageInfo?.contacts.vk}>vk</a>
                 <hr/>
                 <a href={profileUser.profilePageInfo?.contacts.github}>github</a>
+                <hr/>
             </div>
         </div>
     );

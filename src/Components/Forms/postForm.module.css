@@ -1,3 +1,7 @@
 .green{
     color: #64d064;
 }
+.submit{
+    display: flex;
+    justify-content: center;
+}

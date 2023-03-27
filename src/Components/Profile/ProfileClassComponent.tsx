@@ -65,4 +65,5 @@ let mapDispatchToProps = {setUserProfile,GetUserProfileThunk,GetStatusThunk,Upda
 export default compose<FC>(
     connect(mapStateToProps, mapDispatchToProps),
     withRouter,
-    withAuthRedirect)(ProfileClassComponent)
+    // withAuthRedirect
+)(ProfileClassComponent)

@@ -2,7 +2,7 @@ import React from 'react';
 import Post from './Post/Post'
 import {combineType} from "./ContaineerMyPostComponent";
 import {AddNewPostForm} from "../../Forms/PostForm";
-
+import s from "./MyPosts.module.css"
 
 const MyPosts = (props: combineType) => {
 
@@ -10,7 +10,7 @@ const MyPosts = (props: combineType) => {
         .map((p, index) => (<Post key={index} message={p.postText} like={p.likesCount}/>))
 
     return (
-        <div>
+        <div className={s.postContainer}>
             My posts
             <div>
                 <AddNewPostForm addPost={props.addPost}/>

@@ -1,5 +1,7 @@
 .app-wrapper {
   margin: 0 auto;
+  padding:0;
+  box-sizing: border-box;
   display: grid;
   width: auto;
   grid-template-areas:
@@ -7,6 +9,6 @@
   "n c";
 
   grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
-  /* grid-gap: 10px; */
+  grid-template-columns: 1.5fr 10fr;
 }
+

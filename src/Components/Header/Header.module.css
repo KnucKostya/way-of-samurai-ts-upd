@@ -1,17 +1,46 @@
 .header {
     grid-area: h;
     background-color: rgb(196, 153, 245);
+    display: flex;
+    justify-content: space-between;
 }
 
-.header img {
+.rightSideContainer {
+    margin-right:5%;
+    float: right;
+    max-width: 30%;
+    border: 1px solid black;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.leftSideContainer {
+    margin-left:5%;
+    float: left;
+    max-width: 30%;
+    height: 100%;
+    border: 1px solid black;
+    /*padding: 5px;*/
+    display: flex;
+    align-items: center;
+}
+
+.leftImg {
+    float: left;
     width: 40px;
-    border-radius: 30px ;
+    border-radius: 30px;
     padding: 5px;
     margin-top: 10px;
 }
-.auth a{
+
+.auth a {
     float: right;
     padding: 10px;
     text-decoration: none;
 }
 
+.logo{
+  width:30px;
+  height:30px;
+}

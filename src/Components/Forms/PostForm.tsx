@@ -33,7 +33,7 @@ export const AddNewPostForm = (props: AddNewPostFormPropsType) => {
                 {errors.newPost?.message
                     ? <div className={s.green}>required to field text area from 2-100 symbols</div>
                     : ''}
-                <div><input type="submit" /></div>
+                <div className={s.submit}><input type="submit" name={'Send'}/></div>
             </form>
         </div>
     )

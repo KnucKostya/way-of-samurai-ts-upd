@@ -10,6 +10,7 @@ import UsersContainer from "./Components/Users/UsersContainer";
  import ProfileClassComponent from "./Components/Profile/ProfileClassComponent";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import LoginPage from "./Components/Login/LoginPage";
+import News from "./Components/News/News";
 
 
 const AppWithRedux = () => {
@@ -30,8 +31,8 @@ const AppWithRedux = () => {
 
                         <Route path = "/users"
                                render={()=><UsersContainer/>}/>
-                        {/*<Route path="/news/news.jsx/"*/}
-                        {/*       element={<News />} />*/}
+                        <Route path="/news/news.jsx/"
+                               render={()=><News />}/>
                         {/*<Route path="/music/music.jsx"*/}
                         {/*       element={<Music />} />*/}
                         {/*<Route path="/settings/settings.jsx"*/}

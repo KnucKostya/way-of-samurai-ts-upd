@@ -21,11 +21,9 @@ const {profileUser} = props;
         <div className={s.content}>
             <div>
                 <img className={s.img}
-                     src='https://image.shutterstock.com/image-vector/surfing-beach-svg-illustration-design-260nw-2181165831.jpg'/>
+                     src={profileUser.profilePageInfo?.photos.large} alt="large Image"/>
             </div>
             <div>
-                <img src={profileUser.profilePageInfo?.photos.small} alt="small Image"/>
-                <img src={profileUser.profilePageInfo?.photos.large} alt="large Image"/>
                 <h4>{profileUser.profilePageInfo?.fullName}</h4>
                 <p>{profileUser.profilePageInfo?.aboutMe}</p>
             </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -15,7 +15,6 @@ const schema = yup.object({
 }).required();
 
 const LoginForm = () => {
-
     const dispatch = useAppDispatchThunk()
     const {register, handleSubmit, formState: {errors}, trigger} = useForm<Inputs>({
         resolver: yupResolver(schema),
@@ -26,7 +25,6 @@ const LoginForm = () => {
     const onSubmit: SubmitHandler<Inputs> = data => {
         dispatch(LoginThunkCreator(data.login, data.password, data.rememberMe!))
     }
-    //test
 
     return (
         <div>
@@ -55,11 +53,14 @@ const LoginForm = () => {
 }
 
 
-const LoginPage = (props:{isAuth:boolean}) => {
+const LoginPage = (props:{isAuth:boolean,error:string}) => {
+    useEffect(() => {
+        console.log(props.error)
+    }, [props.error])
 
     if(props.isAuth){
         return <Redirect to="/profile" />
-    }else
+    }
     return (
         <div>
             <h1>LOGIN</h1>
@@ -69,7 +70,8 @@ const LoginPage = (props:{isAuth:boolean}) => {
 };
 
 let mapStateToProps = (state:RootReducersType)=>({
-    isAuth:state.auth.isAuth
+    isAuth:state.auth.isAuth,
+    error:state.auth.error
 })
 
 export default connect(mapStateToProps,{})(LoginPage)

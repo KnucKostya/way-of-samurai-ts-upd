@@ -10,18 +10,16 @@ const Header = (props: commonType) => {
     const dispatch = useAppDispatchThunk()
 
     return <header className={s.header}>
+
             <div className={s.leftSideContainer}>
                 <img className={s.logo} src= {logo}/>
                 <img className={s.logo} src= {logo}/>
                 <img className={s.logo} src= {logo}/>
-
-
-
             </div>
 
             <div className={s.rightSideContainer}>
                 <input type="text"/>
-                <img className={s.rightImg} src='https://www.freelogodesign.org/Content/img/logo-ex-7.png'/>
+                {/*<img className={s.rightImg} src='https://www.freelogodesign.org/Content/img/logo-ex-7.png'/>*/}
                 {props.isAuth
                     ?
                     <>

@@ -14,7 +14,7 @@ const schema = yup.object({
     rememberMe: yup.boolean()
 }).required();
 
-const LoginForm = () => {
+const LoginForm = (props:{error:string}) => {
     const dispatch = useAppDispatchThunk()
     const {register, handleSubmit, formState: {errors}, trigger} = useForm<Inputs>({
         resolver: yupResolver(schema),
@@ -39,6 +39,7 @@ const LoginForm = () => {
                         const result = await trigger("password", {shouldFocus: true});
                     }}/>
                     <p>{errors ? errors.password?.message : ''}</p>
+                    <p>{props.error ? props.error : ''}</p>
                 </div>
                 <div>
                     <input type="checkbox" {...register("checkbox")}/>
@@ -55,7 +56,7 @@ const LoginForm = () => {
 
 const LoginPage = (props:{isAuth:boolean,error:string}) => {
     useEffect(() => {
-        console.log(props.error)
+        // console.log(props.error)
     }, [props.error])
 
     if(props.isAuth){
@@ -64,7 +65,7 @@ const LoginPage = (props:{isAuth:boolean,error:string}) => {
     return (
         <div>
             <h1>LOGIN</h1>
-            <LoginForm/>
+            <LoginForm error={props.error}/>
         </div>
     );
 };

@@ -61,8 +61,8 @@ export const profileApi = {
     }
 }
 
-export const loginApi = {
-    auth:()=>{
+export const authAPI = {
+    me:()=>{
        return api.authMe()
     },
     login:(email:string,password:string,rememberMe:boolean)=>{

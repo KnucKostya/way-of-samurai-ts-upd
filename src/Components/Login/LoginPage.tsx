@@ -39,7 +39,7 @@ const LoginForm = (props:{error:string}) => {
                         const result = await trigger("password", {shouldFocus: true});
                     }}/>
                     <p>{errors ? errors.password?.message : ''}</p>
-                    <p>{props.error ? props.error : ''}</p>
+                    <p>{props.error && props.error!== 'You are not authorized' ? props.error : ''}</p>
                 </div>
                 <div>
                     <input type="checkbox" {...register("checkbox")}/>

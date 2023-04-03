@@ -11,27 +11,27 @@ const Header = (props: commonType) => {
 
     return <header className={s.header}>
 
-            <div className={s.leftSideContainer}>
-                <img className={s.logo} src= {logo}/>
-                <img className={s.logo} src= {logo}/>
-                <img className={s.logo} src= {logo}/>
-            </div>
+        <div className={s.leftSideContainer}>
+            <img className={s.logo} src={logo}/>
+            <img className={s.logo} src={logo}/>
+            <img className={s.logo} src={logo}/>
+        </div>
 
-            <div className={s.rightSideContainer}>
-                <input type="text"/>
-                {/*<img className={s.rightImg} src='https://www.freelogodesign.org/Content/img/logo-ex-7.png'/>*/}
-                {props.isAuth
-                    ?
-                    <>
-                        <span>{`${props.login}`}</span>
-                        <button onClick={()=>dispatch(LogOutThunkCreator())}>- logout</button>
-                    </>
+        <div className={s.rightSideContainer}>
+            <input type="text"/>
+            {props.isAuth
+                ?
+                <>
+                    <span>{`${props.login}`}</span>
+                    <button onClick={() => dispatch(LogOutThunkCreator())}>- logout</button>
+                </>
 
-                    : <span className={s.auth}>
+                : <span className={s.auth}>
              <NavLink to={'/login'}>Login</NavLink>
             </span>
-                }
-            </div>
+            }
+        </div>
+
     </header>
 }
 

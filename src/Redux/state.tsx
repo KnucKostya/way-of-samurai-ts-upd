@@ -1,14 +1,6 @@
 import {responseDataType} from "../Components/Profile/ProfileClassComponent";
 import {initStateType} from "./authReducer";
 
-// export type store = {
-//     _state: State
-//     subscribe: (observer: any) => void
-//     _rerenderEntireTree: (state: State) => void
-//     getState: () => State
-//     dispatch: (action: TsarType) => void
-//     // textArreaText:any
-// }
 // Type for all STATE
 export type WholeStateType = {
     profilePage: ProfilePageDataType

@@ -43,6 +43,9 @@ class ProfileClassComponent extends React.Component<CommonType> {
 
     componentDidMount() {
         let userID = +this.props.match.params.userID
+        // if(!userID){
+        //     this.props.history.push("/login")
+        // }создаёт ручу редиректов и крашит приложение
         this.props.GetUserProfileThunk(userID)
         this.props.GetStatusThunk(userID)
     }

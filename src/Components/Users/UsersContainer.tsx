@@ -1,16 +1,24 @@
 import {connect} from "react-redux";
-import {RootState} from "../../Redux/store";
+import {RootState} from "Redux/store";
 import {
     follow, followingInProgress,
     setCurrentPage, setLoadingStatus,
     setTotalCount,
     setUsers, getUsersThunk,
     unfollow, PageChangedThunk, UnfollowUserThunk, FollowUserThunk
-} from "../../Redux/usersReducer";
+} from "Redux/usersReducer";
 import UsersClassContainer from "./UsersClassContainer";
 import {compose} from "redux";
 import React from "react";
 import withAuthRedirect from "../hoc/AuthRedirect";
+// import {
+//     getCount,
+//     getCurrentPage,
+//     getFollowingInProgressStatus,
+//     getIsLoading,
+//     getTotalCount,
+//     getUsers
+// } from "Redux/user-selectors";
 
 
 
@@ -23,6 +31,12 @@ const mapStateToProps = (state:RootState) => {
         isLoading:state.usersPage.isLoading,
         followingInProgressStatus:state.usersPage.followingInProgressStatus,
         //users это обьект ДАТА с вложенным массивом АЙТЕМС
+        // users:getUsers(state),
+        // totalCount: getTotalCount(state),
+        // count: getCount(state),
+        // currentPage:getCurrentPage(state),
+        // isLoading:getIsLoading(state),
+        // followingInProgressStatus:getFollowingInProgressStatus(state),
     }
 }
 

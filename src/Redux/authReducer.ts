@@ -1,6 +1,8 @@
-import api, {loginApi} from "../api/api";
+import api, {authAPI} from "../api/api";
 import {RootThunkType} from "./store";
 import {AxiosError} from "axios";
+import {InitializedStatusType, initializedSuccess} from "./appReducer";
+
 
 export type initStateType = {
     data: {
@@ -32,14 +34,15 @@ const authReducer = (state = initialState, action: CombinerAuthActionsType): ini
 
     switch (action.type) {
         case "USER-AUTH" : {
-            console.log(action.data.login)
             return {
                 ...state, data: {...state.data, ...action.data}
                 , isAuth: true
             }
         }
+        case "LOG-OUT" : {
+            return {...state, isAuth: false}
+        }
         case "SET-ERROR": {
-            debugger
             // return {...state,messages:[...state.messages,action.error]}
             return {...state, error: action.error}
         }
@@ -68,16 +71,15 @@ export const SetErrorAC = (error: string) => {
 }
 // --------------------thunks------------------------
 
-export const AuthThunkCreator = (): RootThunkType => {
+export const getAuthUserData = (): RootThunkType<Promise<void>> => {
     return (dispatch) => {
-        loginApi.auth()
+       return authAPI.me()
             .then(data => {
                 if (data.resultCode === 0) {
                     let {id, login, email} = data.data
                     dispatch(SetUserAuth(id, login, email))
                     dispatch(SetErrorAC(''))
                 } else {
-                    debugger
                     dispatch(SetErrorAC(data.messages[0]))
                 }
             })
@@ -85,11 +87,11 @@ export const AuthThunkCreator = (): RootThunkType => {
 }
 
 export const LoginThunkCreator = (email: string, password: string, rememberMe: boolean): RootThunkType => (dispatch) => {
-    loginApi.login(email, password, rememberMe)
-        .then(response =>{
+    authAPI.login(email, password, rememberMe)
+        .then(response => {
             if (response.resultCode === 0) {
-                dispatch(AuthThunkCreator())
-            }else{
+                dispatch(getAuthUserData())
+            } else {
                 console.log(response.messages[0])
                 dispatch(SetErrorAC(response.messages[0]))
             }
@@ -97,14 +99,17 @@ export const LoginThunkCreator = (email: string, password: string, rememberMe: b
 }
 
 export const LogOutThunkCreator = (): RootThunkType => (dispatch) => {
-    loginApi.logout()
+    authAPI.logout()
         .then(response => {
-            dispatch(LogoutAC)
+            debugger
+            dispatch(LogoutAC())
         })
 }
 
 
 //types
-export type CombinerAuthActionsType = UserAuthType | SetErrorType
+export type CombinerAuthActionsType = UserAuthType | SetErrorType | LogoutType
+    | InitializedStatusType
 export type UserAuthType = ReturnType<typeof SetUserAuth>
 export type SetErrorType = ReturnType<typeof SetErrorAC>
+export type LogoutType = ReturnType<typeof LogoutAC>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
-import {AuthThunkCreator, SetUserAuth} from "../../Redux/authReducer";
+import {getAuthUserData, SetUserAuth} from "../../Redux/authReducer";
 import {WholeStateType} from "../../Redux/state";
 import {compose} from "redux";
 
@@ -13,7 +13,7 @@ export type commonType = mstpType & mdtpType
 class HeaderContainer extends React.Component<commonType> {
 
     componentDidMount() {
-        this.props.AuthThunkCreator()
+        this.props.getAuthUserData()
     }
 
     render() {
@@ -32,6 +32,6 @@ const mstp = (state:WholeStateType) => {
         isAuth:state.auth.isAuth
     }
 }
-const mdtp = {SetUserAuth,AuthThunkCreator}
+const mdtp = {SetUserAuth,getAuthUserData}
 
 export default compose<React.FC>(connect(mstp,mdtp))(HeaderContainer);

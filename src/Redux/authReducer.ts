@@ -1,7 +1,6 @@
-import api, {authAPI} from "../api/api";
+import {authAPI} from "api/api";
 import {RootThunkType} from "./store";
-import {AxiosError} from "axios";
-import {InitializedStatusType, initializedSuccess} from "./appReducer";
+import {InitializedStatusType} from "./appReducer";
 
 
 export type initStateType = {
@@ -43,7 +42,6 @@ const authReducer = (state = initialState, action: CombinerAuthActionsType): ini
             return {...state, isAuth: false}
         }
         case "SET-ERROR": {
-            // return {...state,messages:[...state.messages,action.error]}
             return {...state, error: action.error}
         }
         default:
@@ -72,38 +70,31 @@ export const SetErrorAC = (error: string) => {
 // --------------------thunks------------------------
 
 export const getAuthUserData = (): RootThunkType<Promise<void>> => {
-    return (dispatch) => {
-       return authAPI.me()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    let {id, login, email} = data.data
-                    dispatch(SetUserAuth(id, login, email))
-                    dispatch(SetErrorAC(''))
-                } else {
-                    dispatch(SetErrorAC(data.messages[0]))
-                }
-            })
+    return async (dispatch) => {
+        let data = await authAPI.me()
+        if (data.resultCode === 0) {
+            let {id, login, email} = data.data
+            dispatch(SetUserAuth(id, login, email))
+            dispatch(SetErrorAC(''))
+        } else {
+            dispatch(SetErrorAC(data.messages[0]))
+        }
     }
 }
 
-export const LoginThunkCreator = (email: string, password: string, rememberMe: boolean): RootThunkType => (dispatch) => {
-    authAPI.login(email, password, rememberMe)
-        .then(response => {
-            if (response.resultCode === 0) {
-                dispatch(getAuthUserData())
-            } else {
-                console.log(response.messages[0])
-                dispatch(SetErrorAC(response.messages[0]))
-            }
-        })
+export const LoginThunkCreator = (email: string, password: string, rememberMe: boolean): RootThunkType => async (dispatch) => {
+    let response = await authAPI.login(email, password, rememberMe)
+    if (response.resultCode === 0) {
+        dispatch(getAuthUserData())
+    } else {
+        console.log(response.messages[0])
+        dispatch(SetErrorAC(response.messages[0]))
+    }
 }
 
-export const LogOutThunkCreator = (): RootThunkType => (dispatch) => {
-    authAPI.logout()
-        .then(response => {
-            debugger
-            dispatch(LogoutAC())
-        })
+export const LogOutThunkCreator = (): RootThunkType => async (dispatch) => {
+    await authAPI.logout()
+    dispatch(LogoutAC())
 }
 
 

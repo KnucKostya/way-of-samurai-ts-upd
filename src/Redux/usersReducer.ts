@@ -1,5 +1,6 @@
 import api from "../api/api";
 import {RootThunkType} from "./store";
+import {Dispatch} from "redux";
 
 export type initialStateType = {
     users: APIusersType[]
@@ -112,53 +113,51 @@ export const followingInProgress = (isFetching: boolean, userID: number) => {
 // ------------------------------thunks
 
 export let getUsersThunk = (): RootThunkType => {
-    return (dispatch) => {
+    return async(dispatch) => {
         dispatch(setLoadingStatus(true))
-        api.getUsers()
-            .then(response => {
+        let response = await api.getUsers()
                 dispatch(setUsers(response.data.items));
                 dispatch(setTotalCount(response.data.totalCount));
                 dispatch(setLoadingStatus(false))
-            })
     }
 }
 // -------------------------------------------------thunk`s
 
 export const PageChangedThunk = (currentPage: number, count: number): RootThunkType => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setLoadingStatus(true))
         dispatch(setCurrentPage(currentPage))
-        api.getUsersForCurrentPage(currentPage, count)
-            .then(response => {
+        let response = await api.getUsersForCurrentPage(currentPage, count)
                 dispatch(setUsers(response.data.items));
                 dispatch(setLoadingStatus(false))
-            })
     }
 }
 
+
+const followUnfollowFlow = async (dispatch:Dispatch,
+                                  userID:number,
+                                  method:string,
+                                  followUnfollowAC:typeof follow | typeof unfollow) => {
+    dispatch(followingInProgress(true, userID))
+
+    await api.followUnfollowUsers(userID,method)
+    try {
+        dispatch(followUnfollowAC(userID))
+        dispatch(followingInProgress(false, userID))
+    }
+    catch (e:any){
+
+    }
+ }
+
 export const UnfollowUserThunk = (userID: number): RootThunkType => {
     return  (dispatch) => {
-        dispatch(followingInProgress(true, userID))
-        api.unfollow(userID)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(unfollow(userID))
-                    dispatch(followingInProgress(false, userID))
-                }
-            })
+       return followUnfollowFlow(dispatch,userID,'unfollow',unfollow)
     }
 }
 
 export const FollowUserThunk = (userID: number): RootThunkType => {
-    return (dispatch) => {
-        dispatch(followingInProgress(true, userID))
-        api.follow(userID)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(follow(userID))
-                    dispatch(followingInProgress(false, userID))
-                }
-            })
-
+    return  (dispatch) => {
+        return followUnfollowFlow(dispatch,userID,'follow',follow)
     }
 }

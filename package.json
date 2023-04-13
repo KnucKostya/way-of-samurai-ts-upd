@@ -2,7 +2,7 @@
   "name": "way-of-samurai-ts",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://knuckless0231.github.io/way-of-samurai-ts-upd",
+  "homepage": "https://KnucKostya/way-of-samurai-ts-upd",
   "dependencies": {
     "@hookform/resolvers": "^2.9.11",
     "@testing-library/jest-dom": "^5.14.1",

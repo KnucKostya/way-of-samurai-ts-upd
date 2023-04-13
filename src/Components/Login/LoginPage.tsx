@@ -2,10 +2,10 @@ import React, {useEffect} from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import {RootReducersType, useAppDispatchThunk} from "../../Redux/store";
+import {RootReducersType, useAppDispatchThunk} from "Redux/store";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import {LoginThunkCreator} from "../../Redux/authReducer";
+import {LoginThunkCreator} from "Redux/authReducer";
 
 
 const schema = yup.object({
@@ -54,18 +54,21 @@ const LoginForm = (props:{error:string}) => {
 }
 
 
-const LoginPage = (props:{isAuth:boolean,error:string}) => {
+const LoginPage = ({isAuth,error}:{isAuth:boolean,error:string}) => {
     useEffect(() => {
         // console.log(props.error)
-    }, [props.error])
+    }, [error])
 
-    if(props.isAuth){
+    if(isAuth){
+        return <Redirect to="/profile" />
+    }
+    if(isAuth){
         return <Redirect to="/profile" />
     }
     return (
         <div>
             <h1>LOGIN</h1>
-            <LoginForm error={props.error}/>
+            <LoginForm error={error}/>
         </div>
     );
 };

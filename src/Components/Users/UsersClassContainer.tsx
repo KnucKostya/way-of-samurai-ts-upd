@@ -4,7 +4,9 @@ import Users from "./Users";
 import Preloader from "../../Common/Preloader";
 
 
-class UsersClassContainer extends React.Component<combineType> {
+//pure component test
+
+class UsersClassContainer extends React.PureComponent<combineType> {
     // constructor(props:combineType) {
     //     super(props);
     // } и т.к в конструкторе уже не происходит АЯЙКС запрос, то его и мето супер

@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import Profile from "./Profile";
 import {GetStatusThunk, GetUserProfileThunk, setUserProfile, UpdateUserStatusThunk} from "../../Redux/profileReducer";
 import {connect} from "react-redux";
-import {WholeStateType} from "../../Redux/state";
+import {WholeStateType} from "Redux/state";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import {compose} from "redux";
 import withAuthRedirect from "../hoc/AuthRedirect";
@@ -39,16 +39,13 @@ export type ParamsType = {
 
 export type CommonType = RouteComponentProps<ParamsType> & combineType
 
-class ProfileClassComponent extends React.Component<CommonType> {
+export class ProfileClassComponent extends React.Component<CommonType> {
 
     componentDidMount() {
         let userID = +this.props.match.params.userID
         this.props.GetUserProfileThunk(userID)
         this.props.GetStatusThunk(userID)
     }
-
-
-
     render() {
 
         return <div>

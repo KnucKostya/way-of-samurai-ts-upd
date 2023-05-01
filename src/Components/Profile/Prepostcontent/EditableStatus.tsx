@@ -2,12 +2,10 @@ import React, {ChangeEvent} from 'react';
 
 
 class EditableStatus extends React.Component<any, any> {
-
     state = {
         isEdit: false,
         status:this.props.statusValue
     }
-
 
     activateMode = () => {
         this.setState({isEdit:true})
@@ -24,7 +22,6 @@ class EditableStatus extends React.Component<any, any> {
         this.setState({status:event.currentTarget.value})
     }
 
-
     render() {
         return (
             <div>
@@ -36,6 +33,6 @@ class EditableStatus extends React.Component<any, any> {
             </div>
         );
     }
-};
+}
 
 export default EditableStatus;

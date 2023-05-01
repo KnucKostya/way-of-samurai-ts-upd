@@ -1,15 +1,20 @@
-import s from "./Paginator.module.css";
-import React from "react";
+import React, {useState} from "react";
+import {Link} from "react-router-dom";
 
 export type PaginatorPropsType = {
-    totalCount:number
-    count:number
-    currentPage:number
-    onPageChangedMethod:(n:number)=>void
+    totalCount: number
+    count: number
+    currentPage: number
+    onPageChangedMethod: (n: number) => void
+    portionSize?: number
 }
 
-export const Paginator = (props:PaginatorPropsType) => {
-    let {totalCount,count,currentPage,onPageChangedMethod} = props
+export const Paginator = (props: PaginatorPropsType) => {
+    let {totalCount, count, currentPage, onPageChangedMethod} = props
+    const [portionNumber, setPortionNumber] = useState(1)
+
+    console.log('totalCount:', totalCount)
+    console.log('count:', count)
     //ФУНКЦИЯ СЧИТАЮЩАЯ ОБЩЕЕ КОЛИЧЕСТВО СТРАНИЦ
     let countPagesArr: number[] = []
     let totalCountPages = Math.ceil(totalCount / count)
@@ -17,13 +22,40 @@ export const Paginator = (props:PaginatorPropsType) => {
         countPagesArr.push(i)
     }
 
+    console.log('countPagesArr:', countPagesArr)
+
+    let portionSize = 20
+    let blockPortionsCount = Math.ceil(totalCountPages / portionSize) // total block-portions count
+    let leftPortionValue: number = (portionNumber - 1) * portionSize + 1 //left border of 1-st element
+    let rightPortionNumber: number = portionNumber * portionSize //right border of last element
+
+    // left and right arrows logic
+    const prevPaginationHandler = () => {
+        if (portionNumber > 1)
+            setPortionNumber(portionNumber - 1)
+    }
+    const nextPaginationHandler = () => {
+        if (portionNumber < blockPortionsCount)
+            setPortionNumber(portionNumber + 1)
+    }
+    // left and right arrows logic
+
     return (
         <div>
             <div>
-                {countPagesArr.map((m, i) => {
-                    return <span key={i} className={currentPage === m ? s.spanBold : s.span}
-                                 onClick={() => onPageChangedMethod(m)}>{m}</span>
-                })}
+                <button onClick={prevPaginationHandler}>{`prev`}</button>
+                {/*{countPagesArr.map((m, i) => {*/}
+                {/*    return <span key={i} className={currentPage === m ? s.spanBold : s.span}*/}
+                {/*                 onClick={() => onPageChangedMethod(m)}>{m}</span>*/}
+                {/*})}*/}
+                {countPagesArr.filter(p => {
+                    return p >= leftPortionValue && p <= rightPortionNumber
+                }).map(pages => {
+                    return<span key={pages} onClick={() => onPageChangedMethod(pages)}>{pages}</span>
+                })
+                }
+                <button onClick={nextPaginationHandler}>{`next`}</button>
+
             </div>
         </div>
     );

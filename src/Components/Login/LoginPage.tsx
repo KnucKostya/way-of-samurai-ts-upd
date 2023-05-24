@@ -6,84 +6,91 @@ import {RootReducersType, useAppDispatchThunk} from "Redux/store";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {LoginThunkCreator} from "Redux/authReducer";
+import s from "./login.module.css"
 
 
 const schema = yup.object({
-    login: yup.string().email().required(),
-    password: yup.string().required(),
-    rememberMe: yup.boolean()
+	login: yup.string().email().required(),
+	password: yup.string().required(),
+	rememberMe: yup.boolean()
 }).required();
 
-const LoginForm = (props:{error:string}) => {
-    const dispatch = useAppDispatchThunk()
-    const {register, handleSubmit, formState: {errors}, trigger} = useForm<Inputs>({
-        resolver: yupResolver(schema),
-        defaultValues: {
-            password: ""
-        }
-    });
-    const onSubmit: SubmitHandler<Inputs> = data => {
-        dispatch(LoginThunkCreator(data.login, data.password, data.rememberMe!))
-    }
+const LoginForm = (props: { error: string }) => {
+	const dispatch = useAppDispatchThunk()
+	const {register, handleSubmit, formState: {errors}, trigger} = useForm<Inputs>({
+		resolver: yupResolver(schema),
+		defaultValues: {
+			password: ""
+		}
+	});
+	const onSubmit: SubmitHandler<Inputs> = data => {
+		dispatch(LoginThunkCreator(data.login, data.password, data.rememberMe!))
+	}
 
-    return (
-        <div>
-            <form action="" onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <input placeholder={'login'} {...register("login", {required: true})}/>
-                    <p>{errors.login?.message}</p>
-                </div>
-                <div>
-                    <input id='password' type='password'
-                           placeholder={'password'} {...register("password", {required: true})} onClick={async () => {
-                        const result = await trigger("password", {shouldFocus: true});
-                    }}/>
-                    <p>{errors ? errors.password?.message : ''}</p>
-                    <p>{props.error && props.error!== 'You are not authorized' ? props.error : ''}</p>
-                </div>
-                <div>
-                    <input type="checkbox" {...register("checkbox")}/>
-                    <span>Remember Me</span>
-                </div>
-                <div>
-                    <button type="submit">Login</button>
-                </div>
-            </form>
-        </div>
-    );
+	return (
+		<form action="" onSubmit={handleSubmit(onSubmit)} className={s.loginForm}>
+			<div>
+			<h3 className={s.title}>Login</h3>
+
+					<div>
+						<input className={s.formInput} placeholder={'login'} {...register("login", {required: true})}/>
+						<p>{errors.login?.message}</p>
+					</div>
+
+					<div>
+						<input className={s.formInput}
+							   id='password' type='password'
+							   placeholder={'password'} {...register("password", {required: true})} onClick={async () => {
+							const result = await trigger("password", {shouldFocus: true});
+						}}/>
+						<p>{errors ? errors.password?.message : ''}</p>
+						<p>{props.error && props.error !== 'You are not authorized' ? props.error : ''}</p>
+					</div>
+					<div>
+						<input className={s.formCheckbox}
+							   type="checkbox" {...register("checkbox")}/>
+						<span>Remember Me</span>
+					</div>
+					<div>
+						<button type="submit" className={s.formBtn}>Login</button>
+					</div>
+				</div>
+		</form>
+
+	);
 }
 
 
-const LoginPage = ({isAuth,error}:{isAuth:boolean,error:string}) => {
-    useEffect(() => {
-        // console.log(props.error)
-    }, [error])
+const LoginPage = ({isAuth, error}: { isAuth: boolean, error: string }) => {
+	useEffect(() => {
+		// console.log(props.error)
+	}, [error])
 
-    if(isAuth){
-        return <Redirect to="/profile" />
-    }
-    if(isAuth){
-        return <Redirect to="/profile" />
-    }
-    return (
-        <div>
-            <h1>LOGIN</h1>
-            <LoginForm error={error}/>
-        </div>
-    );
+	if (isAuth) {
+		return <Redirect to="/profile"/>
+	}
+	if (isAuth) {
+		return <Redirect to="/profile"/>
+	}
+	return (
+		<div>
+			<h1>LOGIN</h1>
+			<LoginForm error={error}/>
+		</div>
+	);
 };
 
-let mapStateToProps = (state:RootReducersType)=>({
-    isAuth:state.auth.isAuth,
-    error:state.auth.error
+let mapStateToProps = (state: RootReducersType) => ({
+	isAuth: state.auth.isAuth,
+	error: state.auth.error
 })
 
-export default connect(mapStateToProps,{})(LoginPage)
+export default connect(mapStateToProps, {})(LoginPage)
 
 type Inputs = FormData & {
-    login: string,
-    password: string,
-    checkbox: boolean,
+	login: string,
+	password: string,
+	checkbox: boolean,
 }
 type FormData = yup.InferType<typeof schema>;
 export type mapStateToPropsType = ReturnType<typeof mapStateToProps>

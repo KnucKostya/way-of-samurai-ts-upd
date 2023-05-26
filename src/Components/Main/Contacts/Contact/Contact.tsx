@@ -1,7 +1,7 @@
 import React, {ReactElement} from "react"
 import styles from "./Contact.module.css"
 // import friendAvatar from "../../../../img/Contacts/friend-avatar0.jpg"
-import friendAvatar from "../../../../Common/img/user-avatar.jpg"
+import friendAvatar from "../../../../Common/img/user-avatar.webp"
 import {NavLink} from "react-router-dom"
 
 export const Contact: React.FC<ContactPropsType> = ({

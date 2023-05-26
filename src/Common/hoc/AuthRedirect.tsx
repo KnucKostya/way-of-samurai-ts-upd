@@ -24,6 +24,6 @@ export function WithAuthRedirect<T extends object>(Component: ComponentType<T>) 
     return connect(mstp)(RedirectComponent)
 
 
-};
+}
 
 export default WithAuthRedirect;

@@ -1,0 +1,15 @@
+.profileInfo {
+    display: flex;
+    margin-bottom: 20px;
+    padding: 25px;
+    background-color: #FDFDFD;
+    width: 50%;
+}
+
+
+.userAvatar {
+    max-width: 190px;
+    max-height: 190px;
+    border-radius: 50%;
+    padding-right: 20px;
+}

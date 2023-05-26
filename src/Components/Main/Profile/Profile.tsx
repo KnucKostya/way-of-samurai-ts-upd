@@ -1,5 +1,5 @@
 import React from 'react';
-import Prepostcontent from "./Prepostcontent/Prepostcontent";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import ContaineerMyPostComponent from "./MyPosts/ContaineerMyPostComponent";
 import {ProfilePageDataType} from "../../../Redux/state";
 import {RootThunkType, useAppSelector} from "../../../Redux/store";
@@ -12,7 +12,7 @@ const Profile = (props:ProfilePropsType) => {
     const profileId = useAppSelector(state => state.profilePage.profilePageInfo?.userId)
 
     return <div className={s.profileContainer}>
-        <Prepostcontent profileUser={props.profileUser}
+        <ProfileInfo profileUser={props.profileUser}
                         status={props.status}
                         updateStatus={props.updateStatus}
                         paramUserId={props.paramUserId}

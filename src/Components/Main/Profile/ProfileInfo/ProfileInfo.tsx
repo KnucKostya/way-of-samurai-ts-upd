@@ -1,12 +1,13 @@
 import React from 'react';
-import s from './Prepostcontent.module.css';
+import s from './ProfileInfo.module.css';
 import Preloader from "../../../../Common/Preloader";
 import {ProfilePageDataType} from "../../../../Redux/state";
 import EditableStatus from "./EditableStatus";
 import {RootThunkType} from "../../../../Redux/store";
+import userAvatar from "../../../../Common/img/user-avatar.webp";
 
 
-const Prepostcontent = (props: PrePostContentType) => {
+const ProfileInfo = (props: PrePostContentType) => {
 
 const {profileUser} = props;
 
@@ -18,15 +19,12 @@ const {profileUser} = props;
     return (
         <div className={s.profileInfo}>
             <div>
-
-            </div>
-            <div>
                 {/*<img src={profileUser.profilePageInfo?.photos.small} alt="small Image"/>*/}
                 {profileUser.profilePageInfo?.photos.large
                     ? <img className={s.userAvatar}
                         src={profileUser.profilePageInfo?.photos.large} alt="large Image"/>
                     : <img className={s.userAvatar}
-                          src='https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg'/>
+                          src={userAvatar}/>
                 }
                 <EditableStatus
                     statusValue={props.status ? props.status : 'Default status'}
@@ -84,41 +82,12 @@ const {profileUser} = props;
                 </p>
             </div>
 
-            {/*<div>*/}
-            {/*    {profileUser.profilePageInfo?.fullName}*/}
-            {/*</div>*/}
-
-            {/*{*/}
-            {/*    profileUser.profilePageInfo?.lookingForAJob &&*/}
-            {/*        <div>*/}
-            {/*            {`Шукаю роботу ${profileUser.profilePageInfo.lookingForAJobDescription}`}*/}
-            {/*        </div>*/}
-            {/*}*/}
-
-            {/*<div>*/}
-            {/*    /!*'Change Status with class local State'*!/*/}
-            {/*    <div>*/}
-            {/*        /!*<EditableStatus statusValue={props.status ? props.status : 'Default status'} updateStatus={props.updateStatus} />*!/*/}
-            {/*        /!*<EditableStatus statusValue={'Some Status'} />*!/*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-
-            {/*<div>*/}
-            {/*    Contacts: <hr/>*/}
-            {/*    <p>{profileUser.profilePageInfo?.userId}</p>*/}
-            {/*    <a href={profileUser.profilePageInfo?.contacts.facebook}>facebook</a>*/}
-            {/*    <hr/>*/}
-            {/*    <a href={profileUser.profilePageInfo?.contacts.vk}>vk</a>*/}
-            {/*    <hr/>*/}
-            {/*    <a href={profileUser.profilePageInfo?.contacts.github}>github</a>*/}
-            {/*    <hr/>*/}
-            {/*</div>*/}
         </div>
     );
 }
 
 
-export default Prepostcontent;
+export default ProfileInfo;
 
 //TYPES
 type PrePostContentType = {

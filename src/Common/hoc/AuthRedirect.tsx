@@ -1,4 +1,4 @@
-import React, {ComponentType, FC} from 'react';
+import React, {ComponentType} from 'react';
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {RootState} from "../../Redux/store";
@@ -24,6 +24,6 @@ export function WithAuthRedirect<T extends object>(Component: ComponentType<T>) 
     return connect(mstp)(RedirectComponent)
 
 
-};
+}
 
 export default WithAuthRedirect;

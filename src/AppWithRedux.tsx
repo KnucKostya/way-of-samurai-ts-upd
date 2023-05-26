@@ -3,83 +3,63 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import './App.css';
 import s from './Content.module.css';
 import Navbar from "./Components/Navbar/Navbar";
-import ProfileClassComponent from "./Components/Profile/ProfileClassComponent";
+import ContaineerForDialogs from "./Components/Main/Dialogs/ContaineerForDialogs";
+import ProfileClassComponent from "./Components/Main/Profile/ProfileClassComponent";
 import HeaderContainer from "./Components/Header/HeaderContainer";
-import LoginPage from "./Components/Login/LoginPage";
-import News from "./Components/News/News";
-import {compose} from "redux";
-import {connect} from "react-redux";
-import {RootReducersType} from "Redux/store";
-import Preloader from "./Common/Preloader";
-import {InitializeApp} from "Redux/appReducer";
-import { lazy } from 'react';
+import LoginPage from "./Common/Login/LoginPage";
+import {useLocalStateSection} from "./Common/hooks/useLocalStateSection";
+import {Contacts} from "./Components/Main/Contacts/Contacts";
+import UsersContainer from "./Components/Main/Users/UsersContainer";
+import News from "./Components/Main/News/News";
+import {Main, SectionCSSType} from "./Components/Main/Main";
+import Footer from "./Components/Footer/Footer";
 
 
-const UsersContainer = lazy(() => import('./Components/Users/UsersContainer'));
-const ContaineerForDialogs = lazy(() => import("./Components/Dialogs/ContaineerForDialogs"));
+export const AppWithRedux = () => {
 
+    const [section, setSection] = useLocalStateSection("section", "sectionAll")
 
-class AppWithRedux extends React.Component<CommonType> {
-
-    componentDidMount() {
-        this.props.InitializeApp()
+    const changeGrid = (value: SectionCSSType): void => {
+        setSection(value)
     }
 
-    render() {
+    return (
+        <BrowserRouter>
+            <div className='app-wrapper'>
+                <HeaderContainer/>
+                <Navbar section={section} changeGrid={changeGrid}/>
+                <Contacts />
 
-        if(!this.props.isInitialized){
-           return <Preloader/>
-        }
+                <div className={s.content}>
+                {/*<div className={section}>*/}
+                {/*    <Main section={section} changeGrid={changeGrid}/>*/}
+                        <Route exact path="/"
+                               render={()=><UsersContainer/>}/>
+                        <Route path="/profile/:userID?"
+                               render={()=><ProfileClassComponent/>}/>
 
-        return (
-            <BrowserRouter>
-                <div className='app-wrapper'>
-                    <HeaderContainer/>
-                    <Navbar/>
+                        <Route path="/dialogs"
+                               render={()=><ContaineerForDialogs/>}/>
 
-                    <div className={s.content}>
-
-                        <React.Suspense fallback={<Preloader />}>
-                            <Route exact path="/"
-                                   render={() => <UsersContainer/>}/>
-                            <Route path="/profile/:userID?"
-                                   render={() => <ProfileClassComponent/>}/>
-
-                            <Route path="/dialogs"
-                                   render={() => <ContaineerForDialogs/>}/>
-
-                            <Route path="/users"
-                                   render={() => <UsersContainer/>}/>
-                            <Route path="/news/news.jsx/"
-                                   render={() => <News/>}/>
-                            {/*<Route path="/music/music.jsx"*/}
-                            {/*       element={<Music />} />*/}
-                            {/*<Route path="/settings/settings.jsx"*/}
-                            {/*       element={<Settings />} />*/}
-                            <Route path={'/login'}
-                                   render={() => <LoginPage/>}
-                            ></Route>
-                        </React.Suspense>
-
-
-                    </div>
+                        <Route path = "/users"
+                               render={()=><UsersContainer/>}/>
+                        <Route path="/news/news.jsx/"
+                               render={()=><News />}/>
+                        {/*<Route path="/music/music.jsx"*/}
+                        {/*       element={<Music />} />*/}
+                        {/*<Route path="/settings/settings.jsx"*/}
+                        {/*       element={<Settings />} />*/}
+                    <Route path={'/login'}
+                    render={()=><LoginPage />}>
+                    </Route>
+                    {/*{section === "sectionAll" && <Contacts />}*/}
                 </div>
-            </BrowserRouter>
-        );
-    }
+                <Footer/>
+            </div>
+        </BrowserRouter>
+    );
 }
 
-const mstp = (state:RootReducersType) => {
-    return {
-        isInitialized:state.app.isInitialized
-    }
-}
-const mdtp = {InitializeApp}
+export default AppWithRedux;
 
 
-export default compose<React.FC>(connect(mstp, mdtp))(AppWithRedux);
-
-// types
-export type CommonType = MstpType & MdtpType
-export type MstpType = ReturnType<typeof mstp>
-export type MdtpType = typeof mdtp

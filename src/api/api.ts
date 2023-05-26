@@ -1,4 +1,4 @@
-import axios, {AxiosResponse} from "axios";
+import axios from "axios";
 
 const instance = axios.create({
     baseURL:`https://social-network.samuraijs.com/api/1.0/`,
@@ -74,6 +74,43 @@ export const loginApi = {
             .then(response=>response.data)
     }
 
+}
+
+export const friendsAPI = {
+    getUsers(currentPageFoundFriends: number, pageSize: number) {
+        return instance
+            .get<GetUserResponseType>(
+                `users?page=${currentPageFoundFriends}&count=${pageSize}`,
+            )
+            .then(response => response.data)
+    },
+    followingUser(id: string) {
+        return instance.post<ResponseType>(`follow/${id}`)
+    },
+    unfollowingUser(id: string) {
+        return instance.delete<ResponseType>(`follow/${id}`)
+    },
+}
+
+
+//TYPES
+
+type GetUserResponseType = {
+    items: Array<UserType>
+    totalCount: number
+    error: string
+}
+
+type UserType = {
+    name: string
+    id: number
+    uniqueUrlName: string
+    photos: {
+        small: string
+        large: string
+    }
+    status: string
+    followed: boolean
 }
 
 

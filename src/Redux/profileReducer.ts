@@ -1,5 +1,5 @@
 import {Postdata, ProfilePageDataType} from "./state";
-import {responseDataType} from "../Components/Profile/ProfileClassComponent";
+import {responseDataType} from "../Components/Main/Profile/ProfileClassComponent";
 import {RootThunkType} from "./store";
 import api, {profileApi} from "../api/api";
 

@@ -1,4 +1,4 @@
-import {responseDataType} from "../Components/Profile/ProfileClassComponent";
+import {responseDataType} from "../Components/Main/Profile/ProfileClassComponent";
 import {initStateType} from "./authReducer";
 
 // export type store = {

@@ -1,0 +1,41 @@
+.pagination {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pagination button {
+    border: none;
+    background-color: white;
+    transition: .2s background-color linear;
+}
+
+.pagination button:hover {
+    cursor: pointer;
+}
+
+
+.selectPage {
+    font-weight: 900;
+    color: white;
+    background-color: #238ABD;
+}
+
+.numberingPage {
+    text-align: center;
+    margin-right: 10px;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    transition: .2s background-color linear;
+}
+
+.numberingPage:hover {
+    cursor: pointer;
+}
+
+
+.icon {
+    color: #238ABD;
+}

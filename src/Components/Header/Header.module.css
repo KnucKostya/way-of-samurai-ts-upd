@@ -1,46 +1,100 @@
+/*.header {*/
+/*    grid-area: h;*/
+/*    background: #fff url(https://logos-download.com/wp-content/uploads/2016/03/McDonalds_Logo_2018.png) no-repeat center;*/
+/*    background-size: cover;*/
+/*    min-height: 400px;*/
+/*    !*display: flex;*!*/
+/*    !*justify-content: space-between;*!*/
+/*    margin-bottom: 30px;*/
+
+/*}*/
+
 .header {
     grid-area: h;
-    background-color: rgb(196, 153, 245);
-    display: flex;
-    justify-content: space-between;
+    background: #fff url(https://logos-download.com/wp-content/uploads/2016/03/McDonalds_Logo_2018.png) no-repeat center;
+    background-size: cover;
+    height: 400px;
+    margin-bottom: 30px;
 }
 
-.rightSideContainer {
-    margin-right:5%;
-    float: right;
-    max-width: 30%;
-    border: 1px solid black;
+.container {
+    display: flex;
+    align-items: flex-end;
+    max-width: 1200px;
+    margin: 0 auto;
     height: 100%;
+}
+
+.headerInner {
     display: flex;
     align-items: center;
+    justify-content: start;
+    margin-bottom: 155px;
 }
 
-.leftSideContainer {
-    margin-left:5%;
-    float: left;
-    max-width: 30%;
-    height: 100%;
-    border: 1px solid black;
-    /*padding: 5px;*/
-    display: flex;
-    align-items: center;
+.userAvatar img {
+    height: 170px;
+    width: 170px;
+    border-radius: 50% ;
+    border: solid white 5px;
+}
+.editPhoto label {
+    margin-left: 20px;
+    padding: 10px 15px;
+    background-color: #000;
+    border: none;
+    color: #fff;
+    transition: background-color .5s linear;
 }
 
-.leftImg {
-    float: left;
-    width: 40px;
-    border-radius: 30px;
-    padding: 5px;
-    margin-top: 10px;
+.editPhoto label:hover {
+    background-color: transparent;
+    cursor: pointer;
 }
 
-.auth a {
-    float: right;
-    padding: 10px;
-    text-decoration: none;
+
+.editPhoto input {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
 }
 
-.logo{
-  width:30px;
-  height:30px;
-}
+/*.rightSideContainer {*/
+/*    margin-right:5%;*/
+/*    float: right;*/
+/*    max-width: 30%;*/
+/*    border: 1px solid black;*/
+/*    height: 100%;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.leftSideContainer {*/
+/*    margin-left:5%;*/
+/*    float: left;*/
+/*    max-width: 30%;*/
+/*    height: 100%;*/
+/*    border: 1px solid black;*/
+/*    !*padding: 5px;*!*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.leftImg {*/
+/*    float: left;*/
+/*    width: 40px;*/
+/*    border-radius: 30px;*/
+/*    padding: 5px;*/
+/*    margin-top: 10px;*/
+/*}*/
+
+/*.auth a {*/
+/*    float: right;*/
+/*    padding: 10px;*/
+/*    text-decoration: none;*/
+/*}*/
+
+/*.logo{*/
+/*  width:30px;*/
+/*  height:30px;*/
+/*}*/

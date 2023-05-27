@@ -1,9 +1,63 @@
 /*.header {*/
 /*    grid-area: h;*/
-/*    background-color: rgb(196, 153, 245);*/
-/*    display: flex;*/
-/*    justify-content: space-between;*/
+/*    background: #fff url(https://logos-download.com/wp-content/uploads/2016/03/McDonalds_Logo_2018.png) no-repeat center;*/
+/*    background-size: cover;*/
+/*    min-height: 400px;*/
+/*    !*display: flex;*!*/
+/*    !*justify-content: space-between;*!*/
+/*    margin-bottom: 30px;*/
+
 /*}*/
+
+.header {
+    grid-area: h;
+    background: #fff url(https://logos-download.com/wp-content/uploads/2016/03/McDonalds_Logo_2018.png) no-repeat center;
+    background-size: cover;
+    height: 400px;
+    margin-bottom: 30px;
+}
+
+.container {
+    display: flex;
+    align-items: flex-end;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.headerInner {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 155px;
+}
+
+.userAvatar img {
+    height: 170px;
+    width: 170px;
+    border-radius: 50% ;
+    border: solid white 5px;
+}
+.editPhoto label {
+    margin-left: 20px;
+    padding: 10px 15px;
+    background-color: #000;
+    border: none;
+    color: #fff;
+    transition: background-color .5s linear;
+}
+
+.editPhoto label:hover {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+.editPhoto input {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
 
 /*.rightSideContainer {*/
 /*    margin-right:5%;*/
@@ -44,55 +98,3 @@
 /*  width:30px;*/
 /*  height:30px;*/
 /*}*/
-
-.header {
-    grid-area: header;
-     background: #fff url(https://logos-download.com/wp-content/uploads/2016/03/McDonalds_Logo_2018.png) no-repeat center;
-    /*background: #fff url(../src/img/timeline-1.png) no-repeat center;*/
-    background-size: cover;
-    height: 400px;
-    margin-bottom: 30px;
-}
-
-.container {
-    display: flex;
-    align-items: flex-end;
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 100%;
-}
-
-.headerInner {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    margin-bottom: 50px;
-}
-
-.userAvatar img {
-    height: 170px;
-    width: 170px;
-    border-radius: 50% ;
-    border: solid white 5px;
-}
-
-.editPhoto label {
-    margin-left: 20px;
-    padding: 10px 15px;
-    background-color: #000;
-    border: none;
-    color: #fff;
-    transition: background-color .5s linear;
-}
-
-.editPhoto label:hover {
-    background-color: transparent;
-    cursor: pointer;
-}
-
-
-.editPhoto input {
-    display: none;
-    visibility: hidden;
-    opacity: 0;
-}

@@ -1,0 +1,12 @@
+.profileStatus {
+    text-align: center;
+}
+
+.profileStatus span:hover {
+    cursor: pointer;
+    background-color: #F4F2F2;
+}
+
+.profileStatus input {
+    outline: none;
+}

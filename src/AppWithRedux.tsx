@@ -11,13 +11,14 @@ import {useLocalStateSection} from "./Common/hooks/useLocalStateSection";
 import {Contacts} from "./Components/Main/Contacts/Contacts";
 import UsersContainer from "./Components/Main/Users/UsersContainer";
 import News from "./Components/Main/News/News";
-import {Main, SectionCSSType} from "./Components/Main/Main";
+import {SectionCSSType} from "./Components/Main/Main";
 import Footer from "./Components/Footer/Footer";
 
 
 export const AppWithRedux = () => {
 
     const [section, setSection] = useLocalStateSection("section", "sectionAll")
+
 
     const changeGrid = (value: SectionCSSType): void => {
         setSection(value)

@@ -16,10 +16,14 @@ const MyPosts = (props: combineType) => {
 
     return (
         <div className={s.addPost}>
-                <div className={s.avatar}>
-                    <img src={props.profilePageInfo?.photos.small ?
-                        props.profilePageInfo?.photos.small : userAvatar} alt="" />
-                </div>
+            <div className={s.avatar}>
+                <img src={props.profilePageInfo?.photos.small ?
+                    props.profilePageInfo?.photos.small : userAvatar} alt="" />
+            </div>
+            {/*закончил!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!:*/}
+            {/*вынести AddNewPostForm в отедльную компоненту и отрисовывать как блок на UI */}
+            {/*по типу блок с постами*/}
+            {/*или оставить так как есть!!!!!!!*/}
             <AddNewPostForm addPost={props.addPost}/>
             {mapPost}
         </div>
@@ -27,3 +31,4 @@ const MyPosts = (props: combineType) => {
 }
 
 export default MyPosts;
+

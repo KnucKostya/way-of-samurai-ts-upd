@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch:Dispatch):mapDispatchToPropsOutterType => {
     }
 }
 
-// в ContaineerForDialogs реализован другой подход
+// в ContainerForDialogs реализован другой подход
 export type mapStateToProps = ReturnType<typeof mapStateToProps>
 export type mapDispatchToPropsType = ReturnType<typeof mapDispatchToProps>
 

@@ -1,0 +1,25 @@
+.btn {
+    margin: 20px auto 10px;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #F4F2F2;
+    cursor: pointer;
+    transition: background-color .2s linear;
+}
+
+.btn:hover {
+    background-color: #41AFD1;
+}
+
+.icon {
+    position: relative;
+    top: 15px;
+    transition: transform .3s ease;
+}
+
+.btn:hover .icon {
+    color: #fff;
+    transform:rotate(360deg);
+}

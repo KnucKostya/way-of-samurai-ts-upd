@@ -1,12 +1,12 @@
 import React, {ReactElement, useState} from "react"
 import styles from "./Pagination.module.css"
-import {setCurrentPageAC} from "../../../../../../anotherSN/social-network/src/redux/reducers/friendsReducer"
 import {
     faCircleChevronLeft,
     faCircleChevronRight,
 } from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {useAppDispatch} from "../../../../../../anotherSN/social-network/src/hooks/useAppDispatch"
+import {useAppDispatch} from "../../../../Redux/store";
+import {setCurrentPageAC} from "../../../../Redux/friendsReducer";
 
 type PaginationPropsType = {
     totalFoundFriends: number

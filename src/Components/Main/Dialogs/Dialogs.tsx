@@ -17,8 +17,6 @@ const Dialogs = (props: DialogsUsersType) => {
         .map((m, index) => (<Message key={index} message={m.message}/>))
 
 
-    //DIALOG RESULT V V V V
-
     return <div className={s.dialogs}>
         <div>
             {messageUser}

@@ -1,20 +1,25 @@
-import React, {ReactElement, useEffect} from "react"
-import styles from "./FindFriends.module.css"
-import {Friend} from "../Friend/Friend"
+// УБРАЛ ВСЕ ОШИБКИ С КОМПОНЕНТ ИЗ ПАПКИ FRIENDS
+//ДЕЛАЮ КОМПОНЕНТУ FRIENDS - ЗАКОНЧИЛ ПРОФАЙЛ!!
+import {ReactElement, useEffect} from "react";
+
+import s from './FindFriends.module.css'
+import {AppDispatch, useAppSelector} from "../../../../Redux/store";
 import {
     followingUserTC,
     getUsersTC,
     showMoreFoundUsersAC,
     toggleFollowingInProgressAC,
-    unfollowingUserTC,
-} from "../../../../../../anotherSN/social-network/src/redux/reducers/friendsReducer"
-import {Preloader} from "../../../../../../anotherSN/social-network/src/components/UIKit/Preloader"
-import {ShowMore} from "../../../../../../anotherSN/social-network/src/components/UIKit/ShowMore"
-import {Pagination} from "./Pagination"
-import {useAppDispatch} from "../../../../../../anotherSN/social-network/src/hooks/useAppDispatch"
-import {useAppSelector} from "../../../../../../anotherSN/social-network/src/hooks/useAppSelector"
+    unfollowingUserTC
+} from "../../../../Redux/friendsReducer";
+import {Friend} from "../Friend/Friend";
+import Preloader from "../../../../Common/Preloader";
+import {Pagination} from "./Pagination";
+import {ShowMore} from "../../../../UIKit/ShowMore";
+import {useDispatch} from "react-redux";
 
 export const FindFriends = (): ReactElement => {
+
+    const useAppDispatch = () => useDispatch<AppDispatch>()
     const dispatch = useAppDispatch()
 
     const friendsFindData = useAppSelector(state => state.friendsData.foundFriends)
@@ -59,7 +64,7 @@ export const FindFriends = (): ReactElement => {
     }
 
     return (
-        <div className={styles.findFriends}>
+        <div className={s.findFriends}>
             {isFetching ? (
                 <Preloader />
             ) : (

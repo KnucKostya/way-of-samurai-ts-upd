@@ -38,7 +38,7 @@ export const AddNewPostForm = (props: AddNewPostFormPropsType) => {
 
 		<form className={s.item} onSubmit={handleSubmit(onSubmit)}>
 
-			<textarea {...register("newPost")} placeholder="write new post"/>
+			<textarea {...register("newPost")} placeholder="write new post..."/>
 
 			<a href="#"><FontAwesomeIcon className={s.icon} icon={faMusic} size="lg"/></a>
 			<a href="#"><FontAwesomeIcon className={s.icon} icon={faImage} size="lg"/></a>

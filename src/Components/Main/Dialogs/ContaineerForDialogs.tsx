@@ -25,7 +25,6 @@ let mapStateToProps = (state: RootState) => {
 let mapDispatchToProps = (dispatch: Dispatch):MapDispatchToPropsType => {
     return {
         sendMessage:(value:string,user:string)=> dispatch(NewMessageAC(value,user)),
-        // takeValueFoo: (event: string) => dispatch(ChangeDialogValueAC(event))
     }
 }
 

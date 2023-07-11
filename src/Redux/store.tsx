@@ -5,7 +5,7 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {CombinerUserActionTypes, usersReducer} from "./usersReducer";
 import authReducer, {CombinerAuthActionsType} from "./authReducer";
 import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk";
-import {friendsReducer} from "./friendsReducer";
+import {FriendsActionType, friendsReducer} from "./friendsReducer";
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -21,7 +21,7 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 export const useAppDispatchThunk: DispatchFunc = useDispatch
 
 export type RootActionsType = CombinerUserActionTypes | CombinerProfileActionTypes
-    | CombinerDialogsActionTypes | CombinerAuthActionsType
+    | CombinerDialogsActionTypes | CombinerAuthActionsType | FriendsActionType
 
 export type RootThunkType<ReturnType = void> = ThunkAction<ReturnType, RootReducersType, unknown, RootActionsType>
 //1) что возвращает ф-ция (void)

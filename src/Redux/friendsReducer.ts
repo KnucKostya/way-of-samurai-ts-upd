@@ -1,7 +1,7 @@
 import {v1} from "uuid"
 import {friendsAPI} from "../api/api"
-import {ThunkAction, ThunkDispatch} from "redux-thunk";
-import {RootState} from "./store";
+import {ThunkDispatch} from "redux-thunk";
+import {RootState, RootThunkType} from "./store";
 
 export const CHANGE_FRIEND_STATUS = "CHANGE_FRIEND_STATUS"
 export const FOLLOWING_USER = "FOLLOWING_USER"
@@ -230,17 +230,17 @@ export const toggleFollowingInProgressAC = (userId: string, isProgress: boolean)
 
 //Thunk Creator
 //REMOVE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-export type ActionTypeForApp =
-    | FriendsActionType
-
-export type ThunkActionType = ThunkAction<void, RootState, unknown, ActionTypeForApp>
-export type ThunkDispatchType = ThunkDispatch<RootState, unknown, ActionTypeForApp>
+// export type ActionTypeForApp =
+//     | FriendsActionType
+//
+// export type RootThunkType = ThunkAction<void, RootState, unknown, ActionTypeForApp>
+export type ThunkDispatchType = ThunkDispatch<RootState, unknown, FriendsActionType>
 //REMOVE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 export const getUsersTC =
-    (currentPageFoundFriends: number, pageSize: number): ThunkActionType =>
-    async (dispatch: ThunkDispatchType) => {
+    (currentPageFoundFriends: number, pageSize: number): RootThunkType =>
+    async (dispatch) => {
         dispatch(toggleIsFetchingAC(true))
         const data = await friendsAPI.getUsers(currentPageFoundFriends, pageSize)
         const users = data.items.map((el: any) => ({
@@ -257,8 +257,8 @@ export const getUsersTC =
     }
 
 export const followingUserTC =
-    (id: string): ThunkActionType =>
-    async (dispatch: ThunkDispatchType) => {
+    (id: string): RootThunkType =>
+    async (dispatch) => {
         const response = await friendsAPI.followingUser(id)
         // FIX!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // response.data.resultCode === 0 && dispatch(followingUserAC(id))
@@ -266,8 +266,8 @@ export const followingUserTC =
     }
 
 export const unfollowingUserTC =
-    (id: string): ThunkActionType =>
-    async (dispatch: ThunkDispatchType) => {
+    (id: string): RootThunkType =>
+    async (dispatch) => {
         const response = await friendsAPI.unfollowingUser(id)
         // FIX!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // response.data.resultCode === 0 && dispatch(unfollowingUserAC(id))

@@ -13,6 +13,7 @@ import UsersContainer from "./Components/Main/Users/UsersContainer";
 import News from "./Components/Main/News/News";
 import {SectionCSSType} from "./Components/Main/Main";
 import Footer from "./Components/Footer/Footer";
+import {Friends} from "./Components/Main/Friends/Friends";
 
 
 export const AppWithRedux = () => {
@@ -43,7 +44,7 @@ export const AppWithRedux = () => {
                                render={()=><ContaineerForDialogs/>}/>
 
                         <Route path = "/users"
-                               render={()=><UsersContainer/>}/>
+                               render={()=><Friends/>}/>
                         <Route path="/news/news.jsx/"
                                render={()=><News />}/>
                         {/*<Route path="/music/music.jsx"*/}

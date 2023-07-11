@@ -3,7 +3,7 @@ import styles from "./Friends.module.css"
 import {NavLink, Route} from "react-router-dom"
 import {MyFriends} from "./MyFriends/MyFriends"
 import {FindFriends} from "./FindFriends/FindFriends"
-import {Error} from "../../../../../anotherSN/social-network/src/components/Error"
+// import {Error} from "../../../../../anotherSN/social-network/src/components/Error"
 
 export const Friends = (): ReactElement => {
     const [filter, setFilter] = useState(true)
@@ -38,9 +38,11 @@ export const Friends = (): ReactElement => {
                     Find Friends
                 </NavLink>
             </div>
-                <Route path="*" render={()=><Error />} />
-                <Route path="my" render={()=><MyFriends filter={filter} />} />
-                <Route path="requests" render={()=><MyFriends filter={filter} />} />
+                {/*<Route path="*" render={()=><Error />} />*/}
+                {/*<Route path="my" render={()=><MyFriends filter={filter} />} />*/}
+                {/*<Route path="requests" render={()=><MyFriends filter={filter} />} />*/}
+            <Route path="my" render={()=><MyFriends  />} />
+                <Route path="requests" render={()=><MyFriends  />} />
                 <Route path="find" render={()=><FindFriends />} />
         </div>
     )

@@ -4,12 +4,13 @@ import ContaineerMyPostComponent from "./MyPosts/ContaineerMyPostComponent";
 import {ProfilePageDataType} from "../../../Redux/state";
 import {RootThunkType, useAppSelector} from "../../../Redux/store";
 import s from "./Profile.module.css"
+import AddPost from "./AddPost/AddPost";
 
 
 const Profile = (props:ProfilePropsType) => {
 
-    const authId = useAppSelector(state => state.auth.data.id)
-    const profileId = useAppSelector(state => state.profilePage.profilePageInfo?.userId)
+    // const authId = useAppSelector(state => state.auth.data.id)
+    // const profileId = useAppSelector(state => state.profilePage.profilePageInfo?.userId)
 
     return <div className={s.profileContainer}>
         <ProfileInfo profileUser={props.profileUser}
@@ -17,6 +18,7 @@ const Profile = (props:ProfilePropsType) => {
                         updateStatus={props.updateStatus}
                         paramUserId={props.paramUserId}
         />
+        <AddPost/>
         <ContaineerMyPostComponent/>
     </div>
 

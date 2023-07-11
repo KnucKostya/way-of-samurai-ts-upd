@@ -1,9 +1,7 @@
 import React from 'react';
 import Post from './Post/Post'
 import {combineType} from "./ContaineerMyPostComponent";
-import {AddNewPostForm} from "../../../../Common/Forms/PostForm";
 import s from "./MyPosts.module.css"
-import userAvatar from "../../../../Common/img/user-avatar.webp";
 
 const MyPosts = (props: combineType) => {
 
@@ -15,20 +13,10 @@ const MyPosts = (props: combineType) => {
         />))
 
     return (
-        <div className={s.addPost}>
-            <div className={s.avatar}>
-                <img src={props.profilePageInfo?.photos.small ?
-                    props.profilePageInfo?.photos.small : userAvatar} alt="" />
-            </div>
-            {/*закончил!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!:*/}
-            {/*вынести AddNewPostForm в отедльную компоненту и отрисовывать как блок на UI */}
-            {/*по типу блок с постами*/}
-            {/*или оставить так как есть!!!!!!!*/}
-            <AddNewPostForm addPost={props.addPost}/>
+        <div className={s.posts}>
             {mapPost}
         </div>
     )
 }
 
 export default MyPosts;
-

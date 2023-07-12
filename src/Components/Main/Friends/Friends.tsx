@@ -2,7 +2,7 @@ import React, {ReactElement, useState} from "react"
 import styles from "./Friends.module.css"
 import {NavLink, Route} from "react-router-dom"
 import {MyFriends} from "./MyFriends/MyFriends"
-import {FindFriends} from "./FindFriends/FindFriends"
+import UsersContainer from "../Users/UsersContainer";
 // import {Error} from "../../../../../anotherSN/social-network/src/components/Error"
 
 export const Friends = (): ReactElement => {
@@ -33,7 +33,7 @@ export const Friends = (): ReactElement => {
                     // className={({isActive}) =>
                     //     isActive ? `${styles.titleItem} ${styles.activeItem}` : `${styles.titleItem}`
                     // }
-                    to="find"
+                    to="users"
                 >
                     Find Friends
                 </NavLink>
@@ -43,7 +43,7 @@ export const Friends = (): ReactElement => {
                 {/*<Route path="requests" render={()=><MyFriends filter={filter} />} />*/}
             <Route path="my" render={()=><MyFriends  />} />
                 <Route path="requests" render={()=><MyFriends  />} />
-                <Route path="find" render={()=><FindFriends />} />
+                <Route path="users" render={()=><UsersContainer />} />
         </div>
     )
 }

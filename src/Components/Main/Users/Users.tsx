@@ -33,8 +33,7 @@ const Users = (props: UsersPropsType) => {
         countPagesArr.push(i)
     }
 
-    console.log(props.followingInProgressStatus)
-    return (
+     return (
         <div>
             <div>
                 {countPagesArr.map((m, i) => {
@@ -60,7 +59,7 @@ const Users = (props: UsersPropsType) => {
                     </div>
 
                     <NavLink to={'/profile/' + m.id}>
-                        <img src={m.photos.small || defaultLogo} className={s.avatar} alt={'image not loaded:('}/>
+                        <img src={m.photos.small || defaultLogo} className={s.avatar} alt={'image not loaded'}/>
                     </NavLink>
 
                     <div>{m.status ? m.status : 'default Status'}</div>

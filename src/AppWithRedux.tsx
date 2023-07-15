@@ -3,17 +3,18 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import './App.css';
 import s from './Content.module.css';
 import Navbar from "./Components/Navbar/Navbar";
-import ContaineerForDialogs from "./Components/Main/Dialogs/ContaineerForDialogs";
 import ProfileClassComponent from "./Components/Main/Profile/ProfileClassComponent";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import LoginPage from "./Common/Login/LoginPage";
 import {useLocalStateSection} from "./Common/hooks/useLocalStateSection";
 import {Contacts} from "./Components/Main/Contacts/Contacts";
-import UsersContainer from "./Components/Main/Users/UsersContainer";
 import News from "./Components/Main/News/News";
 import {SectionCSSType} from "./Components/Main/Main";
-import Footer from "./Components/Footer/Footer";
 import {Friends} from "./Components/Main/Friends/Friends";
+import {Footer} from "./Components/Footer/Footer";
+import Music from "./Components/Main/Music/Music";
+import {Groups} from "./Components/Main/Groups/Groups";
+import {Messages} from "./Components/Main/Dialogs/Messages";
 
 
 export const AppWithRedux = () => {
@@ -36,21 +37,20 @@ export const AppWithRedux = () => {
                 {/*<div className={section}>*/}
                 {/*    <Main section={section} changeGrid={changeGrid}/>*/}
                         <Route exact path="/"
-                               render={()=><UsersContainer/>}/>
+                               render={()=><Friends/>}/>
                         <Route path="/profile/:userID?"
                                render={()=><ProfileClassComponent/>}/>
 
                         <Route path="/dialogs"
-                               render={()=><ContaineerForDialogs/>}/>
+                               render={()=><Messages/>}/>
 
                         <Route path = "/users"
                                render={()=><Friends/>}/>
                         <Route path="/news/news.jsx/"
                                render={()=><News />}/>
-                        {/*<Route path="/music/music.jsx"*/}
-                        {/*       element={<Music />} />*/}
-                        {/*<Route path="/settings/settings.jsx"*/}
-                        {/*       element={<Settings />} />*/}
+                        <Route path="/music/music.jsx"
+                               render={()=><Music />} />
+                    <Route path="groups" render={()=><Groups />} />
                     <Route path={'/login'}
                     render={()=><LoginPage />}>
                     </Route>

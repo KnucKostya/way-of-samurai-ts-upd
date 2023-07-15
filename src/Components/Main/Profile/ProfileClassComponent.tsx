@@ -5,7 +5,7 @@ import {
     GetUserProfileThunk,
     setUserProfile,
     UpdateUserStatusThunk
-} from "../../../Redux/profileReducer";
+} from "../../../Redux/reducers/profileReducer";
 import {connect} from "react-redux";
 import {WholeStateType} from "../../../Redux/state";
 import {RouteComponentProps, withRouter} from "react-router-dom";

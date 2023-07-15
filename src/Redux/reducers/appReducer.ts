@@ -1,5 +1,5 @@
-import {RootThunkType} from "./store";
 import {getAuthUserData} from "./authReducer";
+import {RootThunkType} from "../store";
 
 const initialState:InitialStateType = {
     isInitialized:false

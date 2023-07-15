@@ -1,9 +1,9 @@
 import React from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
-import {getAuthUserData, SetUserAuth} from "../../Redux/authReducer";
 import {WholeStateType} from "../../Redux/state";
 import {compose} from "redux";
+import {getAuthUserData, SetUserAuth} from "../../Redux/reducers/authReducer";
 
 
 type mstpType = ReturnType<typeof mstp>

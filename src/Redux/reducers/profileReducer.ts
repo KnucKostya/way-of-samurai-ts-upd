@@ -1,7 +1,7 @@
-import {Postdata, ProfilePageDataType} from "./state";
-import {responseDataType} from "../Components/Main/Profile/ProfileClassComponent";
-import {RootThunkType} from "./store";
-import api, {profileApi} from "../api/api";
+import {Postdata, ProfilePageDataType} from "../state";
+import {RootThunkType} from "../store";
+import api, {profileApi} from "../../api/api";
+import {responseDataType} from "../../Components/Main/Profile/ProfileClassComponent";
 
 
 const initialState:ProfilePageDataType = {
@@ -60,18 +60,18 @@ export type SetStatusType = ReturnType<typeof SetStatus>
 
 
 export const GetUserProfileThunk = (userID:number):RootThunkType => {
-    return (dispatch) => {
+    return (dispatch:any) => {
         api.getUsersProfile(userID)
-            .then(response => {
+            .then((response:any) => {
                 dispatch(setUserProfile(response))
             })
     }
 }
 
 export const GetStatusThunk = (userID:number):RootThunkType => {
-    return (dispatch) => {
+    return (dispatch:any) => {
         profileApi.getStatus(userID)
-            .then(response=>{
+            .then((response:any)=>{
                 console.log(response.status)
                 dispatch(SetStatus(response.data))
             })
@@ -80,9 +80,9 @@ export const GetStatusThunk = (userID:number):RootThunkType => {
 
 
 export const UpdateUserStatusThunk = (status:string):RootThunkType => {
-    return (dispatch) => {
+    return (dispatch:any) => {
         profileApi.updateStatus(status)
-            .then(response=>{
+            .then((response:any)=>{
                 if(response.data.resultCode === 0){
                     dispatch(SetStatus(status))
                 }

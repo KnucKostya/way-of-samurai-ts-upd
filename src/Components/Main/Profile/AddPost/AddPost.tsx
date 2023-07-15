@@ -3,7 +3,7 @@ import {AddNewPostForm} from "../../../../Common/Forms/PostForm";
 import s from "../MyPosts/MyPosts.module.css";
 import userAvatar from "../../../../Common/img/user-avatar.webp";
 import {useAppDispatch, useAppSelector} from "../../../../Redux/store";
-import {AddPostAC} from "../../../../Redux/profileReducer";
+import {AddPostAC} from "../../../../Redux/reducers/profileReducer";
 
 const AddPost = () => {
 

@@ -1,6 +1,6 @@
 import {authAPI} from "api/api";
-import {RootThunkType} from "./store";
 import {InitializedStatusType} from "./appReducer";
+import {RootThunkType} from "../store";
 
 
 export type initStateType = {

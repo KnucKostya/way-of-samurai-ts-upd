@@ -2,7 +2,15 @@ import React from 'react';
 import s from './Navbar.module.css';
 import {NavLink} from 'react-router-dom';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faGear, faMessage, faMusic, faNewspaper, faPager, faUser} from "@fortawesome/free-solid-svg-icons";
+import {
+    faGear,
+    faMessage,
+    faMusic,
+    faNewspaper,
+    faPager,
+    faPeopleGroup,
+    faUser
+} from "@fortawesome/free-solid-svg-icons";
 import {SectionCSSType} from "../Main/Main";
 
 
@@ -23,6 +31,12 @@ export const Navbar = ({section, changeGrid}: NavPropsType) => {
         <div className={s.link}>
             <FontAwesomeIcon icon={faMessage} size="lg" pull="left" />
             <NavLink to='/Dialogs'>Messages</NavLink>
+        </div>
+        <div className={s.link}>
+            <FontAwesomeIcon icon={faPeopleGroup} size="lg" pull="left" />
+            <NavLink to="groups" onClick={() => changeGrid("sectionAll")}>
+                Groups
+            </NavLink>
         </div>
         <div className={s.link}>
             <FontAwesomeIcon icon={faNewspaper} size="lg" pull="left"/>

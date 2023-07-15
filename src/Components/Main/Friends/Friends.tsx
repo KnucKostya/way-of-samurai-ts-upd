@@ -33,7 +33,7 @@ export const Friends = (): ReactElement => {
                     // className={({isActive}) =>
                     //     isActive ? `${styles.titleItem} ${styles.activeItem}` : `${styles.titleItem}`
                     // }
-                    to="users"
+                    to="friends"
                 >
                     Find Friends
                 </NavLink>
@@ -43,7 +43,7 @@ export const Friends = (): ReactElement => {
                 {/*<Route path="requests" render={()=><MyFriends filter={filter} />} />*/}
             <Route path="my" render={()=><MyFriends  />} />
                 <Route path="requests" render={()=><MyFriends  />} />
-                <Route path="users" render={()=><UsersContainer />} />
+                <Route path="friends" render={()=><UsersContainer />} />
         </div>
     )
 }

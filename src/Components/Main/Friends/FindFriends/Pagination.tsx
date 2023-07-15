@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {useAppDispatch} from "../../../../Redux/store";
-import {setCurrentPageAC} from "../../../../Redux/friendsReducer";
+import {setCurrentPageAC} from "../../../../Redux/reducers/friendsReducer";
 
 type PaginationPropsType = {
     totalFoundFriends: number

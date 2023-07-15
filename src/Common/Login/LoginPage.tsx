@@ -5,7 +5,7 @@ import * as yup from "yup";
 import {RootReducersType, useAppDispatchThunk} from "Redux/store";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import {LoginThunkCreator} from "Redux/authReducer";
+import {LoginThunkCreator} from "../../Redux/reducers/authReducer";
 
 
 const schema = yup.object({

@@ -1,0 +1,21 @@
+.groups {
+    background-color: #FDFDFD;
+    padding: 20px;
+
+}
+
+.title {
+    font-size: 19px;
+    font-weight: 400;
+    color: #424242;
+    padding-bottom: 20px;
+}
+
+.title::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 120px;
+    background-color: #088dcd;
+    text-align: center;
+}

@@ -1,37 +1,30 @@
-.contacts {
-    grid-area: u;
+.messages {
+    padding: 10px;
     background-color: #FDFDFD;
+}
 
-    padding: 20px;
-    font-size: 15px;
-    font-weight: 500;
+.content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
 }
 
 .title {
-    margin-bottom: 30px;
-    color: #000;
+    font-size: 19px;
+    font-weight: 400;
+    color: #424242;
+
+    padding: 15px 30px;
 }
 
 .title::after {
     content: "";
     display: block;
     height: 2px;
-    width: 50px;
+    width: 120px;
     background-color: #088dcd;
     text-align: center;
 }
 
-
-.search {
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: 400;
-
-    margin-bottom: 20px;
-    height: 30px;
-    width: 100%;
-    border: 2px solid #F4F2F2;
-}
 
 .contactElement {
     height: 460px;
@@ -51,4 +44,10 @@
     background-color: #8b8b8b;
 }
 
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
+    margin: 20px;
+}

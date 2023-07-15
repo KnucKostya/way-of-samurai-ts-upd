@@ -10,7 +10,7 @@ import {
     showMoreFoundUsersAC,
     toggleFollowingInProgressAC,
     unfollowingUserTC
-} from "../../../../Redux/friendsReducer";
+} from "../../../../Redux/reducers/friendsReducer";
 import {Friend} from "../Friend/Friend";
 import Preloader from "../../../../Common/Preloader";
 import {Pagination} from "./Pagination";

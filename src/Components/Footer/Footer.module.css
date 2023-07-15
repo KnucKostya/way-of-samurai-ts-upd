@@ -1,0 +1,151 @@
+.footer {
+    background-color: #ffffff;
+    grid-area: f;
+}
+
+.footer::before {
+    content: "";
+    display: block;
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(to right, #ffffff, #41AFD1, #ffffff);
+    text-align: center;
+}
+
+.footerInfo {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    width: 100%;
+    margin: 40px auto;
+    padding: 0 15px;
+}
+
+
+/*=================footerColumn==================*/
+
+
+.footerColumn ul {
+    padding: 0;
+}
+
+.footerColumn li {
+    margin-bottom: 10px;
+    list-style-type: none;
+}
+
+.footerColumn li:last-child {
+    margin-bottom: 0;
+}
+
+.footerColumn a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.footerColumn a::after {
+    content: "";
+    display: block;
+    height: 1px;
+    opacity: 0;
+    background: black;
+    position: relative;
+    top: 4px;
+    transition: opacity .2s linear, top .2s linear;
+
+}
+
+.footerColumn a:hover:after {
+    opacity: 1;
+    top: 0;
+}
+
+.footerColumn h4 {
+    margin-bottom: 25px;
+    display: inline-block;
+}
+
+.footerColumn h4::after {
+    content: "";
+    display: block;
+    height: 2px;
+    background-color: #088dcd;
+    text-align: center;
+}
+
+.footerColumn img {
+    width: 50px;
+}
+
+
+
+/*=================btn==================*/
+
+.footerColumnButton ul {
+    padding: 0;
+}
+
+.footerColumnButton li {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 40px;
+    cursor: pointer;
+    transition: background-color .2s linear;
+    margin-bottom: 10px;
+    list-style-type: none;
+}
+
+.footerColumnButton li:last-child {
+    margin-bottom: 0;
+}
+
+.footerColumnButton h4 {
+    margin-bottom: 25px;
+    display: inline-block;
+}
+
+.footerColumnButton h4::after {
+    content: "";
+    display: block;
+    height: 2px;
+    background-color: #088dcd;
+    text-align: center;
+}
+
+.footerColumnButton a {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.footerColumnButton li:hover {
+    background-color: #238ABD;
+}
+
+.footerColumnButton li:hover a {
+    color: #ffffff;
+}
+
+
+.footerColumnButton li:hover .fa{
+    color: #ffffff;
+}
+
+
+/*=================reserved==================*/
+
+.reserved {
+    background-color: #F4F2F2;
+
+}
+.reserved p {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 15px;
+    font-size: 13px;
+    font-weight: 300;
+}

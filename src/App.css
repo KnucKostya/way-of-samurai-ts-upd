@@ -7,7 +7,9 @@
   height: 100vh;
   grid-template-areas:
   "h h h"
-  "n c f";
+  "n c u"
+  "f f f"
+;
 
   grid-template-rows: 300px 1fr 1fr;
   grid-template-columns: 1.5fr 5fr 1fr;

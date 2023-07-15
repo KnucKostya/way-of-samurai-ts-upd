@@ -1,9 +1,9 @@
 import {ProfilePageDataType} from "../../../../Redux/state";
 import MyPosts from "./MyPosts";
-import {AddPostAC} from "../../../../Redux/profileReducer";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import {RootState} from "../../../../Redux/store";
+import {AddPostAC} from "../../../../Redux/reducers/profileReducer";
 
 
 const mapStateToProps = (state:RootState) :ProfilePageDataType=> {

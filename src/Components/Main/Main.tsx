@@ -4,9 +4,9 @@ import {useAppSelector} from "../../Redux/store";
 import {Redirect, Route} from "react-router-dom";
 import UsersContainer from "./Users/UsersContainer";
 import ProfileClassComponent from "./Profile/ProfileClassComponent";
-import ContaineerForDialogs from "./Dialogs/ContaineerForDialogs";
 import News from "./News/News";
 import LoginPage from "../../Common/Login/LoginPage";
+import {Messages} from "./Dialogs/Messages";
 
 
 // const Photos = React.lazy(() => import("./Photos/Photos"))
@@ -33,7 +33,7 @@ export const Main: React.FC<MainPropsType> = React.memo(({section, changeGrid}):
                    render={()=><ProfileClassComponent/>}/>
 
             <Route path="/dialogs"
-                   render={()=><ContaineerForDialogs/>}/>
+                   render={()=><Messages/>}/>
 
             <Route path = "/users"
                    render={()=><UsersContainer/>}/>

@@ -1,17 +1,19 @@
 import {combineReducers, createStore, Dispatch, applyMiddleware} from "redux";
-import {CombinerProfileActionTypes, profileReducer} from "./profileReducer";
-import {CombinerDialogsActionTypes, dialogReducer} from "./dialogReducer";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {CombinerUserActionTypes, usersReducer} from "./usersReducer";
-import authReducer, {CombinerAuthActionsType} from "./authReducer";
 import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk";
-import {FriendsActionType, friendsReducer} from "./friendsReducer";
+import authReducer, {CombinerAuthActionsType} from "./reducers/authReducer";
+import {groupsReducer} from "./reducers/groupsReducer";
+import {FriendsActionType, friendsReducer} from "./reducers/friendsReducer";
+import {MessagesActionType, messagesReducer} from "./reducers/dialogReducer";
+import {CombinerProfileActionTypes, profileReducer} from "./reducers/profileReducer";
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
-    messagesPage: dialogReducer,
+    messagesPage: messagesReducer,
     usersPage: usersReducer,
     auth: authReducer,
+    groupsData: groupsReducer,
     friendsData:friendsReducer
 })
 
@@ -21,7 +23,7 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 export const useAppDispatchThunk: DispatchFunc = useDispatch
 
 export type RootActionsType = CombinerUserActionTypes | CombinerProfileActionTypes
-    | CombinerDialogsActionTypes | CombinerAuthActionsType | FriendsActionType
+    | MessagesActionType | CombinerAuthActionsType | FriendsActionType
 
 export type RootThunkType<ReturnType = void> = ThunkAction<ReturnType, RootReducersType, unknown, RootActionsType>
 //1) что возвращает ф-ция (void)

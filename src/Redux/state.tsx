@@ -1,5 +1,5 @@
 import {responseDataType} from "../Components/Main/Profile/ProfileClassComponent";
-import {initStateType} from "./authReducer";
+import {initStateType} from "./reducers/authReducer";
 
 // Type for all STATE
 export type WholeStateType = {

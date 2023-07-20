@@ -22,7 +22,7 @@ export const FindFriends = (): ReactElement => {
     const useAppDispatch = () => useDispatch<AppDispatch>()
     const dispatch = useAppDispatch()
 
-    const friendsFindData = useAppSelector(state => state.friendsData.foundFriends)
+    const friendsFindData = useAppSelector(state => state.usersPage.users)
     const pageSize = useAppSelector(state => state.friendsData.pageSize)
     const totalFoundFriends = useAppSelector(state => state.friendsData.totalFoundFriends)
     const currentPageFindFriends = useAppSelector(
@@ -49,13 +49,14 @@ export const FindFriends = (): ReactElement => {
     const friendsFindElement = friendsFindData.map(friend => (
         <Friend
             key={friend.id}
-            id={friend.id}
+            id={friend.id.toString()}
             name={friend.name}
             followed={friend.followed}
-            photos={friend.photos}
+            photoLarge={friend.photos.large}
+            photoSmall={friend.photos.small}
             status={friend.status}
             callback={changeFollowingUser}
-            disabled={isFollowingInProgress.some(id => id === friend.id)}
+            // disabled={isFollowingInProgress.some(id => id === friend.id)}
         />
     ))
 

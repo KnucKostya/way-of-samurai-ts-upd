@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
 
 export type PaginatorPropsType = {
     totalCount: number
@@ -44,10 +43,6 @@ export const Paginator = (props: PaginatorPropsType) => {
         <div>
             <div>
                 <button onClick={prevPaginationHandler}>{`prev`}</button>
-                {/*{countPagesArr.map((m, i) => {*/}
-                {/*    return <span key={i} className={currentPage === m ? s.spanBold : s.span}*/}
-                {/*                 onClick={() => onPageChangedMethod(m)}>{m}</span>*/}
-                {/*})}*/}
                 {countPagesArr.filter(p => {
                     return p >= leftPortionValue && p <= rightPortionNumber
                 }).map(pages => {

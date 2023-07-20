@@ -3,12 +3,16 @@ import styles from "./Friend.module.css";
 // import friendAvatar from "../../../../../../anotherSN/social-network/src/img/Contacts/friend-avatar4.jpg"
 // import {Button} from "../../../../../../anotherSN/social-network/src/components/UIKit/Button";
 import {NavLink} from "react-router-dom";
+import friendAvatar from '../../../../Common/img/Contacts/friend-avatar.jpg';
+
 
 type FriendsPropsType = {
     id: string
     name: string
     followed: boolean
-    photos: string
+    photoSmall?: string
+    photoLarge?: string
+    photos?:string
     status: string
     disabled?: boolean
     callback: (id: string, followed: boolean) => void
@@ -17,15 +21,15 @@ type FriendsPropsType = {
 export const Friend = (props: FriendsPropsType) => {
 
     const onClickButtonHandler = () => {
-        props.callback(props.id, props.followed)
+        props.callback(props.id.toString(), props.followed)
     }
-
+    // непрввильноый пропс с фотками приходит!!!!!!!!!!!!!!!!!!!!
     return (
         <div className={styles.friend}>
             <NavLink to={`/profile/${props.id}`} className={styles.info}>
-                <img src={/^http/.test(props.photos) ? props.photos : "friendAvatar"} alt={props.name}/>
+                <img src={props.photoSmall ? props.photoSmall : friendAvatar} alt={props.name}/>
                 {/*fix friendAvatar*/}
-                <a href="src/Components/Main/Friends/Friend/Friend#">{props.name.length > 12 ? `${props.name.slice(0, 12)}...` : props.name}</a>
+                <a href="src/Components/Main/Friends/Friend/Friend">{props.name.length > 12 ? `${props.name.slice(0, 12)}...` : props.name}</a>
             </NavLink>
             <div>{props.status.length > 15 ? `${props.status.slice(0, 15)}...` : props.status}</div>
             {/*<Button name={props.followed ? "Unfriends" : "Add Friend"} status={props.followed}*/}

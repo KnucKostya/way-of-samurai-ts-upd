@@ -146,18 +146,18 @@ const followUnfollowFlow = async (dispatch:Dispatch,
         dispatch(followingInProgress(false, userID))
     }
     catch (e:any){
-
+    alert(e)
     }
  }
 
-export const UnfollowUserThunk = (userID: number): RootThunkType => {
-    return  (dispatch) => {
+export const UnfollowUserThunk = (userID: number) => {
+    return  (dispatch:Dispatch) => {
        return followUnfollowFlow(dispatch,userID,'unfollow',unfollow)
     }
 }
 
-export const FollowUserThunk = (userID: number): RootThunkType => {
-    return  (dispatch) => {
+export const FollowUserThunk = (userID: number) => {
+    return  (dispatch:Dispatch) => {
         return followUnfollowFlow(dispatch,userID,'follow',follow)
     }
 }

@@ -15,6 +15,7 @@ import {Footer} from "./Components/Footer/Footer";
 import Music from "./Components/Main/Music/Music";
 import {Groups} from "./Components/Main/Groups/Groups";
 import {Messages} from "./Components/Main/Dialogs/Messages";
+import UsersContainer from "./Components/Main/Users/UsersContainer";
 
 
 export const AppWithRedux = () => {
@@ -34,23 +35,19 @@ export const AppWithRedux = () => {
                 <Contacts />
 
                 <div className={s.content}>
-                {/*<div className={section}>*/}
-                {/*    <Main section={section} changeGrid={changeGrid}/>*/}
                         <Route exact path="/"
-                               render={()=><Friends/>}/>
+                               render={()=><ProfileClassComponent/>}/>
                         <Route path="/profile/:userID?"
                                render={()=><ProfileClassComponent/>}/>
-
                         <Route path="/dialogs"
                                render={()=><Messages/>}/>
-
                         <Route path = "/users"
                                render={()=><Friends/>}/>
-                        <Route path="/news/news.jsx/"
+                        <Route path="/news"
                                render={()=><News />}/>
-                        <Route path="/music/music.jsx"
+                        <Route path="/music"
                                render={()=><Music />} />
-                    <Route path="groups" render={()=><Groups />} />
+                    <Route path="/groups" render={()=><Groups />} />
                     <Route path={'/login'}
                     render={()=><LoginPage />}>
                     </Route>

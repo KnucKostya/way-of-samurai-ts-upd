@@ -3,7 +3,7 @@ import styles from "./Friends.module.css"
 import {NavLink, Route} from "react-router-dom"
 import {MyFriends} from "./MyFriends/MyFriends"
 import UsersContainer from "../Users/UsersContainer";
-// import {Error} from "../../../../../anotherSN/social-network/src/components/Error"
+import {Error} from "../../Error";
 
 export const Friends = (): ReactElement => {
     const [filter, setFilter] = useState(true)
@@ -15,7 +15,7 @@ export const Friends = (): ReactElement => {
                     // className={({isActive}) =>
                     //     isActive ? `${styles.titleItem} ${styles.activeItem}` : `${styles.titleItem}`
                     // }
-                    to="my"
+                    to="/users/my"
                     onClick={() => setFilter(true)}
                 >
                     My Friends
@@ -24,7 +24,7 @@ export const Friends = (): ReactElement => {
                     // className={({isActive}) =>
                     //     isActive ? `${styles.titleItem} ${styles.activeItem}` : `${styles.titleItem}`
                     // }
-                    to="requests"
+                    to="/users/requests"
                     onClick={() => setFilter(false)}
                 >
                     Friend Requests
@@ -33,7 +33,7 @@ export const Friends = (): ReactElement => {
                     // className={({isActive}) =>
                     //     isActive ? `${styles.titleItem} ${styles.activeItem}` : `${styles.titleItem}`
                     // }
-                    to="friends"
+                    to="/users/friends"
                 >
                     Find Friends
                 </NavLink>
@@ -41,9 +41,11 @@ export const Friends = (): ReactElement => {
                 {/*<Route path="*" render={()=><Error />} />*/}
                 {/*<Route path="my" render={()=><MyFriends filter={filter} />} />*/}
                 {/*<Route path="requests" render={()=><MyFriends filter={filter} />} />*/}
-            <Route path="my" render={()=><MyFriends  />} />
-                <Route path="requests" render={()=><MyFriends  />} />
-                <Route path="friends" render={()=><UsersContainer />} />
+            {/*<Route path="/*" render={()=><MyFriends  />} />*/}
+            <Route path="/users/my" render={()=><MyFriends  />} />
+                <Route path="/users/requests" render={()=><MyFriends  />} />
+                <Route path="/users/friends" render={()=><UsersContainer />} />
+            {/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
         </div>
     )
 }

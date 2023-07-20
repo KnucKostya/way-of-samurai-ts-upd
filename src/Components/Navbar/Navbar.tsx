@@ -26,7 +26,7 @@ export const Navbar = ({section, changeGrid}: NavPropsType) => {
         </div>
         <div className={s.link}>
             <FontAwesomeIcon icon={faUser} size="lg" pull="left" />
-            <NavLink to='/users'>Users</NavLink>
+            <NavLink to='/users/my'>Users</NavLink>
         </div>
         <div className={s.link}>
             <FontAwesomeIcon icon={faMessage} size="lg" pull="left" />
@@ -34,21 +34,21 @@ export const Navbar = ({section, changeGrid}: NavPropsType) => {
         </div>
         <div className={s.link}>
             <FontAwesomeIcon icon={faPeopleGroup} size="lg" pull="left" />
-            <NavLink to="groups" onClick={() => changeGrid("sectionAll")}>
+            <NavLink to="/groups" onClick={() => changeGrid("sectionAll")}>
                 Groups
             </NavLink>
         </div>
         <div className={s.link}>
             <FontAwesomeIcon icon={faNewspaper} size="lg" pull="left"/>
-            <NavLink to='/news/news.jsx'> News</NavLink>
+            <NavLink to='/news'> News</NavLink>
         </div>
         <div className={s.link}>
             <FontAwesomeIcon icon={faMusic} size="lg" pull="left"/>
-            <NavLink to='/music/music.jsx'>Music</NavLink>
+            <NavLink to='/music'>Music</NavLink>
         </div>
         <div className={s.link}>
             <FontAwesomeIcon icon={faGear} size="lg" pull="left"/>
-            <NavLink to='/settings/settings.jsx'> Settings</NavLink>
+            <NavLink to='/settings'>Settings</NavLink>
         </div>
     </nav>
     </div>

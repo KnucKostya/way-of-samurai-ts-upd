@@ -1,7 +1,8 @@
 import {v1} from "uuid"
 import {ThunkDispatch} from "redux-thunk";
-import {RootState, RootThunkType} from "../store";
+import {RootActionsType, RootState, RootThunkType} from "../store";
 import {friendsAPI} from "../../api/api";
+import {Dispatch} from "redux";
 
 export const CHANGE_FRIEND_STATUS = "CHANGE_FRIEND_STATUS"
 export const FOLLOWING_USER = "FOLLOWING_USER"

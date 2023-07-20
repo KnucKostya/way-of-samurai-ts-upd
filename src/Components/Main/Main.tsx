@@ -7,6 +7,7 @@ import ProfileClassComponent from "./Profile/ProfileClassComponent";
 import News from "./News/News";
 import LoginPage from "../../Common/Login/LoginPage";
 import {Messages} from "./Dialogs/Messages";
+import {Groups} from "./Groups/Groups";
 
 
 // const Photos = React.lazy(() => import("./Photos/Photos"))
@@ -39,6 +40,8 @@ export const Main: React.FC<MainPropsType> = React.memo(({section, changeGrid}):
                    render={()=><UsersContainer/>}/>
             <Route path="/news/news.jsx/"
                    render={()=><News />}/>
+            <Route path="/groups"
+                   render={()=><Groups />}/>
             {/*<Route path="/music/music.jsx"*/}
             {/*       element={<Music />} />*/}
             {/*<Route path="/settings/settings.jsx"*/}

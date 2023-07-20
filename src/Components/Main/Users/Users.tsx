@@ -1,12 +1,10 @@
 import React from 'react';
-import s from './users.module.css'
-import defaultLogo from '../../../logo.svg'
 import {APIusersType, FollowUserThunk, UnfollowUserThunk} from "../../../Redux/usersReducer";
-import {NavLink, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {Paginator} from "../../../Common/Paginator/Paginator";
 import {Friend} from "../Friends/Friend/Friend";
-import {followingUserTC, toggleFollowingInProgressAC, unfollowingUserTC} from "../../../Redux/reducers/friendsReducer";
-import {AppDispatch, useAppDispatch} from "../../../Redux/store";
+import {toggleFollowingInProgressAC} from "../../../Redux/reducers/friendsReducer";
+import {useAppDispatch} from "../../../Redux/store";
 
 
 <Redirect to={'login'}/>
@@ -60,27 +58,8 @@ const Users = (props: UsersPropsType) => {
                                  photoLarge={friend.photos.large} followed={friend.followed}
                                  callback={changeFollowingUser}
                         />}
-                        {
-                            friend.followed
-                                ?
-                                <button disabled={props.followingInProgressStatus.some(id=>id===friend.id)} className={s.buttDisable}
-                                        onClick={() => props.UnfollowUserThunk(friend.id)}>Unfollow</button>
-                                :
-                                <button disabled={props.followingInProgressStatus.some(id=>id===friend.id)}
-                                        onClick={() =>  props.FollowUserThunk(friend.id)}>Follow</button>
-                        }
-                    </div>
-                    <div>
-                        {friend.name}
                     </div>
 
-                    <NavLink to={'/profile/' + friend.id}>
-                        <img src={friend.photos.small || defaultLogo} className={s.avatar} alt={'image not loaded'}/>
-                    </NavLink>
-
-                    <div>{friend.status ? friend.status : 'default Status'}</div>
-                    <div>{'m.location.city'}</div>
-                    <div>{'m.location.country'}</div>
                 </div>
                 }
 

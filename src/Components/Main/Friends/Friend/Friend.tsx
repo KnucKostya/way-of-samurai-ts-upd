@@ -4,6 +4,7 @@ import styles from "./Friend.module.css";
 // import {Button} from "../../../../../../anotherSN/social-network/src/components/UIKit/Button";
 import {NavLink} from "react-router-dom";
 import friendAvatar from '../../../../Common/img/Contacts/friend-avatar.jpg';
+import {Button} from "../../../../UIKit/Button";
 
 
 type FriendsPropsType = {
@@ -31,9 +32,9 @@ export const Friend = (props: FriendsPropsType) => {
                 {/*fix friendAvatar*/}
                 <a href="src/Components/Main/Friends/Friend/Friend">{props.name.length > 12 ? `${props.name.slice(0, 12)}...` : props.name}</a>
             </NavLink>
-            <div>{props.status.length > 15 ? `${props.status.slice(0, 15)}...` : props.status}</div>
-            {/*<Button name={props.followed ? "Unfriends" : "Add Friend"} status={props.followed}*/}
-            {/*        callback={onClickButtonHandler} disabled={props.disabled}/>*/}
+            <div >{props.status}</div>
+            <Button name={props.followed ? "Unfriends" : "Add Friend"} status={props.followed}
+                    callback={onClickButtonHandler} disabled={props.disabled}/>
         </div>
     )
 }

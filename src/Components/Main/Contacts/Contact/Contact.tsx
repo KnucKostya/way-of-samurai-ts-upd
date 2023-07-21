@@ -1,7 +1,5 @@
 import React, {ReactElement} from "react"
 import styles from "./Contact.module.css"
-// import friendAvatar from "../../../../img/Contacts/friend-avatar0.jpg"
-import friendAvatar from "../../../../Common/img/user-avatar.webp"
 import {NavLink} from "react-router-dom"
 
 export const Contact: React.FC<ContactPropsType> = ({
@@ -10,10 +8,13 @@ export const Contact: React.FC<ContactPropsType> = ({
     name,
     photos,
 }): ReactElement => {
+
+
+
     return (
         <div className={styles.contact}>
             <div className={styles.avatar}>
-                <img src={friendAvatar} alt={photos} />
+                <img src={photos} alt={photos} />
             </div>
             <div className={styles.contactInfo}>
                 <div className={styles.name}>

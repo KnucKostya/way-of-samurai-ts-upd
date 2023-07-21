@@ -1,0 +1,20 @@
+.message {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.avatar img {
+    border-radius: 25px;
+    width: 30px;
+}
+
+.text {
+    padding: 0 10px;
+    margin-left: 10px;
+    background-color: #f3dede;
+    max-width: 300px;
+    width: 100%;
+
+    border-radius: 5px;
+}

@@ -1,0 +1,23 @@
+.addMessageForm {
+    display: flex;
+    width: 100%;
+}
+
+.formInput {
+    height: 30px;
+    border: 1px solid #238ABD;
+    border-radius: 5px;
+    flex-grow: 1;
+    outline: none;
+    padding: 0 10px;
+}
+
+.formBtn {
+    padding: 5px 15px;
+    color: white;
+    background-color: #238ABD;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+}

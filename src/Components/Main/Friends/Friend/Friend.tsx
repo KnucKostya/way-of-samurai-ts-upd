@@ -3,7 +3,7 @@ import styles from "./Friend.module.css";
 // import friendAvatar from "../../../../../../anotherSN/social-network/src/img/Contacts/friend-avatar4.jpg"
 // import {Button} from "../../../../../../anotherSN/social-network/src/components/UIKit/Button";
 import {NavLink} from "react-router-dom";
-import friendAvatar from '../../../../Common/img/Contacts/friend-avatar.jpg';
+import userAvatar from '../../../../Common/img/user-avatar.webp';
 import {Button} from "../../../../UIKit/Button";
 
 
@@ -28,9 +28,8 @@ export const Friend = (props: FriendsPropsType) => {
     return (
         <div className={styles.friend}>
             <NavLink to={`/profile/${props.id}`} className={styles.info}>
-                <img src={props.photoSmall ? props.photoSmall : friendAvatar} alt={props.name}/>
-                {/*fix friendAvatar*/}
-                <a href="src/Components/Main/Friends/Friend/Friend">{props.name.length > 12 ? `${props.name.slice(0, 12)}...` : props.name}</a>
+                <img src={props.photos ? props.photos : props.photoSmall ? props.photoSmall : props.photoLarge ? props.photoLarge : userAvatar} alt={props.name}/>
+                <a href="src/Components/Main/Friends/Friend/Friend">{props.name}</a>
             </NavLink>
             <div >{props.status}</div>
             <Button name={props.followed ? "Unfriends" : "Add Friend"} status={props.followed}

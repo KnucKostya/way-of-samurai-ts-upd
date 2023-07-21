@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditableStatus component should render correctly in display mode 1`] = `
+<div>
+  <span
+    onDoubleClick={[Function]}
+  >
+    test status
+  </span>
+</div>
+`;
+
+exports[`EditableStatus component should render correctly in display mode 2`] = `
+<div>
+  <span
+    onDoubleClick={[Function]}
+  >
+    test status
+  </span>
+</div>
+`;
+
+exports[`EditableStatus component should render correctly in edit mode 1`] = `
+<div>
+  <span
+    onDoubleClick={[Function]}
+  >
+    test status
+  </span>
+</div>
+`;
+
+exports[`EditableStatus component should render correctly in edit mode 2`] = `
+<div>
+  <span
+    onDoubleClick={[Function]}
+  >
+    test status
+  </span>
+</div>
+`;

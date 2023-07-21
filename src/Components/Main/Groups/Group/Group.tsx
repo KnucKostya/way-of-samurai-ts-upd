@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Group.module.css";
 import {Button} from "../../../../UIKit/Button";
-import group1 from '../../../../Common/img/Groups/group1.jpg'
 import {useDispatch} from "react-redux";
 import {leaveGroupAC} from "../../../../Redux/reducers/groupsReducer";
 
@@ -24,7 +23,9 @@ const Group = (props: GroupPropsType) => {
     return (
         <div className={styles.group}>
             <div className={styles.info}>
-                <a href="#"><img src={group1} alt={props.logo}/></a>
+                <a href="#">
+                    <img className={styles.img} src={props.logo} alt={props.logo}/>
+                </a>
                 <div>
                     <a>{props.name}</a>
                     <p>{props.type} Group</p>

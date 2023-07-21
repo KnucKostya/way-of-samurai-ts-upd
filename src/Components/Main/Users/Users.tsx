@@ -54,7 +54,7 @@ const Users = (props: UsersPropsType) => {
                 return     <div key={friend.id}>
                     <div>
                         {<Friend id={friend.id.toString()} status={friend.status}
-                        name={friend.name} photoSmall={friend.photos.small}
+                        name={friend.name} photoSmall={friend.photos.large}
                                  photoLarge={friend.photos.large} followed={friend.followed}
                                  callback={changeFollowingUser}
                         />}

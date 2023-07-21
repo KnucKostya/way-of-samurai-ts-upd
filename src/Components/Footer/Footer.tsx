@@ -2,21 +2,17 @@ import React, {ReactElement} from "react";
 import s from "./Footer.module.css";
 import logo from '../../Common/img/Images/react.png'
 import {
-    faCcMastercard,
-    faCcVisa,
     faAndroid,
     faApple,
-    faWindows,
-    faFacebook,
-    faTwitter,
+    faCcMastercard,
+    faCcVisa,
+    faGithub,
     faInstagram,
-    faGooglePlusG,
-    faPinterestSquare,
+    faLinkedinIn,
+    faTelegram,
+    faWindows,
 } from "@fortawesome/free-brands-svg-icons";
-import {
-    faMobileScreen,
-    faMapLocation
-} from "@fortawesome/free-solid-svg-icons";
+import {faMapLocation, faMobileScreen} from "@fortawesome/free-solid-svg-icons";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
@@ -44,17 +40,14 @@ export const Footer: React.FC = (): ReactElement | null => {
                 <div className={s.footerColumn}>
                     <h4>Follow</h4>
                     <ul>
-                        <li><FontAwesomeIcon icon={faFacebook} size="lg" pull="left"/><a
-                            href={"#"}>Facebook</a></li>
-                        <li><FontAwesomeIcon icon={faTwitter} size="lg" pull="left"/><a
-                            href={"#"}>Twitter</a></li>
+                        <li><FontAwesomeIcon icon={faTelegram} size="lg" pull="left"/><a
+                            href={"https://t.me/knucknuck"}>Telegram</a></li>
+                        <li><FontAwesomeIcon icon={faLinkedinIn} size="lg" pull="left"/><a
+                            href={"https://www.linkedin.com/in/%D0%BA%D0%BE%D1%81%D1%82%D1%8F-%D0%BA%D0%BE%D1%85%D0%B0%D0%BD%D0%BE%D0%B2-776440245"}>LinkedIn</a></li>
                         <li><FontAwesomeIcon icon={faInstagram} size="lg" pull="left"/><a
-                            href={"#"}>Instagram</a></li>
-                        <li><FontAwesomeIcon icon={faGooglePlusG} size="lg" pull="left"/><a
-                            href={"#"}>Google+</a></li>
-                        <li><FontAwesomeIcon icon={faPinterestSquare} size="lg" pull="left"/><a
-                            href={"#"}>Pintrest</a>
-                        </li>
+                            href={"https://instagram.com/knuckless_dev?igshid=OGQ5ZDc2ODk2ZA=="}>Instagram</a></li>
+                        <li><FontAwesomeIcon icon={faGithub} size="lg" pull="left"/><a
+                            href={"https://github.com/KnucKostya"}>GitHub</a></li>
                     </ul>
                 </div>
                 <div className={s.footerColumn}>

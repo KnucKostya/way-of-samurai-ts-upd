@@ -67,8 +67,7 @@ import {ADD_MESSAGE} from "../types"
 export const initialState: MessagesDataType = {
     messages: [
         {id: v1(), message: "Hello"},
-        {id: v1(), message: "How are you?"},
-        {id: v1(), message: "Bye"},
+        {id: v1(), message: "How are you?"}
     ],
 }
 

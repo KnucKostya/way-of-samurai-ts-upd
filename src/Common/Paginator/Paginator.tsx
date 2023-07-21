@@ -36,7 +36,7 @@ export const Paginator = (props: PaginatorPropsType) => {
     }
 
     return (
-        <div>
+        <div className={s.pagination}>
                 <button className={s.button} onClick={prevPaginationHandler}>{`prev`}</button>
                 {countPagesArr.filter(p => {
                     return p >= leftPortionValue && p <= rightPortionNumber

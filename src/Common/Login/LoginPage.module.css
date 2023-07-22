@@ -1,0 +1,8 @@
+.loginForm{
+    display:grid;
+    place-items: center;
+    padding: 10% 0;
+    width: 100%;
+    margin-bottom: -10%;
+}
+

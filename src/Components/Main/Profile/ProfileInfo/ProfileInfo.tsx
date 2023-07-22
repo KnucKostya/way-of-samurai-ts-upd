@@ -3,18 +3,24 @@ import s from './ProfileInfo.module.css';
 import Preloader from "../../../../Common/Preloader";
 import {ProfilePageDataType} from "../../../../Redux/state";
 import EditableStatus from "./EditableStatus";
-import {RootThunkType} from "../../../../Redux/store";
+import {RootThunkType, useAppSelector} from "../../../../Redux/store";
 import userAvatar from "../../../../Common/img/user-avatar.webp";
+import {useParams} from "react-router-dom";
 
 
 const ProfileInfo = (props: PrePostContentType) => {
 
-const {profileUser} = props;
-
+const {profileUser,paramUserId,status,updateStatus} = props;
+const userId = useAppSelector(state => state.auth.data.id)
+    let param = useParams()
+    if(!param){
+        if(userId){
+            param = userId
+        }
+    }
     if (!profileUser) {
         return <Preloader/>
     }
-
 
     return (
         <div className={s.profileInfo}>
@@ -23,18 +29,21 @@ const {profileUser} = props;
                 {profileUser.profilePageInfo?.photos.large
                     ? <img className={s.userAvatar}
                         src={profileUser.profilePageInfo?.photos.large} alt="large Image"/>
+                    : profileUser.profilePageInfo?.photos.small ?
+                            <img className={s.userAvatar}
+                                 src={profileUser.profilePageInfo?.photos.large} alt="small Image"/>
                     : <img className={s.userAvatar}
                           src={userAvatar}/>
                 }
                 <EditableStatus
-                    statusValue={props.status ? props.status : 'Default status'}
-                    updateStatus={props.updateStatus}
+                    statusValue={status ? status : 'Default status'}
+                    updateStatus={updateStatus}
                     userID={profileUser.profilePageInfo?.userId}
-                    paramUserId={props.paramUserId}
+                    paramUserId={paramUserId}
                 />
             </div>
 
-            <div>
+            <div className={s.userInfo}>
                 <p>
                     <b>Name:</b> {profileUser.profilePageInfo?.fullName}
                 </p>
@@ -47,38 +56,6 @@ const {profileUser} = props;
                     {profileUser.profilePageInfo?.lookingForAJobDescription
                         ? profileUser.profilePageInfo?.lookingForAJobDescription
                         : "No work"}{" "}
-                </p>
-                <hr/>
-                <p>
-                    <b>Contacts:</b>
-                </p>
-                <p>
-                    <b>facebook:</b>{" "}
-                    {profileUser.profilePageInfo?.contacts.facebook
-                        ? profileUser.profilePageInfo.contacts.facebook
-                        : "facebook.com"}{" "}
-                </p>
-                <p>
-                    <b>vk:</b>{" "}
-                    {profileUser.profilePageInfo?.contacts.vk ? profileUser.profilePageInfo.contacts.vk : "vk.com"}{" "}
-                </p>
-                <p>
-                    <b>twitter:</b>{" "}
-                    {profileUser.profilePageInfo?.contacts.twitter
-                        ? profileUser.profilePageInfo.contacts.twitter
-                        : "twitter.com"}{" "}
-                </p>
-                <p>
-                    <b>instagram:</b>{" "}
-                    {profileUser.profilePageInfo?.contacts.instagram
-                        ? profileUser.profilePageInfo.contacts.instagram
-                        : "instagram.com"}{" "}
-                </p>
-                <p>
-                    <b>github:</b>{" "}
-                    {profileUser.profilePageInfo?.contacts.github
-                        ? profileUser.profilePageInfo.contacts.github
-                        : "github.com"}{" "}
                 </p>
             </div>
 

@@ -11,8 +11,8 @@ const AddPost = () => {
 	const profileInfo = useAppSelector(state => state.profilePage)
 	const dispatch = useAppDispatch()
 
-	const addPost = (postText:string) => {
-		dispatch(AddPostAC(postText))
+	const addPost = (postText:string,date:string) => {
+		dispatch(AddPostAC(postText,date))
 	}
 
 	return (

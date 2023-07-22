@@ -6,9 +6,9 @@ import {responseDataType} from "../../Components/Main/Profile/ProfileClassCompon
 
 const initialState:ProfilePageDataType = {
         postData: [
-            {postText: 'Hello World', likesCount: 11},
-            {postText: 'Hello Kostya', likesCount: 12},
-            {postText: 'Hello Komk', likesCount: 41}
+            {postText: 'Hello', likesCount: 41,date:'22.02.2022'},
+            {postText: 'Congratulations with join to my Social Network', likesCount: 11,date:'21.03.2023'},
+            {postText: 'Here u can leave your post with your thoughts', likesCount: 12,date:'03.01.2023'},
         ],
         profilePageInfo : null,//сюда сет из аксиос запроса,
         status:'',
@@ -19,8 +19,8 @@ export const profileReducer = (state:ProfilePageDataType = initialState , action
 
     switch (action.type){
         case "ADD-POST":{
-            let newObj: Postdata = {postText: action.newPostMessage, likesCount: 0}
-            return {...state, postData:[...state.postData,newObj] }
+            let newObj: Postdata = {postText: action.newPostMessage, likesCount: 0,date:action.date}
+            return {...state, postData:[newObj,...state.postData] }
         }
 
         case "SET-DATA":{
@@ -29,24 +29,24 @@ export const profileReducer = (state:ProfilePageDataType = initialState , action
         case "SET-STATUS":{
             return {...state,status:action.status}
         }
+        case "SET-PHOTO":{
+            return {...state}
+        }
 
         default:return state
     }
 }
 
-export type CombinerProfileActionTypes = AddPostACType | setUserProfileType | SetStatusType
+export type CombinerProfileActionTypes = AddPostACType | setUserProfileType | SetStatusType | setPhotoType
 
 
 type AddPostACType = ReturnType<typeof AddPostAC>
 
-export const AddPostAC = (newPostMessage:string) => {
+export const AddPostAC = (newPostMessage:string,date:string) => {
     return {
-        type: 'ADD-POST',newPostMessage
+        type: 'ADD-POST',newPostMessage,date
     }as const
 }
-
-
-type setUserProfileType = ReturnType<typeof setUserProfile>
 
 export const setUserProfile = (data:responseDataType) => {
     return{type:'SET-DATA',data}as const
@@ -55,7 +55,13 @@ export const setUserProfile = (data:responseDataType) => {
 export const SetStatus = (status:string) => {
     return {type:'SET-STATUS', status}as const
 }
+
+export const setPhoto = (data:any) => {
+    return {type:'SET-PHOTO',data}as const
+}
 export type SetStatusType = ReturnType<typeof SetStatus>
+type setUserProfileType = ReturnType<typeof setUserProfile>
+type setPhotoType = ReturnType<typeof setPhoto>
 
 
 
@@ -72,7 +78,6 @@ export const GetStatusThunk = (userID:number):RootThunkType => {
     return (dispatch:any) => {
         profileApi.getStatus(userID)
             .then((response:any)=>{
-                console.log(response.status)
                 dispatch(SetStatus(response.data))
             })
     }
@@ -85,6 +90,18 @@ export const UpdateUserStatusThunk = (status:string):RootThunkType => {
             .then((response:any)=>{
                 if(response.data.resultCode === 0){
                     dispatch(SetStatus(status))
+                }
+            })
+    }
+}
+export const updatePhotoProfile = (file:File):RootThunkType => {
+    return (dispatch) => {
+        profileApi.updatePhoto(file)
+            .then((response:any)=>{
+                console.log(response)
+                if(response.data.resultCode === 0){
+                    // dispatch(setPhoto(response.data.small))
+
                 }
             })
     }

@@ -20,7 +20,8 @@ export type ProfilePageDataType = {
 }
 export type Postdata = {
     postText: string
-    likesCount: number
+    likesCount: number,
+    date:string
 }
 //---------messagesPage
 export type Messagespage = {

@@ -67,6 +67,9 @@ export const profileApi = {
     },
     updateStatus: (status: string) => {
         return instance.put(`/profile/status`, {status})
+    },
+    updatePhoto:(file:any) => {
+        return instance.put(`/profile/photo`,{file})
     }
 }
 

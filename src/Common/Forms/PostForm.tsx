@@ -17,13 +17,27 @@ const schema = yup.object({
 
 export const AddNewPostForm = (props: AddNewPostFormPropsType) => {
 
-	const {register, handleSubmit, watch, formState: {errors}} = useForm<TotalType>({
+	const {register, handleSubmit, watch, formState: {errors},reset} = useForm<TotalType>({
 		resolver: yupResolver(schema)
 	});
 
 	const onSubmit: SubmitHandler<TotalType> = data => {
-		if (data.newPost.length) {
-			props.addPost(data.newPost)
+		function formatDate(date:Date) {
+			const day = String(date.getDate()).padStart(2, '0');
+			const month = String(date.getMonth() + 1).padStart(2, '0'); // Месяцы в объекте Date начинаются с 0 (январь) и заканчиваются 11 (декабрь), поэтому добавляем 1.
+			const year = date.getFullYear();
+
+			return `${day}.${month}.${year}`;
+		}
+
+		const currentDate = new Date();
+		const formattedDate = formatDate(currentDate);
+
+		if (data.newPost.length >= 2) {
+			props.addPost(data.newPost,formattedDate)
+			reset({
+				newPost : ''
+			})
 		}
 	}
 
@@ -44,7 +58,7 @@ export const AddNewPostForm = (props: AddNewPostFormPropsType) => {
 			<a href="#"><FontAwesomeIcon className={s.icon} icon={faImage} size="lg"/></a>
 			<a href="#"><FontAwesomeIcon className={s.icon} icon={faCamera} size="lg"/></a>
 
-			<div className={s.submit}><input type="submit" name={'Send'}/></div>
+			<span className={s.submit}><input type="submit" value={'  Post  '}/></span>
 		</form>
 	)
 }
@@ -57,7 +71,7 @@ type Inputs = {
 };
 
 type AddNewPostFormPropsType = {
-	addPost: (newPostText: string) => void
+	addPost: (newPostText: string,date:string) => void
 }
 
 type FormData = yup.InferType<typeof schema>;

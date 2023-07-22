@@ -10,17 +10,18 @@ const mapStateToProps = (state:RootState) :ProfilePageDataType=> {
     return {
         postData:state.profilePage.postData,
         profilePageInfo:null,
-        status:state.profilePage.status
+        status:state.profilePage.status,
+
         }
 }
 
 type mapDispatchToPropsOutterType = {
-    addPost:(postText:string)=>void
+    addPost:(postText:string,date:string)=>void
 }
 
 const mapDispatchToProps = (dispatch:Dispatch):mapDispatchToPropsOutterType => {
     return{
-        addPost:(postText:string)=>dispatch(AddPostAC(postText)),
+        addPost:(postText:string,date:string)=>dispatch(AddPostAC(postText,date)),
     }
 }
 

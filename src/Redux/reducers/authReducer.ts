@@ -1,6 +1,7 @@
 import {authAPI} from "api/api";
 import {InitializedStatusType} from "./appReducer";
 import {RootThunkType} from "../store";
+import {GetStatusThunk, GetUserProfileThunk} from "./profileReducer";
 
 
 export type initStateType = {
@@ -76,6 +77,8 @@ export const getAuthUserData = (): RootThunkType<Promise<void>> => {
             let {id, login, email} = data.data
             dispatch(SetUserAuth(id, login, email))
             dispatch(SetErrorAC(''))
+            dispatch(GetUserProfileThunk(data.data.id))
+            dispatch(GetStatusThunk(data.data.id))
         } else {
             dispatch(SetErrorAC(data.messages[0]))
         }
@@ -94,7 +97,9 @@ export const LoginThunkCreator = (email: string, password: string, rememberMe: b
 
 export const LogOutThunkCreator = (): RootThunkType => async (dispatch) => {
     await authAPI.logout()
-    dispatch(LogoutAC())
+        .then(()=>{
+        dispatch(LogoutAC())
+    })
 }
 
 

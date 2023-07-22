@@ -47,8 +47,13 @@ class ProfileClassComponent extends React.Component<CommonType> {
 
     componentDidMount() {
         let userID = +this.props.match.params.userID
-        this.props.GetUserProfileThunk(userID)
-        this.props.GetStatusThunk(userID)
+        if(!userID){
+            if(this.props.userId){
+                userID = this.props.userId
+            }
+        }
+        // this.props.GetUserProfileThunk(userID)
+        // this.props.GetStatusThunk(userID)
     }
 
     render() {
@@ -66,6 +71,7 @@ let mapStateToProps = (state: WholeStateType) => {
     return {
         profilePage: state.profilePage,
         status:state.profilePage.status,
+        userId:state.auth.data.id,
     }
 }
 let mapDispatchToProps = {setUserProfile,GetUserProfileThunk,GetStatusThunk,UpdateUserStatusThunk}

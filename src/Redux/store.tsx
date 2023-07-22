@@ -20,7 +20,12 @@ let rootReducer = combineReducers({
 export let store = createStore(rootReducer, applyMiddleware(thunk))
 export const useAppDispatch: () => Dispatch = useDispatch
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
-export const useAppDispatchThunk: DispatchFunc = useDispatch
+
+
+// export const useAppDispatchThunk: DispatchFunc = useDispatch<DispatchFunc>
+//correct variant
+//
+export const useTypedDispatch = () => useDispatch<AppDispatch>()
 
 export type RootActionsType = CombinerUserActionTypes | CombinerProfileActionTypes
     | MessagesActionType | CombinerAuthActionsType | FriendsActionType

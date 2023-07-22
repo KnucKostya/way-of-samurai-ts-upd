@@ -3,6 +3,7 @@ import {useAppDispatch, useAppSelector} from "../../../../Redux/store";
 import {changeStatusFriendAC} from "../../../../Redux/reducers/friendsReducer";
 import {Friend} from "../Friend/Friend";
 import styles from './MyFriends.module.css'
+import {Redirect} from "react-router-dom";
 
 // export const MyFriends: React.FC<MyFriendsProps> = ({filter}): ReactElement => {return <div></div>}
 // УДАЛИТЬ НИЖНЮЮ СТРОКУ - ВВЕРХУ ИСТИНА!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -10,7 +11,10 @@ export const MyFriends = (): ReactElement => {
     const dispatch = useAppDispatch()
 
     const friendsData = useAppSelector(state => state.friendsData.friends)
-
+    const isAuth = useAppSelector(state => state.auth.isAuth)
+    if(isAuth === false){
+        return <Redirect to='/login'/>
+    }
     const changeStatusFriend = (id: string): void => {
         dispatch(changeStatusFriendAC(id))
     }
@@ -27,6 +31,7 @@ export const MyFriends = (): ReactElement => {
 
     const friendElement = friendsDataFilter.map(friend => (
         <Friend
+            key={friend.id}
             id={friend.id}
             name={friend.name}
             followed={friend.followed}

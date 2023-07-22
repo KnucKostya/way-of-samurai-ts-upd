@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {SubmitHandler, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import {RootReducersType, useAppDispatchThunk} from "Redux/store";
+import {RootReducersType, useTypedDispatch} from "Redux/store";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {LoginThunkCreator} from "../../Redux/reducers/authReducer";
@@ -15,7 +15,7 @@ const schema = yup.object({
 }).required();
 
 const LoginForm = (props:{error:string}) => {
-    const dispatch = useAppDispatchThunk()
+    const dispatch = useTypedDispatch()
     const {register, handleSubmit, formState: {errors}, trigger} = useForm<Inputs>({
         resolver: yupResolver(schema),
         defaultValues: {

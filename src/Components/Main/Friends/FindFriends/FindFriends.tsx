@@ -1,5 +1,3 @@
-// УБРАЛ ВСЕ ОШИБКИ С КОМПОНЕНТ ИЗ ПАПКИ FRIENDS
-//ДЕЛАЮ КОМПОНЕНТУ FRIENDS - ЗАКОНЧИЛ ПРОФАЙЛ!!
 import {ReactElement, useEffect} from "react";
 
 import s from './FindFriends.module.css'

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { store } from './Redux/store'
 import { Provider } from 'react-redux'
-import AppWithRedux from "./AppWithRedux";
+import App from "./App";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <Provider store={store}>
-        <AppWithRedux/>
+        <App/>
         <ToastContainer
             position="bottom-left"
             autoClose={3000}

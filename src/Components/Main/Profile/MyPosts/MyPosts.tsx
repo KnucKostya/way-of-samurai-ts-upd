@@ -10,6 +10,7 @@ const MyPosts = (props: combineType) => {
                                   message={p.postText}
                                   like={p.likesCount}
                                   userData={props.profilePageInfo}
+                                  postDate={p.date}
         />))
 
     return (

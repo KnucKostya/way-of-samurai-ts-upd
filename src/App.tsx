@@ -15,10 +15,9 @@ import {Footer} from "./Components/Footer/Footer";
 import Music from "./Components/Main/Music/Music";
 import {Groups} from "./Components/Main/Groups/Groups";
 import {Messages} from "./Components/Main/Dialogs/Messages";
-import UsersContainer from "./Components/Main/Users/UsersContainer";
 
 
-export const AppWithRedux = () => {
+export const App = () => {
 
     const [section, setSection] = useLocalStateSection("section", "sectionAll")
 
@@ -59,6 +58,6 @@ export const AppWithRedux = () => {
     );
 }
 
-export default AppWithRedux;
+export default App;
 
 

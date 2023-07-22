@@ -4,10 +4,14 @@ import {Dialog} from "./Message/Dialog"
 import {AddMessage} from "./AddMessage/AddMessage"
 import {useAppSelector} from "../../../Redux/store";
 import {Contact} from "../Contacts/Contact/Contact";
+import {Redirect} from "react-router-dom";
 
 export const Messages = (): ReactElement => {
     const friendsData = useAppSelector(state => state.friendsData.friends)
-
+    const isAuth = useAppSelector(state => state.auth.isAuth)
+    if(isAuth === false){
+        return <Redirect to='/login'/>
+    }
     let friendsDataFilter = friendsData.filter(el => el.followed)
 
     const contactElement = friendsDataFilter.map(contact => (

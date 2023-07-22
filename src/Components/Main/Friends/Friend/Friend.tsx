@@ -29,7 +29,8 @@ export const Friend = (props: FriendsPropsType) => {
         <div className={styles.friend}>
             <NavLink to={`/profile/${props.id}`} className={styles.info}>
                 <img src={props.photos ? props.photos : props.photoSmall ? props.photoSmall : props.photoLarge ? props.photoLarge : userAvatar} alt={props.name}/>
-                <a href="src/Components/Main/Friends/Friend/Friend">{props.name}</a>
+                <span>{props.name}</span>
+                {/*TODO link to user ^^^*/}
             </NavLink>
             <div >{props.status}</div>
             <Button name={props.followed ? "Unfriends" : "Add Friend"} status={props.followed}

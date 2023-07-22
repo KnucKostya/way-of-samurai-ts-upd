@@ -3,15 +3,16 @@ import s from './Post.module.css';
 import {responseDataType} from "../../ProfileClassComponent";
 import userAvatar from '../../../../../Common/img/user-avatar.webp'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faComment, faEye, faHeart, faHeartCrack, faXmark} from "@fortawesome/free-solid-svg-icons";
+import {faHeart, faXmark} from "@fortawesome/free-solid-svg-icons";
 
-type Postpropstype = {
+type PostPropsType = {
 	message: string
 	like: number
 	userData: responseDataType | null
+	postDate:string
 }
 
-const Post = (props: Postpropstype) => {
+const Post = (props: PostPropsType) => {
 
 	const likeClass = props.like ? `${s.iconClick}` : `${s.icon}`
 	// const disLikeClass = props.isDislike ? `${s.iconClick}` : `${s.icon}`
@@ -34,14 +35,14 @@ const Post = (props: Postpropstype) => {
 			<div className={s.title}>
 				<div className={s.avatar}>
 					<img
-						src={props.userData?.photos.small ? props.userData.photos.small : userAvatar}
+						src={props.userData?.photos.small ? props.userData.photos.small : props.userData?.photos.large ? props.userData.photos.large : userAvatar}
 						alt="logo"
 					/>
 				</div>
 				<div className={s.info}>
 					<div>
 						<div className={s.name}>{props.userData?.fullName}</div>
-						<div className={s.date}>Published:FIXX!
+						<div className={s.date}>Published: {props.postDate}
 							{/*{props.userData}*/}</div>
 					</div>
 

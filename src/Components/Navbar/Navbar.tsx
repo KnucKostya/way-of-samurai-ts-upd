@@ -3,6 +3,7 @@ import s from './Navbar.module.css';
 import {NavLink} from 'react-router-dom';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
+    faArrowRightFromBracket,
     faGear,
     faMessage,
     faMusic,
@@ -12,9 +13,17 @@ import {
     faUser
 } from "@fortawesome/free-solid-svg-icons";
 import {SectionCSSType} from "../Main/Main";
+import {useTypedDispatch} from "../../Redux/store";
+import {LogOutThunkCreator} from "../../Redux/reducers/authReducer";
 
 
 export const Navbar = ({section, changeGrid}: NavPropsType) => {
+
+const dispatch = useTypedDispatch()
+
+    const onClickHandlerLogout = () => {
+        dispatch(LogOutThunkCreator())
+    }
 
     return (
         <div className={s.nav}>
@@ -49,6 +58,10 @@ export const Navbar = ({section, changeGrid}: NavPropsType) => {
         <div className={s.link}>
             <FontAwesomeIcon icon={faGear} size="lg" pull="left"/>
             <NavLink to='/settings'>Settings</NavLink>
+        </div>
+        <div className={s.link} onClick={onClickHandlerLogout}>
+            <FontAwesomeIcon icon={faArrowRightFromBracket} size="lg" pull="left" />
+                Logout
         </div>
     </nav>
     </div>

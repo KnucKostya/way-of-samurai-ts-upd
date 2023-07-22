@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {HashRouter, Route} from 'react-router-dom';
 import './App.css';
 import s from './Content.module.css';
 import Navbar from "./Components/Navbar/Navbar";
@@ -27,7 +27,7 @@ export const App = () => {
     }
 
     return (
-        <BrowserRouter>
+        <HashRouter>
             <div className='app-wrapper'>
                 <HeaderContainer/>
                 <Navbar section={section} changeGrid={changeGrid}/>
@@ -35,7 +35,7 @@ export const App = () => {
 
                 <div className={s.content}>
                         <Route exact path="/"
-                               render={()=><ProfileClassComponent/>}/>
+                               render={()=><LoginPage/>}/>
                         <Route path="/profile/:userID?"
                                render={()=><ProfileClassComponent/>}/>
                         <Route path="/dialogs"
@@ -54,7 +54,7 @@ export const App = () => {
                 </div>
                 <Footer/>
             </div>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 

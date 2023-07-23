@@ -1,49 +1,47 @@
-import {responseDataType} from "../Components/Main/Profile/ProfileClassComponent";
-import {initStateType} from "./reducers/authReducer";
+import { responseDataType } from '../Components/Main/Profile/ProfileClassComponent'
+import { initStateType } from './reducers/authReducer'
 
 // Type for all STATE
 export type WholeStateType = {
-    profilePage: ProfilePageDataType
-    messagesPage: Messagespage
-    sideBar: Sidebartype
-    auth:initStateType
+  profilePage: ProfilePageDataType
+  messagesPage: Messagespage
+  sideBar: Sidebartype
+  auth: initStateType
 }
 
 // -----------------------------------Types-------------------------------
-
 
 //------------profilePage
 export type ProfilePageDataType = {
-    postData: Array<Postdata>
-    profilePageInfo: responseDataType | null
-    status:string
+  postData: Array<Postdata>
+  profilePageInfo: responseDataType | null
+  status: string
 }
 export type Postdata = {
-    postText: string
-    likesCount: number,
-    date:string
+  postText: string
+  likesCount: number
+  date: string
 }
 //---------messagesPage
 export type Messagespage = {
-    users: Array<Users>
-    messages: Array<Messages>
+  users: Array<Users>
+  messages: Array<Messages>
 }
 export type Users = {
-    name: string
-    id: string
+  name: string
+  id: string
 }
 export type Messages = {
-    message: string
-    id: string
+  message: string
+  id: string
 }
 //------sideBar
 export type Sidebartype = {
-    user1: string
-    user2: string
-    user3: string
+  user1: string
+  user2: string
+  user3: string
 }
 // -----------------------------------Types-------------------------------
-
 
 // ---------------------------ACTION CREATORS--------------------------
 // export type TsarType = AddPostType | ChangeValueType | NewMessagesType
@@ -87,7 +85,6 @@ export type Sidebartype = {
 // }
 
 // ---------------------------ACTION CREATORS--------------------------
-
 
 // let store: store = {
 //     _state: {
@@ -148,13 +145,4 @@ export type Sidebartype = {
 // export let textArreaText = store._state.profilePage.textArreaText
 // export let textArreaValueforDialogs = store._state.messagesPage.textArreaDialog
 
-
 // export default store
-
-
-
-
-
-
-
-

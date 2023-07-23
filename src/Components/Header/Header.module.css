@@ -10,56 +10,55 @@
 /*}*/
 
 .header {
-    grid-area: h;
-    /*background: #2f93b2;*/
-    background: url('../../Common/img/headerLogo.jpg') no-repeat center;
-    background-size: cover;
-    background-position: 30% 45%;
-    height: 400px;
-    margin-bottom: 30px;
-    /*margin-top: 4%;*/
+  grid-area: h;
+  /*background: #2f93b2;*/
+  background: url('../../Common/img/headerLogo.jpg') no-repeat center;
+  background-size: cover;
+  background-position: 30% 45%;
+  height: 400px;
+  margin-bottom: 30px;
+  /*margin-top: 4%;*/
 }
 
 .container {
-    display: flex;
-    align-items: flex-end;
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 100%;
+  display: flex;
+  align-items: flex-end;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
 }
 
 .headerInner {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    margin-bottom: 155px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 155px;
 }
 
 .userAvatar img {
-    height: 170px;
-    width: 170px;
-    border-radius: 50% ;
-    border: solid white 5px;
+  height: 170px;
+  width: 170px;
+  border-radius: 50%;
+  border: solid white 5px;
 }
 .editPhoto label {
-    margin-left: 20px;
-    padding: 10px 15px;
-    background-color: #000;
-    border: none;
-    color: #fff;
-    transition: background-color .5s linear;
+  margin-left: 20px;
+  padding: 10px 15px;
+  background-color: #000;
+  border: none;
+  color: #fff;
+  transition: background-color 0.5s linear;
 }
 
 .editPhoto label:hover {
-    background-color: transparent;
-    cursor: pointer;
+  background-color: transparent;
+  cursor: pointer;
 }
 
-
 .editPhoto input {
-    display: none;
-    visibility: hidden;
-    opacity: 0;
+  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
 
 /*.rightSideContainer {*/

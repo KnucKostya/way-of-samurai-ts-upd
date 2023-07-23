@@ -1,22 +1,22 @@
 .btn {
-    color: #fff;
-    border-radius: 3px;
-    border: none;
-    cursor: pointer;
-    margin: 10px;
-    padding: 5px 10px;
-    opacity: 1;
-    transition: opacity .2s linear;
+  color: #fff;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  padding: 5px 10px;
+  opacity: 1;
+  transition: opacity 0.2s linear;
 }
 
 .btn:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .blue {
-    background-color: #238ABD;
+  background-color: #238abd;
 }
 
 .grey {
-    background-color: lightslategray;
+  background-color: lightslategray;
 }

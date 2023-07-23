@@ -1,43 +1,39 @@
 .nav {
-    grid-area: n;
-    background-color: #FDFDFD;
-    padding: 20px;
+  grid-area: n;
+  background-color: #fdfdfd;
+  padding: 20px;
 }
 
 .title {
-    font-weight: 500;
-    font-size: 15px;
-    color: #424242;
+  font-weight: 500;
+  font-size: 15px;
+  color: #424242;
 }
 
 .title::after {
-    content: "";
-    display: block;
-    height: 2px;
-    width: 65px;
-    background-color: #088dcd;
-    text-align: center;
+  content: '';
+  display: block;
+  height: 2px;
+  width: 65px;
+  background-color: #088dcd;
+  text-align: center;
 }
 
 .link {
-    font-weight: 400;
-    padding: 10px 0;
-    cursor: pointer;
-    /*display: none;*/
+  font-weight: 400;
+  padding: 10px 0;
+  cursor: pointer;
+  /*display: none;*/
 }
 
 .link a {
-    text-decoration: none;
-    color: inherit;
-    transition: color .2s linear;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s linear;
 }
 .link a:hover {
-    color: #088dcd;
+  color: #088dcd;
 }
-
-
-
-
 
 /*.item a {*/
 /*    color: white;*/

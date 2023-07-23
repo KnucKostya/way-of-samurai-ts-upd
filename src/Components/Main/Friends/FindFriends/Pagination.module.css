@@ -1,41 +1,39 @@
 .pagination {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .pagination button {
-    border: none;
-    background-color: white;
-    transition: .2s background-color linear;
+  border: none;
+  background-color: white;
+  transition: 0.2s background-color linear;
 }
 
 .pagination button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-
 .selectPage {
-    font-weight: 900;
-    color: white;
-    background-color: #238ABD;
+  font-weight: 900;
+  color: white;
+  background-color: #238abd;
 }
 
 .numberingPage {
-    text-align: center;
-    margin-right: 10px;
-    font-size: 16px;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 50%;
-    transition: .2s background-color linear;
+  text-align: center;
+  margin-right: 10px;
+  font-size: 16px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  transition: 0.2s background-color linear;
 }
 
 .numberingPage:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-
 .icon {
-    color: #238ABD;
+  color: #238abd;
 }

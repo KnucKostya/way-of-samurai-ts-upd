@@ -61,52 +61,52 @@
 // //     } as const
 // // }
 
-import {v1} from "uuid"
-import {ADD_MESSAGE} from "../types"
+import { v1 } from 'uuid'
+import { ADD_MESSAGE } from '../types'
 
 export const initialState: MessagesDataType = {
-    messages: [
-        {id: v1(), message: "Hello"},
-        {id: v1(), message: "How are you?"}
-    ],
+  messages: [
+    { id: v1(), message: 'Hello' },
+    { id: v1(), message: 'How are you?' },
+  ],
 }
 
 export const messagesReducer = (
-    state = initialState,
-    action: MessagesActionType,
+  state = initialState,
+  action: MessagesActionType
 ): MessagesDataType => {
-    switch (action.type) {
-        case ADD_MESSAGE:
-            return {
-                ...state,
-                messages: [
-                    ...state.messages,
-                    {
-                        id: v1(),
-                        message: action.newMessage,
-                    },
-                ],
-            }
-        default:
-            return state
-    }
+  switch (action.type) {
+    case ADD_MESSAGE:
+      return {
+        ...state,
+        messages: [
+          ...state.messages,
+          {
+            id: v1(),
+            message: action.newMessage,
+          },
+        ],
+      }
+    default:
+      return state
+  }
 }
 
 // ActionCreator
 export const addMessageAC = (newMessage: string) =>
-    ({
-        type: ADD_MESSAGE,
-        newMessage,
-    } as const)
+  ({
+    type: ADD_MESSAGE,
+    newMessage,
+  }) as const
 
 // Types
 export type MessagesData = {
-    id: string
-    message: string
+  id: string
+  message: string
 }
 
 export type MessagesDataType = {
-    messages: Array<MessagesData>
+  messages: Array<MessagesData>
 }
 
 export type MessagesActionType = ReturnType<typeof addMessageAC>

@@ -1,18 +1,18 @@
-.pagination{
-    display:flex;
-    justify-content:center;
-    align-items:center
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.spanBold{
-    font-weight:bold;
-    cursor: pointer;
+.spanBold {
+  font-weight: bold;
+  cursor: pointer;
 }
-.button{
-    margin-left: 2%;
-    margin-right: 2%;
+.button {
+  margin-left: 2%;
+  margin-right: 2%;
 }
-.pageNumber{
-    margin-left: 0.7%;
-    margin-right: 0.7%;
-    cursor: pointer;
+.pageNumber {
+  margin-left: 0.7%;
+  margin-right: 0.7%;
+  cursor: pointer;
 }

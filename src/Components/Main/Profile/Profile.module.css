@@ -1,10 +1,9 @@
-.profileContainer{
-    /*display: grid;*/
-    /*grid-area: c;*/
-    /*grid-auto-flow: column;*/
-    /*align-items: center;*/
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.profileContainer {
+  /*display: grid;*/
+  /*grid-area: c;*/
+  /*grid-auto-flow: column;*/
+  /*align-items: center;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-

@@ -1,7 +1,5 @@
 import React from 'react'
 import styles from './Friend.module.css'
-// import friendAvatar from "../../../../../../anotherSN/social-network/src/img/Contacts/friend-avatar4.jpg"
-// import {Button} from "../../../../../../anotherSN/social-network/src/components/UIKit/Button";
 import { NavLink } from 'react-router-dom'
 import userAvatar from '../../../../Common/img/user-avatar.webp'
 import { Button } from '../../../../UIKit/Button'

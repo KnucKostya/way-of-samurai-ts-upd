@@ -5,6 +5,8 @@ import { MyFriends } from './MyFriends/MyFriends'
 import UsersContainer from '../Users/UsersContainer'
 import { FriendsRequests } from './FriendsRequests/FriendsRequests'
 
+// СДЕЛАТЬ УДАЛЕНИЕ ДРУЗЕЙ ИЗ МАССИВА И ЗАПРОСЫ
+
 export const Friends = (): ReactElement => {
   return (
     <div className={styles.friends}>
@@ -16,7 +18,6 @@ export const Friends = (): ReactElement => {
       <Route path="/users/my" render={() => <MyFriends />} />
       <Route path="/users/requests" render={() => <FriendsRequests />} />
       <Route path="/users/friends" render={() => <UsersContainer />} />
-      {/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { combineType } from './UsersContainer'
+import s from './usersContainer.module.css'
 import Users from './Users'
 import Preloader from '../../../Common/Preloader'
 
@@ -19,7 +20,7 @@ class UsersClassContainer extends React.PureComponent<combineType> {
 
   render() {
     return (
-      <>
+      <div className={s.findUsersContainer}>
         {this.props.isLoading && <Preloader />}
         <Users
           onPageChangedMethod={this.onPageChangedMethod}
@@ -34,7 +35,7 @@ class UsersClassContainer extends React.PureComponent<combineType> {
           UnfollowUserThunk={this.props.UnfollowUserThunk}
           FollowUserThunk={this.props.FollowUserThunk}
         />
-      </>
+      </div>
     )
   }
 }

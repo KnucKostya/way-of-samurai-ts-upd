@@ -26,7 +26,6 @@ const mapStateToProps = (state: RootState) => {
     currentPage: state.usersPage.currentPage,
     isLoading: state.usersPage.isLoading,
     followingInProgressStatus: state.usersPage.followingInProgressStatus,
-    //users это обьект ДАТА с вложенным массивом АЙТЕМС
   }
 }
 
@@ -52,5 +51,3 @@ export default compose<React.FC>(
   connect(mapStateToProps, mapDispatchToProps),
   WithAuthRedirect
 )(UsersClassContainer)
-//сокращённо и приавильно mapDispatchToProps нужно писать вот так
-// приставка AC не используетс в проектах, поэтому её нужно удалить

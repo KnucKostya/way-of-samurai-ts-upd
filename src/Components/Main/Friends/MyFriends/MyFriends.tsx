@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../Redux/store'
 import { changeStatusFriendAC } from '../../../../Redux/reducers/friendsReducer'
 import { Friend } from '../Friend/Friend'
-import styles from './MyFriends.module.css'
+import s from './MyFriends.module.css'
 import { Redirect } from 'react-router-dom'
 
 export const MyFriends = (): ReactElement => {
@@ -29,5 +29,5 @@ export const MyFriends = (): ReactElement => {
     />
   ))
 
-  return <div className={styles.myFriends}>{friendElement}</div>
+  return <div className={s.myFriends}>{friendElement}</div>
 }

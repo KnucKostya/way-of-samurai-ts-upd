@@ -2,7 +2,7 @@ import React, { ChangeEvent, ReactElement, useState } from 'react'
 import { Contact } from './Contact/Contact'
 import styles from './Contacts.module.css'
 import { useSelector } from 'react-redux'
-import { RootState } from '../../../Redux/store'
+import { RootState, useAppSelector } from '../../../Redux/store'
 
 export type FriendsType = {
   id: string
@@ -15,7 +15,7 @@ export type FriendsType = {
 
 export const Contacts = (): ReactElement => {
   const friendsData = useSelector<RootState, Array<FriendsType>>(state => state.friendsData.friends)
-
+  const isAuth = useAppSelector(state => state.auth.isAuth)
   let friendsDataFilter = friendsData.filter(el => el.followed)
 
   let regExp = new RegExp('', 'gi')
@@ -35,19 +35,35 @@ export const Contacts = (): ReactElement => {
       photos={contact.photos}
     />
   ))
-
   return (
-    <div className={styles.contacts}>
-      <div className={styles.title}>Friends</div>
-      <div>
-        <input
-          className={styles.search}
-          type="search"
-          placeholder="  Search Contacts..."
-          onChange={onChangeHandlerFilter}
-        />
-      </div>
-      <div className={styles.contactElement}>{contactElement}</div>
+    <div>
+      {isAuth ? (
+        <div className={styles.contacts}>
+          <div className={styles.title}>Friends</div>
+          <div>
+            <input
+              className={styles.search}
+              type="search"
+              placeholder="  Search Contacts..."
+              onChange={onChangeHandlerFilter}
+            />
+          </div>
+          <div className={styles.contactElement}>{contactElement}</div>
+        </div>
+      ) : (
+        <div className={styles.contacts}>
+          <div className={styles.title}>Friends</div>
+          <div>
+            <input
+              className={styles.search}
+              type="search"
+              placeholder="  Search Contacts..."
+              onChange={onChangeHandlerFilter}
+            />
+          </div>
+          You are not logined yet
+        </div>
+      )}
     </div>
   )
 }

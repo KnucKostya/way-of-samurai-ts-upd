@@ -6,10 +6,8 @@ import Navbar from './Components/Navbar/Navbar'
 import ProfileClassComponent from './Components/Main/Profile/ProfileClassComponent'
 import HeaderContainer from './Components/Header/HeaderContainer'
 import LoginPage from './Common/Login/LoginPage'
-import { useLocalStateSection } from './Common/hooks/useLocalStateSection'
 import { Contacts } from './Components/Main/Contacts/Contacts'
 import News from './Components/Main/News/News'
-import { SectionCSSType } from './Components/Main/Main'
 import { Friends } from './Components/Main/Friends/Friends'
 import { Footer } from './Components/Footer/Footer'
 import Music from './Components/Main/Music/Music'
@@ -17,17 +15,11 @@ import { Groups } from './Components/Main/Groups/Groups'
 import { Messages } from './Components/Main/Dialogs/Messages'
 
 export const App = () => {
-  const [section, setSection] = useLocalStateSection('section', 'sectionAll')
-
-  const changeGrid = (value: SectionCSSType): void => {
-    setSection(value)
-  }
-
   return (
     <HashRouter>
       <div className="app-wrapper">
         <HeaderContainer />
-        <Navbar section={section} changeGrid={changeGrid} />
+        <Navbar />
         <Contacts />
 
         <div className={s.content}>

@@ -13,7 +13,6 @@ export const newsReducer = (
   switch (action.type) {
     case 'GET-NEWS': {
       return { ...state, sources: [...state.sources, ...action.data] }
-      // return {...state}
     }
     default:
       return state
@@ -28,7 +27,6 @@ export type getNewsDataType = ReturnType<typeof getNewsData>
 export const getNewsDataThunk = () => {
   return (dispatch: Dispatch) => {
     newsApi.getNews().then(response => {
-      console.log(response.data.sources)
       dispatch(getNewsData(response.data.sources))
     })
   }

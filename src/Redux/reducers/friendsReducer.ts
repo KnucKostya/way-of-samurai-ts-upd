@@ -14,13 +14,23 @@ export const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 export const TOGGLE_FOLLOWING_IN_PROGRESS = 'TOGGLE_FOLLOWING_IN_PROGRESS'
 
 const initialState: FriendsDataType = {
+  requests: [
+    {
+      id: v1(),
+      name: 'Alise Zhviga',
+      followed: false,
+      photos:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHxkwD5LV34pfLt3gYmCAvM3r5EO6cD2DewDL5p8wwooygkScXF8fC67LAed8kbIVn6lc&usqp=CAU',
+      status: "I'm OK",
+      email: 'jennaortega@gmail.com',
+    },
+  ],
   friends: [
     {
       id: v1(),
       name: 'Jenna Ortega',
       followed: true,
-      photos:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_LAqob_aF25Fxs3IKSQYAJiBp4-RWAe3lJeJjdOhtRD8qeV4IC7EHmpNNfE-751bxDdY&usqp=CAU',
+      photos: 'https://www.beautycrew.com.au/media/55360/jo1.png?width=720',
       status: "I'm OK",
       email: 'jennaortega@gmail.com',
     },
@@ -130,6 +140,13 @@ export const friendsReducer = (
           el.id === action.id ? { ...el, followed: !el.followed } : el
         ),
       }
+    case 'CHANGE_REQUEST_STATUS':
+      return {
+        ...state,
+        requests: state.requests.map(el =>
+          el.id === action.id ? { ...el, followed: !el.followed } : el
+        ),
+      }
     case FOLLOWING_USER:
       return {
         ...state,
@@ -179,60 +196,66 @@ export type FriendsActionType =
   | ReturnType<typeof setTotalFoundFriendsAC>
   | ReturnType<typeof toggleIsFetchingAC>
   | ReturnType<typeof toggleFollowingInProgressAC>
+  | ReturnType<typeof changeStatusRequestFriendAC>
 
+export const changeStatusRequestFriendAC = (id: string) =>
+  ({
+    type: 'CHANGE_REQUEST_STATUS',
+    id,
+  } as const)
 export const changeStatusFriendAC = (id: string) =>
   ({
     type: CHANGE_FRIEND_STATUS,
     id,
-  }) as const
+  } as const)
 
 export const followingUserAC = (id: string) =>
   ({
     type: FOLLOWING_USER,
     id,
-  }) as const
+  } as const)
 
 export const unfollowingUserAC = (id: string) =>
   ({
     type: UNFOLLOWING_USER,
     id,
-  }) as const
+  } as const)
 
 export const setUsersAC = (friends: Array<FriendsType>) =>
   ({
     type: SET_USERS,
     friends,
-  }) as const
+  } as const)
 
 export const showMoreFoundUsersAC = () =>
   ({
     type: SHOW_MORE_FOUND_USERS,
-  }) as const
+  } as const)
 
 export const setCurrentPageAC = (currentPage: number) =>
   ({
     type: SET_CURRENT_PAGE,
     currentPage,
-  }) as const
+  } as const)
 
 export const setTotalFoundFriendsAC = (totalCount: number) =>
   ({
     type: SET_TOTAL_FOUND_FRIENDS,
     totalCount,
-  }) as const
+  } as const)
 
 export const toggleIsFetchingAC = (isFetching: boolean) =>
   ({
     type: TOGGLE_IS_FETCHING,
     isFetching,
-  }) as const
+  } as const)
 
 export const toggleFollowingInProgressAC = (userId: string, isProgress: boolean) =>
   ({
     type: TOGGLE_FOLLOWING_IN_PROGRESS,
     userId,
     isProgress,
-  }) as const
+  } as const)
 
 //Thunk Creator
 //REMOVE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -264,18 +287,12 @@ export const getUsersTC =
 export const followingUserTC =
   (id: string): RootThunkType =>
   async dispatch => {
-    const response = await friendsAPI.followingUser(id)
-    // FIX!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // response.data.resultCode === 0 && dispatch(followingUserAC(id))
     dispatch(toggleFollowingInProgressAC(id, false))
   }
 
 export const unfollowingUserTC =
   (id: string): RootThunkType =>
   async dispatch => {
-    const response = await friendsAPI.unfollowingUser(id)
-    // FIX!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // response.data.resultCode === 0 && dispatch(unfollowingUserAC(id))
     dispatch(toggleFollowingInProgressAC(id, false))
   }
 
@@ -290,6 +307,7 @@ export type FriendsType = {
 }
 
 export type FriendsDataType = {
+  requests: Array<FriendsType>
   friends: Array<FriendsType>
   foundFriends: Array<FriendsType>
   pageSize: number

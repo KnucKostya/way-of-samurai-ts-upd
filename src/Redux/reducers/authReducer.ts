@@ -2,6 +2,7 @@ import { authAPI } from 'api/api'
 import { InitializedStatusType } from './appReducer'
 import { RootThunkType } from '../store'
 import { GetStatusThunk, GetUserProfileThunk } from './profileReducer'
+import { toast } from 'react-toastify'
 
 export type initStateType = {
   data: {
@@ -47,8 +48,6 @@ const authReducer = (state = initialState, action: CombinerAuthActionsType): ini
     default:
       return state
   }
-
-  return state
 }
 
 export default authReducer
@@ -97,9 +96,15 @@ export const LoginThunkCreator =
   }
 
 export const LogOutThunkCreator = (): RootThunkType => async dispatch => {
-  await authAPI.logout().then(() => {
-    dispatch(LogoutAC())
-  })
+  await authAPI
+    .logout()
+    .then(() => {
+      dispatch(LogoutAC())
+      toast.success(`You are logged out successfully.`)
+    })
+    .catch(() => {
+      toast.error('Oops, check your internet connection, or try logg out again.')
+    })
 }
 
 //types

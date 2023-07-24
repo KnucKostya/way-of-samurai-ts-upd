@@ -20,7 +20,7 @@ const News = () => {
 
   useEffect(() => {
     dispatch(getNewsDataThunk())
-  }, [])
+  }, [dispatch])
 
   return (
     <div className={s.news}>
@@ -32,12 +32,17 @@ const News = () => {
       />
       {searchInputValue?.map(news => {
         return (
-          <div className={s.news}>
+          <div className={s.news} key={news.id}>
             <span>{news.name}</span>
             <span>Country: {news.country}</span>
             <span>News Language: {news.language}</span>
             <span>Category: {news.category}</span>
             <span>Description: {news.description}</span>
+            <span>
+              <a href={news.url} className={s.link}>
+                Tap here to see {news.name} news
+              </a>
+            </span>
           </div>
         )
       })}

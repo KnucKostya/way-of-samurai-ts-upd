@@ -8,8 +8,6 @@ import AddPost from './AddPost/AddPost'
 import LoginPage from '../../../Common/Login/LoginPage'
 
 const Profile = (props: ProfilePropsType) => {
-  // const authId = useAppSelector(state => state.auth.data.id)
-  // const profileId = useAppSelector(state => state.profilePage.profilePageInfo?.userId)
   const isAuth = useAppSelector(state => state.auth.isAuth)
 
   return (
@@ -36,13 +34,6 @@ const Profile = (props: ProfilePropsType) => {
           <ContaineerMyPostComponent />
         </div>
       )}
-      {/*<ProfileInfo profileUser={props.profileUser}*/}
-      {/*                status={props.status}*/}
-      {/*                updateStatus={props.updateStatus}*/}
-      {/*                paramUserId={props.paramUserId}*/}
-      {/*/>*/}
-      {/*<AddPost/>*/}
-      {/*<ContaineerMyPostComponent/>*/}
     </div>
   )
 }

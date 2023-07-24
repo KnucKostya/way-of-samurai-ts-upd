@@ -50,8 +50,8 @@ class ProfileClassComponent extends React.Component<CommonType> {
         userID = this.props.userId
       }
     }
-    // this.props.GetUserProfileThunk(userID)
-    // this.props.GetStatusThunk(userID)
+    this.props.GetUserProfileThunk(userID)
+    this.props.GetStatusThunk(userID)
   }
 
   render() {
@@ -85,5 +85,4 @@ let mapDispatchToProps = {
 export default compose<FC>(
   connect(mapStateToProps, mapDispatchToProps),
   withRouter
-  // withAuthRedirect
 )(ProfileClassComponent)

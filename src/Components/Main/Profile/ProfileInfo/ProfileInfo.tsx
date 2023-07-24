@@ -23,21 +23,20 @@ const ProfileInfo = (props: PrePostContentType) => {
   return (
     <div className={s.profileInfo}>
       <div>
-        {/*<img src={profileUser.profilePageInfo?.photos.small} alt="small Image"/>*/}
         {profileUser.profilePageInfo?.photos.large ? (
           <img
             className={s.userAvatar}
             src={profileUser.profilePageInfo?.photos.large}
-            alt="large Image"
+            alt="large "
           />
         ) : profileUser.profilePageInfo?.photos.small ? (
           <img
             className={s.userAvatar}
             src={profileUser.profilePageInfo?.photos.large}
-            alt="small Image"
+            alt="small "
           />
         ) : (
-          <img className={s.userAvatar} src={userAvatar} />
+          <img className={s.userAvatar} src={userAvatar} alt={'avatar'} />
         )}
         <EditableStatus
           statusValue={status ? status : 'Default status'}

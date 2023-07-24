@@ -20,3 +20,8 @@ input {
   margin-left: 45%;
   width: auto;
 }
+
+.link {
+  text-decoration: none;
+  color: #3b95c2;
+}

@@ -17,7 +17,6 @@ class EditableStatus extends React.Component<EditableStatusPropsType, any> {
   }
 
   onChangeStatus = (event: ChangeEvent<HTMLInputElement>) => {
-    //здесь нужно сетнуть статус
     this.setState({ status: event.currentTarget.value })
   }
 

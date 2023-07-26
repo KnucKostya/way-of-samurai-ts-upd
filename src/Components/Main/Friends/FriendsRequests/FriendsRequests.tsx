@@ -1,7 +1,10 @@
 import React, { ReactElement } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../Redux/store'
 import s from './FriendsRequests.module.css'
-import { changeStatusRequestFriendAC } from '../../../../Redux/reducers/friendsReducer'
+import {
+  changeStatusRequestFriendAC,
+  removeFriendFromListAC,
+} from '../../../../Redux/reducers/friendsReducer'
 import { Friend } from '../Friend/Friend'
 import { Redirect } from 'react-router-dom'
 
@@ -15,6 +18,7 @@ export const FriendsRequests = (): ReactElement => {
   }
   const changeStatusFriend = (id: string): void => {
     dispatch(changeStatusRequestFriendAC(id))
+    dispatch(removeFriendFromListAC(id))
   }
 
   const friendElement = friendsData.map(friend => (
@@ -29,5 +33,13 @@ export const FriendsRequests = (): ReactElement => {
     />
   ))
 
-  return <div className={s.myRequests}>{friendElement}</div>
+  return (
+    <div className={s.myRequests}>
+      {friendElement.length > 0 ? (
+        friendElement
+      ) : (
+        <div className={s.request}>you are haven't requests yet</div>
+      )}
+    </div>
+  )
 }

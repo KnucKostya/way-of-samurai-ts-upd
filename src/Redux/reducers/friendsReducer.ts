@@ -147,6 +147,11 @@ export const friendsReducer = (
           el.id === action.id ? { ...el, followed: !el.followed } : el
         ),
       }
+    case 'REMOVE_FRIEND_FROM_STATE':
+      return {
+        ...state,
+        requests: state.requests.filter(el => el.id !== action.id),
+      }
     case FOLLOWING_USER:
       return {
         ...state,
@@ -197,7 +202,13 @@ export type FriendsActionType =
   | ReturnType<typeof toggleIsFetchingAC>
   | ReturnType<typeof toggleFollowingInProgressAC>
   | ReturnType<typeof changeStatusRequestFriendAC>
+  | ReturnType<typeof removeFriendFromListAC>
 
+export const removeFriendFromListAC = (id: string) =>
+  ({
+    type: 'REMOVE_FRIEND_FROM_STATE',
+    id,
+  } as const)
 export const changeStatusRequestFriendAC = (id: string) =>
   ({
     type: 'CHANGE_REQUEST_STATUS',
@@ -256,15 +267,6 @@ export const toggleFollowingInProgressAC = (userId: string, isProgress: boolean)
     userId,
     isProgress,
   } as const)
-
-//Thunk Creator
-//REMOVE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// export type ActionTypeForApp =
-//     | FriendsActionType
-//
-// export type RootThunkType = ThunkAction<void, RootState, unknown, ActionTypeForApp>
-export type ThunkDispatchType = ThunkDispatch<RootState, unknown, FriendsActionType>
-//REMOVE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 export const getUsersTC =
   (currentPageFoundFriends: number, pageSize: number): RootThunkType =>

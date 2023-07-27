@@ -7,20 +7,26 @@ import { Button } from '../../../../UIKit/Button'
 type FriendsPropsType = {
   id: string
   name: string
-  followed: boolean
+  followed?: boolean
   photoSmall?: string
   photoLarge?: string
   photos?: string
-  status: string
+  status?: string
   disabled?: boolean
-  callback: (id: string, followed: boolean) => void
+  callback: (
+    id: string,
+    name: string,
+    photos?: string,
+    status?: string,
+    email?: string,
+    followed?: boolean
+  ) => void
 }
 
 export const Friend = (props: FriendsPropsType) => {
-  const onClickButtonHandler = () => {
-    props.callback(props.id.toString(), props.followed)
+  const followHandler = () => {
+    props.callback(props.id.toString(), props.name, props.photos, props.status, '', props.followed)
   }
-  // непрввильноый пропс с фотками приходит!!!!!!!!!!!!!!!!!!!!
   return (
     <div className={styles.friend}>
       <NavLink to={`/profile/${props.id}`} className={styles.info}>
@@ -43,7 +49,7 @@ export const Friend = (props: FriendsPropsType) => {
       <Button
         name={props.followed ? 'Unfriends' : 'Add Friend'}
         status={props.followed}
-        callback={onClickButtonHandler}
+        callback={followHandler}
         disabled={props.disabled}
       />
     </div>

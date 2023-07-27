@@ -5,7 +5,6 @@ import { Paginator } from '../../../Common/Paginator/Paginator'
 import { Friend } from '../Friends/Friend/Friend'
 import { toggleFollowingInProgressAC } from '../../../Redux/reducers/friendsReducer'
 import { useTypedDispatch } from '../../../Redux/store'
-
 ;<Redirect to={'login'} />
 
 export type UsersPropsType = {
@@ -34,7 +33,14 @@ const Users = (props: UsersPropsType) => {
     countPagesArr.push(i)
   }
 
-  const changeFollowingUser = (id: string, followed: boolean): void => {
+  const changeFollowingUser = (
+    id: string,
+    name: string,
+    photos?: string,
+    status?: string,
+    email?: string,
+    followed?: boolean
+  ): void => {
     dispatch(toggleFollowingInProgressAC(id, true))
     if (!followed) {
       dispatch(FollowUserThunk(+id))

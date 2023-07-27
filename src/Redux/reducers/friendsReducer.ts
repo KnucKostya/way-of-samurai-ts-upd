@@ -1,6 +1,5 @@
 import { v1 } from 'uuid'
-import { ThunkDispatch } from 'redux-thunk'
-import { RootState, RootThunkType } from '../store'
+import { RootThunkType } from '../store'
 import { friendsAPI } from '../../api/api'
 
 export const CHANGE_FRIEND_STATUS = 'CHANGE_FRIEND_STATUS'
@@ -128,6 +127,8 @@ const initialState: FriendsDataType = {
   isFollowingInProgress: [],
 }
 
+// разобраться почему стейт редьюсера перерисовывается, а добавление польщователя в стейт не происходит
+
 export const friendsReducer = (
   state = initialState,
   action: FriendsActionType
@@ -140,6 +141,21 @@ export const friendsReducer = (
           el.id === action.id ? { ...el, followed: !el.followed } : el
         ),
       }
+    case 'ADD_NEW_FRIEND':
+      // return state
+      let newFriend: FriendsType = {
+        id: action.id,
+        name: action.name,
+        followed: action.followed,
+        photos: action.photos,
+        status: action.status,
+        email: action.email,
+      }
+      return {
+        ...state,
+        friends: [...state.friends, newFriend],
+      }
+
     case 'CHANGE_REQUEST_STATUS':
       return {
         ...state,
@@ -203,7 +219,25 @@ export type FriendsActionType =
   | ReturnType<typeof toggleFollowingInProgressAC>
   | ReturnType<typeof changeStatusRequestFriendAC>
   | ReturnType<typeof removeFriendFromListAC>
+  | ReturnType<typeof addNewFriend>
 
+export const addNewFriend = (
+  id: string,
+  name: string,
+  photos?: string,
+  status?: string,
+  email?: string,
+  followed?: boolean
+) =>
+  ({
+    type: 'ADD_NEW_FRIEND',
+    id,
+    name,
+    followed,
+    photos,
+    status,
+    email,
+  } as const)
 export const removeFriendFromListAC = (id: string) =>
   ({
     type: 'REMOVE_FRIEND_FROM_STATE',
@@ -302,10 +336,10 @@ export const unfollowingUserTC =
 export type FriendsType = {
   id: string
   name: string
-  followed: boolean
-  photos: string
-  status: string
-  email: string
+  followed?: boolean
+  photos?: string
+  status?: string
+  email?: string
 }
 
 export type FriendsDataType = {

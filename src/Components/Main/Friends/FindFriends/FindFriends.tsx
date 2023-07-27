@@ -27,7 +27,14 @@ export const FindFriends = (): ReactElement => {
     dispatch(getUsersTC(currentPageFindFriends, pageSize))
   }, [dispatch, pageSize, currentPageFindFriends, totalFoundFriends])
 
-  const changeFollowingUser = (id: string, followed: boolean): void => {
+  const changeFollowingUser = (
+    id: string,
+    name: string,
+    photos?: string,
+    status?: string,
+    email?: string,
+    followed?: boolean
+  ): void => {
     dispatch(toggleFollowingInProgressAC(id, true))
     if (!followed) {
       dispatch(followingUserTC(id))

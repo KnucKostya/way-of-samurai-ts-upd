@@ -7,10 +7,10 @@ import { RootState, useAppSelector } from '../../../Redux/store'
 export type FriendsType = {
   id: string
   name: string
-  followed: boolean
-  photos: string
-  status: string
-  email: string
+  followed?: boolean
+  photos?: string
+  status?: string
+  email?: string
 }
 
 export const Contacts = (): ReactElement => {

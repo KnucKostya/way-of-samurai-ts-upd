@@ -22,6 +22,6 @@ export const Contact: React.FC<ContactPropsType> = ({ id, email, name, photos })
 type ContactPropsType = {
   id: string
   name: string
-  email: string
-  photos: string
+  email?: string
+  photos?: string
 }

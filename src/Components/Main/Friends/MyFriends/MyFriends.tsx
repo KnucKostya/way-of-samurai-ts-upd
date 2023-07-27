@@ -16,6 +16,7 @@ export const MyFriends = (): ReactElement => {
   const changeStatusFriend = (id: string): void => {
     dispatch(changeStatusFriendAC(id))
   }
+  console.log(friendsData)
 
   const friendElement = friendsData.map(friend => (
     <Friend

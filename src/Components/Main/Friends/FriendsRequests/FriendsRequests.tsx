@@ -4,6 +4,7 @@ import s from './FriendsRequests.module.css'
 import {
   addNewFriend,
   changeStatusRequestFriendAC,
+  removeFriendRequestFromListAC,
 } from '../../../../Redux/reducers/friendsReducer'
 import { Friend } from '../Friend/Friend'
 import { Redirect } from 'react-router-dom'
@@ -26,6 +27,7 @@ export const FriendsRequests = (): ReactElement => {
   ): void => {
     dispatch(changeStatusRequestFriendAC(id))
     dispatch(addNewFriend(id, name, photos, status, email, followed))
+    dispatch(removeFriendRequestFromListAC(id))
   }
 
   const friendElement = friendsData.map(friend => (

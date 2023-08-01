@@ -62,7 +62,7 @@ const initialState: FriendsDataType = {
     {
       id: v1(),
       name: 'Jared Padalecki',
-      followed: false,
+      followed: true,
       photos:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtaquyvAwpYg3YQGm8N4xr8mQO7TRN7GQCUg&usqp=CAU',
       status: "I'm OK",
@@ -104,7 +104,7 @@ const initialState: FriendsDataType = {
     {
       id: v1(),
       name: 'Matthew Mcconaughey',
-      followed: false,
+      followed: true,
       photos:
         'https://media.gq.com/photos/5f885ac8bd3a91bc1eca619f/1:1/w_2968,h_2968,c_limit/Matthew%20McConaughey%20interview%20gq%20october%202020.jpg',
       status: "I'm OK",
@@ -113,7 +113,7 @@ const initialState: FriendsDataType = {
     {
       id: v1(),
       name: 'Kostya Kokhanov',
-      followed: false,
+      followed: true,
       photos: 'https://i1.sndcdn.com/avatars-dCy4HR4pgqSNChij-5gmiOQ-t500x500.jpg',
       status: "I'm OK",
       email: 'knuckosytya@gmail.com',
@@ -146,14 +146,14 @@ export const friendsReducer = (
       let newFriend: FriendsType = {
         id: action.id,
         name: action.name,
-        followed: action.followed,
+        followed: true,
         photos: action.photos,
         status: action.status,
         email: action.email,
       }
       return {
         ...state,
-        friends: [...state.friends, newFriend],
+        friends: [newFriend, ...state.friends],
       }
 
     case 'CHANGE_REQUEST_STATUS':
@@ -163,10 +163,17 @@ export const friendsReducer = (
           el.id === action.id ? { ...el, followed: !el.followed } : el
         ),
       }
+    case 'REMOVE_FRIEND_REQUEST_FROM_STATE':
+      return {
+        ...state,
+        requests: state.requests.filter(el => {
+          return el.id !== action.id && el.followed === true
+        }),
+      }
     case 'REMOVE_FRIEND_FROM_STATE':
       return {
         ...state,
-        requests: state.requests.filter(el => el.id !== action.id),
+        friends: state.friends.filter(el => el.id !== action.id),
       }
     case FOLLOWING_USER:
       return {
@@ -219,6 +226,7 @@ export type FriendsActionType =
   | ReturnType<typeof toggleFollowingInProgressAC>
   | ReturnType<typeof changeStatusRequestFriendAC>
   | ReturnType<typeof removeFriendFromListAC>
+  | ReturnType<typeof removeFriendRequestFromListAC>
   | ReturnType<typeof addNewFriend>
 
 export const addNewFriend = (
@@ -241,6 +249,11 @@ export const addNewFriend = (
 export const removeFriendFromListAC = (id: string) =>
   ({
     type: 'REMOVE_FRIEND_FROM_STATE',
+    id,
+  } as const)
+export const removeFriendRequestFromListAC = (id: string) =>
+  ({
+    type: 'REMOVE_FRIEND_REQUEST_FROM_STATE',
     id,
   } as const)
 export const changeStatusRequestFriendAC = (id: string) =>

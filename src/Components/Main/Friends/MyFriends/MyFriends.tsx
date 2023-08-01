@@ -1,12 +1,16 @@
 import React, { ReactElement } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../../Redux/store'
-import { changeStatusFriendAC } from '../../../../Redux/reducers/friendsReducer'
+import { useAppSelector, useTypedDispatch } from '../../../../Redux/store'
+import {
+  changeStatusFriendAC,
+  removeFriendFromListAC,
+} from '../../../../Redux/reducers/friendsReducer'
 import { Friend } from '../Friend/Friend'
 import s from './MyFriends.module.css'
 import { Redirect } from 'react-router-dom'
+import { UnfollowUserThunk } from '../../../../Redux/usersReducer'
 
 export const MyFriends = (): ReactElement => {
-  const dispatch = useAppDispatch()
+  const dispatch = useTypedDispatch()
 
   const friendsData = useAppSelector(state => state.friendsData.friends)
   const isAuth = useAppSelector(state => state.auth.isAuth)
@@ -15,8 +19,9 @@ export const MyFriends = (): ReactElement => {
   }
   const changeStatusFriend = (id: string): void => {
     dispatch(changeStatusFriendAC(id))
+    dispatch(removeFriendFromListAC(id))
+    dispatch(UnfollowUserThunk(+id))
   }
-  console.log(friendsData)
 
   const friendElement = friendsData.map(friend => (
     <Friend

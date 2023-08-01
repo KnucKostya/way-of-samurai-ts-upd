@@ -61,7 +61,7 @@ export const Contacts = (): ReactElement => {
               onChange={onChangeHandlerFilter}
             />
           </div>
-          You are not logined yet
+          You are not registered yet
         </div>
       )}
     </div>

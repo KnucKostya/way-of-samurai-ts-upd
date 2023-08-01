@@ -1,12 +1,13 @@
 import React, { ReactElement } from 'react'
 import styles from './Contact.module.css'
 import { NavLink } from 'react-router-dom'
+import userAvatar from '../../../../Common/img/user-avatar.webp'
 
 export const Contact: React.FC<ContactPropsType> = ({ id, email, name, photos }): ReactElement => {
   return (
     <div className={styles.contact}>
       <div className={styles.avatar}>
-        <img src={photos} alt={photos} />
+        <img src={photos ? photos : userAvatar} alt={photos} />
       </div>
       <div className={styles.contactInfo}>
         <div className={styles.name}>

@@ -3,7 +3,7 @@ import { APIusersType, FollowUserThunk, UnfollowUserThunk } from '../../../Redux
 import { Redirect } from 'react-router-dom'
 import { Paginator } from '../../../Common/Paginator/Paginator'
 import { Friend } from '../Friends/Friend/Friend'
-import { toggleFollowingInProgressAC } from '../../../Redux/reducers/friendsReducer'
+import { addNewFriend, toggleFollowingInProgressAC } from '../../../Redux/reducers/friendsReducer'
 import { useTypedDispatch } from '../../../Redux/store'
 ;<Redirect to={'login'} />
 
@@ -44,6 +44,7 @@ const Users = (props: UsersPropsType) => {
     dispatch(toggleFollowingInProgressAC(id, true))
     if (!followed) {
       dispatch(FollowUserThunk(+id))
+      dispatch(addNewFriend(id, name, photos, status, email, followed))
     } else {
       dispatch(UnfollowUserThunk(+id))
     }

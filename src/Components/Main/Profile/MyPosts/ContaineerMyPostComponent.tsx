@@ -8,7 +8,7 @@ import { AddPostAC } from '../../../../Redux/reducers/profileReducer'
 const mapStateToProps = (state: RootState): ProfilePageDataType => {
   return {
     postData: state.profilePage.postData,
-    profilePageInfo: null,
+    profilePageInfo: state.profilePage.profilePageInfo,
     status: state.profilePage.status,
   }
 }

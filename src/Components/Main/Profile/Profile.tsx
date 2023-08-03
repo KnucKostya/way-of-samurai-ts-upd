@@ -9,6 +9,10 @@ import LoginPage from '../../../Common/Login/LoginPage'
 
 const Profile = (props: ProfilePropsType) => {
   const isAuth = useAppSelector(state => state.auth.isAuth)
+  const authorisatedUserId = useAppSelector(state => state.auth.data.id)
+  const currentUserIdProfile = useAppSelector(
+    state => state.profilePage.profilePageInfo.userId
+  )
 
   return (
     <div>
@@ -31,7 +35,9 @@ const Profile = (props: ProfilePropsType) => {
             paramUserId={props.paramUserId}
           />
           <AddPost />
-          <ContaineerMyPostComponent />
+          {authorisatedUserId === currentUserIdProfile && (
+            <ContaineerMyPostComponent />
+          )}
         </div>
       )}
     </div>

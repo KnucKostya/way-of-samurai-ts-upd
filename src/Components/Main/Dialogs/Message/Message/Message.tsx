@@ -4,7 +4,9 @@ import userAvatar from '../../../../../Common/img/user-avatar.webp'
 import { useAppSelector } from '../../../../../Redux/store'
 
 export const Message: React.FC<MessagePropsType> = props => {
-  const profileUserAvatar = useAppSelector(state => state.profilePage.profilePageInfo?.photos.large)
+  const profileUserAvatar = useAppSelector(
+    state => state.profilePage?.profilePageInfo?.photos?.large
+  )
 
   return (
     <div className={styles.message}>

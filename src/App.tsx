@@ -31,7 +31,6 @@ export const App = () => {
           <Route path="/music" render={() => <Music />} />
           <Route path="/groups" render={() => <Groups />} />
           <Route path={'/login'} render={() => <LoginPage />}></Route>
-          {/*{section === "sectionAll" && <Contacts />}*/}
         </div>
         <Footer />
       </div>

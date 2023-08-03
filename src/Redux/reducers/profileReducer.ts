@@ -5,19 +5,32 @@ import { responseDataType } from '../../Components/Main/Profile/ProfileClassComp
 
 const initialState: ProfilePageDataType = {
   postData: [
-    { postText: 'Hello', likesCount: 41, date: '22.02.2022' },
+    {
+      postText: 'Hello',
+      likesCount: 10,
+      dislikesCount: 0,
+      date: '22.02.2022',
+      isLike: false,
+      isDislike: false,
+    },
     {
       postText: 'Congratulations with join to my Social Network',
-      likesCount: 11,
+      likesCount: 31,
+      dislikesCount: 3,
       date: '21.03.2023',
+      isLike: false,
+      isDislike: false,
     },
     {
       postText: 'Here u can leave your post with your thoughts',
-      likesCount: 12,
+      likesCount: 21,
+      dislikesCount: 0,
       date: '03.01.2023',
+      isLike: false,
+      isDislike: false,
     },
-  ],
-  profilePageInfo: null, //сюда сет из аксиос запроса,
+  ] as Postdata[],
+  profilePageInfo: {} as responseDataType,
   status: '',
 }
 
@@ -27,8 +40,21 @@ export const profileReducer = (
 ): ProfilePageDataType => {
   switch (action.type) {
     case 'ADD-POST': {
-      let newObj: Postdata = { postText: action.newPostMessage, likesCount: 0, date: action.date }
+      let newObj: Postdata = {
+        postText: action.newPostMessage,
+        likesCount: 0,
+        dislikesCount: 0,
+        date: action.date,
+        isLike: false,
+        isDislike: false,
+      }
       return { ...state, postData: [newObj, ...state.postData] }
+    }
+    case 'DELETE-POST': {
+      return {
+        ...state,
+        postData: state.postData.filter(post => post.postText !== action.postText),
+      }
     }
 
     case 'SET-DATA': {
@@ -40,7 +66,46 @@ export const profileReducer = (
     case 'SET-PHOTO': {
       return { ...state }
     }
-
+    case 'LOG-OUT-PROFILE': {
+      return {
+        ...state,
+        profilePageInfo: {} as responseDataType,
+        status: 'login to see profile data',
+      }
+    }
+    case 'SET-LIKE': {
+      if (action.operation === 'like') {
+        return {
+          ...state,
+          postData: state.postData.map(post =>
+            post.postText === action.postText
+              ? {
+                  ...post,
+                  likesCount: post.likesCount + 1,
+                  dislikesCount: post.isDislike ? post.dislikesCount - 1 : post.dislikesCount,
+                  isLike: true,
+                  isDislike: false,
+                }
+              : post
+          ),
+        }
+      } else {
+        return {
+          ...state,
+          postData: state.postData.map(post =>
+            post.postText === action.postText
+              ? {
+                  ...post,
+                  likesCount: post.isLike ? post.likesCount - 1 : post.likesCount,
+                  dislikesCount: post.dislikesCount + 1,
+                  isLike: false,
+                  isDislike: true,
+                }
+              : post
+          ),
+        }
+      }
+    }
     default:
       return state
   }
@@ -51,14 +116,24 @@ export type CombinerProfileActionTypes =
   | setUserProfileType
   | SetStatusType
   | setPhotoType
+  | LogoutProfileType
+  | SetLikeType
+  | DeletePostType
 
 type AddPostACType = ReturnType<typeof AddPostAC>
+type DeletePostType = ReturnType<typeof DeletePostAC>
 
 export const AddPostAC = (newPostMessage: string, date: string) => {
   return {
     type: 'ADD-POST',
     newPostMessage,
     date,
+  } as const
+}
+export const DeletePostAC = (postText: string) => {
+  return {
+    type: 'DELETE-POST',
+    postText,
   } as const
 }
 
@@ -73,9 +148,17 @@ export const SetStatus = (status: string) => {
 export const setPhoto = (data: any) => {
   return { type: 'SET-PHOTO', data } as const
 }
+export const logoutProfile = () => {
+  return { type: 'LOG-OUT-PROFILE' } as const
+}
+export const SetLikeAC = (postText: string, operation: string) => {
+  return { type: 'SET-LIKE', postText, operation } as const
+}
 export type SetStatusType = ReturnType<typeof SetStatus>
 type setUserProfileType = ReturnType<typeof setUserProfile>
 type setPhotoType = ReturnType<typeof setPhoto>
+type LogoutProfileType = ReturnType<typeof logoutProfile>
+type SetLikeType = ReturnType<typeof SetLikeAC>
 
 export const GetUserProfileThunk = (userID: number): RootThunkType => {
   return (dispatch: any) => {

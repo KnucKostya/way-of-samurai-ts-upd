@@ -14,13 +14,16 @@ export type WholeStateType = {
 //------------profilePage
 export type ProfilePageDataType = {
   postData: Array<Postdata>
-  profilePageInfo: responseDataType | null
+  profilePageInfo: Partial<responseDataType>
   status: string
 }
 export type Postdata = {
   postText: string
   likesCount: number
+  dislikesCount: number
   date: string
+  isLike?: boolean
+  isDislike?: boolean
 }
 //---------messagesPage
 export type Messagespage = {

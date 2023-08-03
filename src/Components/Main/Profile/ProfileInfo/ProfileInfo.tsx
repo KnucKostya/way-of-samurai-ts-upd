@@ -3,19 +3,15 @@ import s from './ProfileInfo.module.css'
 import Preloader from '../../../../Common/Preloader'
 import { ProfilePageDataType } from '../../../../Redux/state'
 import EditableStatus from './EditableStatus'
-import { RootThunkType, useAppSelector } from '../../../../Redux/store'
+import { RootThunkType } from '../../../../Redux/store'
 import userAvatar from '../../../../Common/img/user-avatar.webp'
-import { useParams } from 'react-router-dom'
 
 const ProfileInfo = (props: PrePostContentType) => {
   const { profileUser, paramUserId, status, updateStatus } = props
-  const userId = useAppSelector(state => state.auth.data.id)
-  let param = useParams()
-  if (!param) {
-    if (userId) {
-      param = userId
-    }
-  }
+  // const dispatch = useTypedDispatch()
+  // const userId = useAppSelector(state => state.auth.data.id)
+  // let userID = useParams()
+
   if (!profileUser) {
     return <Preloader />
   }
@@ -23,23 +19,23 @@ const ProfileInfo = (props: PrePostContentType) => {
   return (
     <div className={s.profileInfo}>
       <div>
-        {profileUser.profilePageInfo?.photos.large ? (
+        {profileUser.profilePageInfo?.photos?.large ? (
           <img
             className={s.userAvatar}
-            src={profileUser.profilePageInfo?.photos.large}
+            src={profileUser.profilePageInfo?.photos?.large}
             alt="large "
           />
-        ) : profileUser.profilePageInfo?.photos.small ? (
+        ) : profileUser.profilePageInfo?.photos?.small ? (
           <img
             className={s.userAvatar}
-            src={profileUser.profilePageInfo?.photos.large}
+            src={profileUser.profilePageInfo?.photos?.large}
             alt="small "
           />
         ) : (
           <img className={s.userAvatar} src={userAvatar} alt={'avatar'} />
         )}
         <EditableStatus
-          statusValue={status ? status : 'Default status'}
+          statusValue={status}
           updateStatus={updateStatus}
           userID={profileUser.profilePageInfo?.userId}
           paramUserId={paramUserId}

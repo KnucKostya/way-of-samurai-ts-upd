@@ -1,7 +1,7 @@
 import { authAPI } from 'api/api'
 import { InitializedStatusType } from './appReducer'
 import { RootThunkType } from '../store'
-import { GetStatusThunk, GetUserProfileThunk } from './profileReducer'
+import { GetStatusThunk, GetUserProfileThunk, logoutProfile } from './profileReducer'
 import { toast } from 'react-toastify'
 
 export type initStateType = {
@@ -66,6 +66,7 @@ export const LogoutAC = () => {
 export const SetErrorAC = (error: string) => {
   return { type: 'SET-ERROR', error } as const
 }
+
 // --------------------thunks------------------------
 
 export const getAuthUserData = (): RootThunkType<Promise<void>> => {
@@ -100,6 +101,7 @@ export const LogOutThunkCreator = (): RootThunkType => async dispatch => {
     .logout()
     .then(() => {
       dispatch(LogoutAC())
+      dispatch(logoutProfile())
       toast.success(`You are logged out successfully.`)
     })
     .catch(() => {

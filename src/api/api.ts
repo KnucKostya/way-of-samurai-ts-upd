@@ -52,7 +52,7 @@ const api = {
 }
 
 export const profileApi = {
-  getProfile: (userID: string) => {
+  getProfile: () => {
     return api.getUsersProfile
   },
   getStatus: (userID: number) => {
@@ -71,7 +71,9 @@ export const authAPI = {
     return api.authMe()
   },
   login: (email: string, password: string, rememberMe: boolean) => {
-    return instance.post(`auth/login`, { email, password }).then(response => response.data)
+    return instance
+      .post(`auth/login`, { email, password })
+      .then(response => response.data)
   },
   logout: () => {
     return instance.delete('auth/login').then(response => response.data)
@@ -81,7 +83,9 @@ export const authAPI = {
 export const friendsAPI = {
   getUsers(currentPageFoundFriends: number, pageSize: number) {
     return instance
-      .get<GetUserResponseType>(`users?page=${currentPageFoundFriends}&count=${pageSize}`)
+      .get<GetUserResponseType>(
+        `users?page=${currentPageFoundFriends}&count=${pageSize}`
+      )
       .then(response => response.data)
   },
   followingUser(id: string) {
@@ -105,6 +109,7 @@ export const newsApi = {
 export type NewsResponseType = {
   status: string
   sources: CurrentNewsResponseType[]
+  isFetching: boolean
 }
 
 export type CurrentNewsResponseType = {

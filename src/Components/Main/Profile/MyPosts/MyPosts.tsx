@@ -9,6 +9,9 @@ const MyPosts = (props: combineType) => {
       key={index}
       message={p.postText}
       like={p.likesCount}
+      isLike={p.isLike}
+      isDislike={p.isDislike}
+      dislike={p.dislikesCount}
       userData={props.profilePageInfo}
       postDate={p.date}
     />

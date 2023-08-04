@@ -2,6 +2,8 @@ import { Postdata, ProfilePageDataType } from '../state'
 import { RootThunkType } from '../store'
 import api, { profileApi } from '../../api/api'
 import { responseDataType } from '../../Components/Main/Profile/ProfileClassComponent'
+import { toast } from 'react-toastify'
+import { AxiosError } from 'axios'
 
 const initialState: ProfilePageDataType = {
   postData: [
@@ -53,7 +55,9 @@ export const profileReducer = (
     case 'DELETE-POST': {
       return {
         ...state,
-        postData: state.postData.filter(post => post.postText !== action.postText),
+        postData: state.postData.filter(
+          post => post.postText !== action.postText
+        ),
       }
     }
 
@@ -82,7 +86,9 @@ export const profileReducer = (
               ? {
                   ...post,
                   likesCount: post.likesCount + 1,
-                  dislikesCount: post.isDislike ? post.dislikesCount - 1 : post.dislikesCount,
+                  dislikesCount: post.isDislike
+                    ? post.dislikesCount - 1
+                    : post.dislikesCount,
                   isLike: true,
                   isDislike: false,
                 }
@@ -96,7 +102,9 @@ export const profileReducer = (
             post.postText === action.postText
               ? {
                   ...post,
-                  likesCount: post.isLike ? post.likesCount - 1 : post.likesCount,
+                  likesCount: post.isLike
+                    ? post.likesCount - 1
+                    : post.likesCount,
                   dislikesCount: post.dislikesCount + 1,
                   isLike: false,
                   isDislike: true,
@@ -185,13 +193,20 @@ export const UpdateUserStatusThunk = (status: string): RootThunkType => {
     })
   }
 }
-export const updatePhotoProfile = (file: File): RootThunkType => {
+export const UpdatePhotoProfile = (file: FormData): RootThunkType => {
   return dispatch => {
-    profileApi.updatePhoto(file).then((response: any) => {
-      console.log(response)
-      if (response.data.resultCode === 0) {
-        // dispatch(setPhoto(response.data.small))
-      }
-    })
+    profileApi
+      .updatePhoto(file)
+      .then((response: any) => {
+        if (response.data.resultCode === 0) {
+          // dispatch(setPhoto(response.data.small))
+        } else {
+          toast.error(response.data.messages[0])
+        }
+      })
+      .catch((e: AxiosError) => {
+        console.log(e)
+        toast.error(e.message)
+      })
   }
 }

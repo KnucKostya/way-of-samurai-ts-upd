@@ -3,19 +3,28 @@ import s from './Header.module.css'
 import { useAppSelector, useTypedDispatch } from '../../Redux/store'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCameraRotate } from '@fortawesome/free-solid-svg-icons'
-import { updatePhotoProfile } from '../../Redux/reducers/profileReducer'
+import { UpdatePhotoProfile } from '../../Redux/reducers/profileReducer'
 
 const Header = () => {
+  // const [selectedFile, setSelectedFile] = useState<File | null>(null)
+
   const dispatch = useTypedDispatch()
   const idAuth = useAppSelector(state => state.auth.data.id)
   const infoProfile = useAppSelector(state => state.profilePage.profilePageInfo)
-  const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>): void => {
-    if (e.target.files) {
-      console.log(e.target.files)
-      dispatch(updatePhotoProfile(e.target.files[0]))
-      alert('should update photo with TC')
-    }
+  // const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>): void => {
+  //   if (e.target.files) {
+  //     console.log(e.target.files)
+  //     // setSelectedFile(e.target.files)
+  //     alert('should update photo with TC')
+  //   }
+  // }
+
+  const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
+    const formData: any = new FormData()
+    formData.append('image', e.target.files?.[0])
+    dispatch(UpdatePhotoProfile(formData))
   }
+
   return (
     <header className={s.header}>
       <div className={s.container}>
@@ -30,7 +39,7 @@ const Header = () => {
           </a>
           {idAuth === infoProfile?.userId && (
             <div className={s.editPhoto}>
-              <input type="file" id="inputFile" onChange={onMainPhotoSelected} />
+              <input type="file" id="inputFile" onChange={handleSubmit} />
               <label htmlFor="inputFile">
                 <FontAwesomeIcon icon={faCameraRotate} size="lg" />
                 {` Edit Photo`}

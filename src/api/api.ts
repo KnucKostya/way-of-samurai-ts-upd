@@ -63,14 +63,7 @@ export const profileApi = {
   },
   updatePhoto: (image: FormData) => {
     console.log(image)
-    return instance.put(
-      `/profile/photo`,
-      image /*{
-      headers: {
-        'content-type': 'multipart/form-data',
-      },
-     }*/
-    )
+    return instance.put(`/profile/photo`, image)
   },
 }
 
@@ -80,7 +73,7 @@ export const authAPI = {
   },
   login: (email: string, password: string, rememberMe: boolean) => {
     return instance
-      .post(`auth/login`, { email, password })
+      .post(`auth/login`, { email, password, rememberMe })
       .then(response => response.data)
   },
   logout: () => {

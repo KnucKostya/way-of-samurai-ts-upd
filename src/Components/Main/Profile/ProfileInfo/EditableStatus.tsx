@@ -17,10 +17,9 @@ class EditableStatus extends React.Component<EditableStatusPropsType, any> {
   }
 
   onChangeStatus = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(event)
     this.setState({ status: event.currentTarget.value })
   }
-
-  onDoubleHandler = () => {}
 
   render() {
     return (
@@ -34,7 +33,11 @@ class EditableStatus extends React.Component<EditableStatusPropsType, any> {
             onChange={this.onChangeStatus}
           />
         ) : (
-          <span onDoubleClick={this.activateMode}>{this.props.statusValue}</span>
+          <span onDoubleClick={this.activateMode}>
+            {this.props.statusValue
+              ? this.props.statusValue
+              : 'here can be youth status'}
+          </span>
         )}
       </div>
     )

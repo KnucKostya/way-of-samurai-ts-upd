@@ -1,5 +1,6 @@
 .profileInfo {
   display: flex;
+  position: relative;
   margin-bottom: 20px;
   padding: 25px;
   background-color: #fdfdfd;

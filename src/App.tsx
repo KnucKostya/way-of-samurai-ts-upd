@@ -23,8 +23,11 @@ export const App = () => {
         <Contacts />
 
         <div className={s.content}>
-          <Route exact path="/" render={() => <LoginPage />} />
-          <Route path="/profile/:userID?" render={() => <ProfileClassComponent />} />
+          <Route exact path="/*" render={() => <LoginPage />} />
+          <Route
+            path="/profile/:userID?"
+            render={() => <ProfileClassComponent />}
+          />
           <Route path="/dialogs" render={() => <Messages />} />
           <Route path="/users" render={() => <Friends />} />
           <Route path="/news" render={() => <News />} />

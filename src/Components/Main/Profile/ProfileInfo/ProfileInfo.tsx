@@ -8,9 +8,6 @@ import userAvatar from '../../../../Common/img/user-avatar.webp'
 
 const ProfileInfo = (props: PrePostContentType) => {
   const { profileUser, paramUserId, status, updateStatus } = props
-  // const dispatch = useTypedDispatch()
-  // const userId = useAppSelector(state => state.auth.data.id)
-  // let userID = useParams()
 
   if (!profileUser) {
     return <Preloader />

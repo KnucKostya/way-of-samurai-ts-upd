@@ -37,7 +37,8 @@ const initialState: FriendsDataType = {
       id: v1(),
       name: 'Asahina Aja',
       followed: true,
-      photos: 'https://www.sitnas.id/uploads/large/5bdd13174c68c4a46e0d02c01f3a9e18.jpg',
+      photos:
+        'https://www.sitnas.id/uploads/large/5bdd13174c68c4a46e0d02c01f3a9e18.jpg',
       status: "I'm OK",
       email: 'asiha@gmail.com',
     },
@@ -72,7 +73,8 @@ const initialState: FriendsDataType = {
       id: v1(),
       name: 'Danai Gurira',
       followed: true,
-      photos: 'https://static.kinoafisha.info/k/news/610/upload/news/239715890800.jpg',
+      photos:
+        'https://static.kinoafisha.info/k/news/610/upload/news/239715890800.jpg',
       status: "I'm OK",
       email: 'gurrirrraa78@gmail.com',
     },
@@ -114,7 +116,8 @@ const initialState: FriendsDataType = {
       id: v1(),
       name: 'Kostya Kokhanov',
       followed: true,
-      photos: 'https://i1.sndcdn.com/avatars-dCy4HR4pgqSNChij-5gmiOQ-t500x500.jpg',
+      photos:
+        'https://i1.sndcdn.com/avatars-dCy4HR4pgqSNChij-5gmiOQ-t500x500.jpg',
       status: "I'm OK",
       email: 'knuckosytya@gmail.com',
     },
@@ -126,8 +129,6 @@ const initialState: FriendsDataType = {
   isFetching: false,
   isFollowingInProgress: [],
 }
-
-// разобраться почему стейт редьюсера перерисовывается, а добавление польщователя в стейт не происходит
 
 export const friendsReducer = (
   state = initialState,
@@ -308,7 +309,10 @@ export const toggleIsFetchingAC = (isFetching: boolean) =>
     isFetching,
   } as const)
 
-export const toggleFollowingInProgressAC = (userId: string, isProgress: boolean) =>
+export const toggleFollowingInProgressAC = (
+  userId: string,
+  isProgress: boolean
+) =>
   ({
     type: TOGGLE_FOLLOWING_IN_PROGRESS,
     userId,

@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom'
 import userAvatar from '../../../../Common/img/user-avatar.webp'
 import { Button } from '../../../../UIKit/Button'
 
+//TODO отображение фото при добавлении нового пользователя в разделе друзья
+
 type FriendsPropsType = {
   id: string
   name: string
@@ -25,7 +27,14 @@ type FriendsPropsType = {
 
 export const Friend = (props: FriendsPropsType) => {
   const followHandler = () => {
-    props.callback(props.id.toString(), props.name, props.photos, props.status, '', props.followed)
+    props.callback(
+      props.id.toString(),
+      props.name,
+      props.photos,
+      props.status,
+      '',
+      props.followed
+    )
   }
   return (
     <div className={styles.friend}>
@@ -43,7 +52,6 @@ export const Friend = (props: FriendsPropsType) => {
           alt={props.name}
         />
         <span>{props.name}</span>
-        {/*TODO link to user ^^^*/}
       </NavLink>
       <div>{props.status}</div>
       <Button

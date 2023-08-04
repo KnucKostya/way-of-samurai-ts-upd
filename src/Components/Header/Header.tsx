@@ -4,20 +4,12 @@ import { useAppSelector, useTypedDispatch } from '../../Redux/store'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCameraRotate } from '@fortawesome/free-solid-svg-icons'
 import { UpdatePhotoProfile } from '../../Redux/reducers/profileReducer'
+import userAvatar from '../../../src/Common/img/user-avatar.webp'
 
 const Header = () => {
-  // const [selectedFile, setSelectedFile] = useState<File | null>(null)
-
   const dispatch = useTypedDispatch()
   const idAuth = useAppSelector(state => state.auth.data.id)
   const infoProfile = useAppSelector(state => state.profilePage.profilePageInfo)
-  // const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>): void => {
-  //   if (e.target.files) {
-  //     console.log(e.target.files)
-  //     // setSelectedFile(e.target.files)
-  //     alert('should update photo with TC')
-  //   }
-  // }
 
   const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
     const formData: any = new FormData()
@@ -29,14 +21,16 @@ const Header = () => {
     <header className={s.header}>
       <div className={s.container}>
         <div className={s.headerInner}>
-          <a className={s.userAvatar} href="#">
+          <span className={s.userAvatar}>
             <img
-              // src={infoProfile?.photos.large ? infoProfile.photos.large : ''}/>
               src={
-                'https://social-network.samuraijs.com/activecontent/images/users/27012/user.jpg?v=1'
+                infoProfile?.photos?.large
+                  ? infoProfile.photos.large
+                  : userAvatar
               }
+              alt={'user avatar'}
             />
-          </a>
+          </span>
           {idAuth === infoProfile?.userId && (
             <div className={s.editPhoto}>
               <input type="file" id="inputFile" onChange={handleSubmit} />

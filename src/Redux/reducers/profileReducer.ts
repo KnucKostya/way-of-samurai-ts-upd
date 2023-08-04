@@ -68,7 +68,13 @@ export const profileReducer = (
       return { ...state, status: action.status }
     }
     case 'SET-PHOTO': {
-      return { ...state }
+      return {
+        ...state,
+        profilePageInfo: {
+          ...state.profilePageInfo,
+          photos: action.photos,
+        },
+      }
     }
     case 'LOG-OUT-PROFILE': {
       return {
@@ -153,8 +159,8 @@ export const SetStatus = (status: string) => {
   return { type: 'SET-STATUS', status } as const
 }
 
-export const setPhoto = (data: any) => {
-  return { type: 'SET-PHOTO', data } as const
+export const setPhoto = (photos: any) => {
+  return { type: 'SET-PHOTO', photos } as const
 }
 export const logoutProfile = () => {
   return { type: 'LOG-OUT-PROFILE' } as const
@@ -199,7 +205,8 @@ export const UpdatePhotoProfile = (file: FormData): RootThunkType => {
       .updatePhoto(file)
       .then((response: any) => {
         if (response.data.resultCode === 0) {
-          // dispatch(setPhoto(response.data.small))
+          console.log(response)
+          dispatch(setPhoto(response.data.data.photos))
         } else {
           toast.error(response.data.messages[0])
         }

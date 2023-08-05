@@ -3,11 +3,16 @@ import s from './ProfileInfo.module.css'
 import Preloader from '../../../../Common/Preloader'
 import { ProfilePageDataType } from '../../../../Redux/state'
 import EditableStatus from './EditableStatus'
-import { RootThunkType } from '../../../../Redux/store'
+import { RootThunkType, useAppSelector } from '../../../../Redux/store'
 import userAvatar from '../../../../Common/img/user-avatar.webp'
 
 const ProfileInfo = (props: PrePostContentType) => {
-  const { profileUser, paramUserId, status, updateStatus } = props
+  const { profileUser, status, updateStatus } = props
+  const idAuth = useAppSelector(state => state.auth.data.id)
+  const userId = useAppSelector(
+    state => state.profilePage.profilePageInfo.userId
+  )
+
   if (!profileUser) {
     return <Preloader />
   }
@@ -30,11 +35,12 @@ const ProfileInfo = (props: PrePostContentType) => {
         ) : (
           <img className={s.userAvatar} src={userAvatar} alt={'avatar'} />
         )}
+        {/*!!!!!!!!!!!!!!!!!!!!!!*/}
         <EditableStatus
           statusValue={status}
           updateStatus={updateStatus}
-          userID={profileUser.profilePageInfo?.userId}
-          paramUserId={paramUserId}
+          userID={userId}
+          idAuth={idAuth}
         />
       </div>
 
@@ -66,5 +72,4 @@ type PrePostContentType = {
   profileUser: ProfilePageDataType
   status: string
   updateStatus: (status: string) => RootThunkType
-  paramUserId: number
 }

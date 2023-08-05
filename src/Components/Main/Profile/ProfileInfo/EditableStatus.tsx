@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from 'react'
 import s from './EditableStatus.module.css'
+import { toast } from 'react-toastify'
 
 class EditableStatus extends React.Component<EditableStatusPropsType, any> {
   state = {
@@ -8,16 +9,21 @@ class EditableStatus extends React.Component<EditableStatusPropsType, any> {
   }
 
   activateMode = () => {
-    this.setState({ isEdit: true })
+    if (this.props.userID === this.props.idAuth) {
+      this.setState({ isEdit: true })
+    }
   }
 
   deactivateMode = () => {
     this.setState({ isEdit: false })
-    this.props.updateStatus(this.state.status)
+    if (this.state.status.length > 0) {
+      this.props.updateStatus(this.state.status)
+    } else {
+      toast.warning('status length should have 1 and more symbols ')
+    }
   }
 
   onChangeStatus = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event)
     this.setState({ status: event.currentTarget.value })
   }
 
@@ -34,9 +40,7 @@ class EditableStatus extends React.Component<EditableStatusPropsType, any> {
           />
         ) : (
           <span onDoubleClick={this.activateMode}>
-            {this.props.statusValue
-              ? this.props.statusValue
-              : 'here can be yours status'}
+            {this.props.statusValue ? this.props.statusValue : 'user status'}
           </span>
         )}
       </div>
@@ -51,5 +55,5 @@ type EditableStatusPropsType = {
   statusValue: string
   updateStatus: (status: string) => void
   userID?: number
-  paramUserId: number
+  idAuth: number | null
 }

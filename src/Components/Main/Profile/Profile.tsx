@@ -22,7 +22,6 @@ const Profile = (props: ProfilePropsType) => {
             profileUser={props.profileUser}
             status={props.status}
             updateStatus={props.updateStatus}
-            paramUserId={props.paramUserId}
           />
           <LoginPage />
         </div>
@@ -32,7 +31,6 @@ const Profile = (props: ProfilePropsType) => {
             profileUser={props.profileUser}
             status={props.status}
             updateStatus={props.updateStatus}
-            paramUserId={props.paramUserId}
           />
           <AddPost />
           {authorisatedUserId === currentUserIdProfile && (

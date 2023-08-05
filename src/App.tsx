@@ -10,7 +10,6 @@ import { Contacts } from './Components/Main/Contacts/Contacts'
 import News from './Components/Main/News/News'
 import { Friends } from './Components/Main/Friends/Friends'
 import { Footer } from './Components/Footer/Footer'
-import Music from './Components/Main/Music/Music'
 import { Groups } from './Components/Main/Groups/Groups'
 import { Messages } from './Components/Main/Dialogs/Messages'
 
@@ -30,7 +29,6 @@ export const App = () => {
           <Route path="/dialogs" render={() => <Messages />} />
           <Route path="/users" render={() => <Friends />} />
           <Route path="/news" render={() => <News />} />
-          <Route path="/music" render={() => <Music />} />
           <Route path="/groups" render={() => <Groups />} />
           <Route path={'/login'} render={() => <LoginPage />}></Route>
           <Route exact path="/" render={() => <Redirect to={'/login'} />} />

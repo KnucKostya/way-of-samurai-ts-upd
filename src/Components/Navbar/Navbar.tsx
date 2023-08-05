@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faArrowRightFromBracket,
   faMessage,
-  faMusic,
   faNewspaper,
   faPager,
   faPeopleGroup,
@@ -45,12 +44,12 @@ export const Navbar = () => {
           <FontAwesomeIcon icon={faNewspaper} size="lg" pull="left" />
           <NavLink to="/news"> News</NavLink>
         </div>
-        <div className={s.link}>
-          <FontAwesomeIcon icon={faMusic} size="lg" pull="left" />
-          <NavLink to="/music">Music</NavLink>
-        </div>
         <div className={s.link} onClick={onClickHandlerLogout}>
-          <FontAwesomeIcon icon={faArrowRightFromBracket} size="lg" pull="left" />
+          <FontAwesomeIcon
+            icon={faArrowRightFromBracket}
+            size="lg"
+            pull="left"
+          />
           Logout
         </div>
       </nav>

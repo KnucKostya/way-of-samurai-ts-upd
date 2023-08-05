@@ -32,7 +32,11 @@ export const LoginForm = (props: { error: string }) => {
   }
 
   return (
-    <form className={s.loginForm} action="Common/Login/LoginPage" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className={s.loginForm}
+      action="Common/Login/LoginPage"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <h3 className={s.title}>LOGIN</h3>
       <h6 className={s.greeting}>
         Welcome to my social network!
@@ -41,6 +45,12 @@ export const LoginForm = (props: { error: string }) => {
           <div>Login: free@samuraijs.com </div>
           <div>Password: free </div>
         </h3>
+        <h3 className={s.warning}>Warning!</h3>
+        <h4 className={s.warning}>
+          If you are trying to login with phone - you need to accept cookies in
+          your browser in private policy menu and turn off "Prevent
+          Cross-Site-Tracking", or login from PC or Laptop
+        </h4>
       </h6>
       <div>
         <input
@@ -58,16 +68,21 @@ export const LoginForm = (props: { error: string }) => {
           placeholder={'password'}
           {...register('password', { required: true })}
           onClick={async () => {
-            const result = await trigger('password', { shouldFocus: true })
+            await trigger('password', { shouldFocus: true })
           }}
         />
-        {/*<p className={s.error}>{errors ? errors.password?.message : ''}</p>*/}
         <p className={s.error}>
-          {props.error && props.error !== 'You are not authorized' ? props.error : ''}
+          {props.error && props.error !== 'You are not authorized'
+            ? props.error
+            : ''}
         </p>
       </div>
       <div>
-        <input className={s.formCheckbox} type="checkbox" {...register('checkbox')} />
+        <input
+          className={s.formCheckbox}
+          type="checkbox"
+          {...register('checkbox')}
+        />
         <span>Remember Me</span>
       </div>
       <div>

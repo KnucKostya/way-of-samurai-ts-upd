@@ -35,7 +35,6 @@ const ProfileInfo = (props: PrePostContentType) => {
         ) : (
           <img className={s.userAvatar} src={userAvatar} alt={'avatar'} />
         )}
-        {/*!!!!!!!!!!!!!!!!!!!!!!*/}
         <EditableStatus
           statusValue={status}
           updateStatus={updateStatus}

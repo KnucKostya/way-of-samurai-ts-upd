@@ -50,9 +50,7 @@
   background: black;
   position: relative;
   top: 4px;
-  transition:
-    opacity 0.2s linear,
-    top 0.2s linear;
+  transition: opacity 0.2s linear, top 0.2s linear;
 }
 
 .footerColumn a:hover:after {
@@ -76,8 +74,6 @@
 .footerColumn img {
   width: 50px;
 }
-
-/*=================btn==================*/
 
 .footerColumnButton ul {
   padding: 0;
@@ -128,8 +124,6 @@
 .footerColumnButton li:hover .fa {
   color: #ffffff;
 }
-
-/*=================reserved==================*/
 
 .reserved {
   background-color: #f4f2f2;

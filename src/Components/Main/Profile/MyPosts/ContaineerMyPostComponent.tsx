@@ -17,18 +17,23 @@ type mapDispatchToPropsOutterType = {
   addPost: (postText: string, date: string) => void
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsOutterType => {
+const mapDispatchToProps = (
+  dispatch: Dispatch
+): mapDispatchToPropsOutterType => {
   return {
-    addPost: (postText: string, date: string) => dispatch(AddPostAC(postText, date)),
+    addPost: (postText: string, date: string) =>
+      dispatch(AddPostAC(postText, date)),
   }
 }
 
-// в ContainerForDialogs реализован другой подход
 export type mapStateToProps = ReturnType<typeof mapStateToProps>
 export type mapDispatchToPropsType = ReturnType<typeof mapDispatchToProps>
 
 export type combineType = mapStateToProps & mapDispatchToPropsType
 
-const ContaineerMyPostComponent = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+const ContaineerMyPostComponent = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyPosts)
 
 export default ContaineerMyPostComponent

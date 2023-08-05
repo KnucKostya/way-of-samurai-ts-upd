@@ -1,10 +1,10 @@
 .contacts {
   grid-area: u;
   background-color: #fdfdfd;
-
   padding: 20px;
   font-size: 15px;
   font-weight: 500;
+  width: 190px;
 }
 
 .title {

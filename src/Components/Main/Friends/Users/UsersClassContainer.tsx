@@ -5,11 +5,6 @@ import Users from './Users'
 import Preloader from '../../../../Common/Preloader'
 
 class UsersClassContainer extends React.PureComponent<combineType> {
-  // constructor(props:combineType) {
-  //     super(props);
-  // } и т.к в конструкторе уже не происходит АЯЙКС запрос, то его и мето супер
-  // уже писать не обязательно, это проихсрдит за кадром
-
   componentDidMount() {
     this.props.getUsersThunk()
   }

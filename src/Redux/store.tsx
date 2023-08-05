@@ -6,7 +6,10 @@ import authReducer, { CombinerAuthActionsType } from './reducers/authReducer'
 import { groupsReducer } from './reducers/groupsReducer'
 import { FriendsActionType, friendsReducer } from './reducers/friendsReducer'
 import { MessagesActionType, messagesReducer } from './reducers/dialogReducer'
-import { CombinerProfileActionTypes, profileReducer } from './reducers/profileReducer'
+import {
+  CombinerProfileActionTypes,
+  profileReducer,
+} from './reducers/profileReducer'
 import { newsReducer } from './reducers/newsReducer'
 
 let rootReducer = combineReducers({
@@ -20,13 +23,12 @@ let rootReducer = combineReducers({
 })
 
 export let store = createStore(rootReducer, applyMiddleware(thunk))
-export const useAppDispatch: () => Dispatch = useDispatch
+export const useAppDispatch: () => Dispatch = useDispatch //for AC's
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
-
-// export const useAppDispatchThunk: DispatchFunc = useDispatch<DispatchFunc>
-//correct variant
-//
-export const useTypedDispatch = () => useDispatch<AppDispatch>()
+export type RootReducersType = ReturnType<typeof rootReducer>
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = ThunkDispatch<RootState, null, RootActionsType>
+export const useTypedDispatch = () => useDispatch<AppDispatch>() //for AC's, thunks(universal)
 
 export type RootActionsType =
   | CombinerUserActionTypes
@@ -41,15 +43,10 @@ export type RootThunkType<ReturnType = void> = ThunkAction<
   unknown,
   RootActionsType
 >
-//1) что возвращает ф-ция (void)
-//2) тип стейта (всего)
-//3) екстра-аргументы(не используется, всегда unknown)
-//4) типы всех экшенов
-
-export type RootReducersType = ReturnType<typeof rootReducer>
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = ThunkDispatch<RootState, null, RootActionsType>
-type DispatchFunc = () => AppDispatch
+//1) що вератє функція (void)
+//2) тип стейта (усього)
+//3) екстра-аргументы(не використовуються, завжди unknown)
+//4) типы усих екшнів
 
 // @ts-ignore
 window.store = store

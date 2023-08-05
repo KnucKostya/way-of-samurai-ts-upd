@@ -6,15 +6,8 @@ import { RootState } from '../../Redux/store'
 const DialogsForm = (props: FormPropsType) => {
   const user = useSelector<RootState, string>(state => state.auth.data.login)
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Inputs>()
+  const { register, handleSubmit } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = data => {
-    console.log(data.value)
-    console.log(user)
     if (data.value.length) {
       props.sendMessage(data.value, user)
     }
@@ -22,7 +15,10 @@ const DialogsForm = (props: FormPropsType) => {
 
   return (
     <div>
-      <form action="src/Common/Forms/DialogsForm" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        action="src/Common/Forms/DialogsForm"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <input placeholder={'enter message'} {...register('value')}></input>
         <button type="submit">Send</button>
       </form>
@@ -38,5 +34,4 @@ type Inputs = {
 
 type FormPropsType = {
   sendMessage: (value: string, user: string) => void
-  // value:string
 }

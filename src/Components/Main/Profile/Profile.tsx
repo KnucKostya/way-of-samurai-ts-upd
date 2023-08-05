@@ -9,7 +9,7 @@ import LoginPage from '../../../Common/Login/LoginPage'
 
 const Profile = (props: ProfilePropsType) => {
   const isAuth = useAppSelector(state => state.auth.isAuth)
-  const authorisatedUserId = useAppSelector(state => state.auth.data.id)
+  const authorizedUserId = useAppSelector(state => state.auth.data.id)
   const currentUserIdProfile = useAppSelector(
     state => state.profilePage.profilePageInfo.userId
   )
@@ -33,7 +33,7 @@ const Profile = (props: ProfilePropsType) => {
             updateStatus={props.updateStatus}
           />
           <AddPost />
-          {authorisatedUserId === currentUserIdProfile && (
+          {authorizedUserId === currentUserIdProfile && (
             <ContaineerMyPostComponent />
           )}
         </div>

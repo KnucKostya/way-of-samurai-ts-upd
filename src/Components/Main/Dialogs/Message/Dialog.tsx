@@ -14,7 +14,7 @@ export const Dialog = (): ReactElement => {
   ))
 
   return (
-    <div className={styles.dialog}>
+    <div>
       <div className={styles.contact}>
         <div className={styles.avatar}>
           <img src={friendAvatar} alt={'Jason Bourne'} />

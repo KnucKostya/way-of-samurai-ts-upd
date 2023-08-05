@@ -15,7 +15,6 @@ export const AddNewPostForm = (props: AddNewPostFormPropsType) => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
     reset,
   } = useForm<TotalType>({
@@ -71,13 +70,10 @@ export const AddNewPostForm = (props: AddNewPostFormPropsType) => {
 
 //TYPES
 type TotalType = Inputs & FormData
-
 type Inputs = {
   newPost: string
 }
-
 type AddNewPostFormPropsType = {
   addPost: (newPostText: string, date: string) => void
 }
-
 type FormData = yup.InferType<typeof schema>

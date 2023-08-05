@@ -3,20 +3,21 @@ import s from './news.module.css'
 import { getNewsDataThunk } from '../../../Redux/reducers/newsReducer'
 import { useAppSelector, useTypedDispatch } from '../../../Redux/store'
 
-// api key: 0a6f315b05ea410e90d85d31eff13ab9
-// get started : https://newsapi.org/docs/get-started
-
 const News = () => {
   const [searchValue, setSearchValue] = useState('')
   const [visibleElements, setVisibleElements] = useState(10)
-  const news = useAppSelector(state => state.news.sources.slice(0, visibleElements))
+  const news = useAppSelector(state =>
+    state.news.sources.slice(0, visibleElements)
+  )
   const dispatch = useTypedDispatch()
 
   const searchNews = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value)
   }
   let searchInputValue
-  searchInputValue = news.filter(el => el.name.toLowerCase().includes(searchValue.toLowerCase()))
+  searchInputValue = news.filter(el =>
+    el.name.toLowerCase().includes(searchValue.toLowerCase())
+  )
 
   useEffect(() => {
     dispatch(getNewsDataThunk())
@@ -47,7 +48,9 @@ const News = () => {
         )
       })}
       <div className={s.loadBt}>
-        <button onClick={() => setVisibleElements(visibleElements + 20)}>Load More News</button>
+        <button onClick={() => setVisibleElements(visibleElements + 20)}>
+          Load More News
+        </button>
       </div>
     </div>
   )

@@ -12,7 +12,6 @@ import {
   toggleFollowingInProgressAC,
 } from '../../../../Redux/reducers/friendsReducer'
 import { useTypedDispatch } from '../../../../Redux/store'
-
 ;<Redirect to={'login'} />
 
 export type UsersPropsType = {
@@ -32,7 +31,6 @@ export type UsersPropsType = {
 const Users = (props: UsersPropsType) => {
   const dispatch = useTypedDispatch()
 
-  //ФУНКЦИЯ СЧИТАЮЩАЯ ОБЩЕЕ КОЛИЧЕСТВО СТРАНИЦ
   let countPagesArr: number[] = []
 
   let totalCountPages = Math.ceil(props.totalCount / props.count)

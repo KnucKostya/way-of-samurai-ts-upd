@@ -4,8 +4,6 @@ import { NavLink } from 'react-router-dom'
 import userAvatar from '../../../../Common/img/user-avatar.webp'
 import { Button } from '../../../../UIKit/Button'
 
-//TODO отображение фото при добавлении нового пользователя в разделе друзья
-
 type FriendsPropsType = {
   id: string
   name: string

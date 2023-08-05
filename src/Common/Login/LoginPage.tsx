@@ -26,5 +26,4 @@ let mapStateToProps = (state: RootReducersType) => ({
 export default connect(mapStateToProps, {})(LoginPage)
 
 export type mapStateToPropsType = ReturnType<typeof mapStateToProps>
-// export type mapDispatchToPropsType = typeof mapDispatchToProps
 export type combineType = mapStateToPropsType

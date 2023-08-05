@@ -23,7 +23,6 @@ class HeaderContainer extends React.Component<commonType> {
   }
 }
 
-//почему тип не initStateType
 const mstp = (state: WholeStateType) => {
   return {
     login: state.auth.data.login,

@@ -1,23 +1,10 @@
-/*.header {*/
-/*    grid-area: h;*/
-/*    background: #fff url(https://logos-download.com/wp-content/uploads/2016/03/McDonalds_Logo_2018.png) no-repeat center;*/
-/*    background-size: cover;*/
-/*    min-height: 400px;*/
-/*    !*display: flex;*!*/
-/*    !*justify-content: space-between;*!*/
-/*    margin-bottom: 30px;*/
-
-/*}*/
-
 .header {
   grid-area: h;
-  /*background: #2f93b2;*/
   background: url('../../Common/img/headerLogo.jpg') no-repeat center;
   background-size: cover;
   background-position: 30% 45%;
   height: 400px;
   margin-bottom: 30px;
-  /*margin-top: 4%;*/
 }
 
 .container {
@@ -60,43 +47,3 @@
   visibility: hidden;
   opacity: 0;
 }
-
-/*.rightSideContainer {*/
-/*    margin-right:5%;*/
-/*    float: right;*/
-/*    max-width: 30%;*/
-/*    border: 1px solid black;*/
-/*    height: 100%;*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*}*/
-
-/*.leftSideContainer {*/
-/*    margin-left:5%;*/
-/*    float: left;*/
-/*    max-width: 30%;*/
-/*    height: 100%;*/
-/*    border: 1px solid black;*/
-/*    !*padding: 5px;*!*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*}*/
-
-/*.leftImg {*/
-/*    float: left;*/
-/*    width: 40px;*/
-/*    border-radius: 30px;*/
-/*    padding: 5px;*/
-/*    margin-top: 10px;*/
-/*}*/
-
-/*.auth a {*/
-/*    float: right;*/
-/*    padding: 10px;*/
-/*    text-decoration: none;*/
-/*}*/
-
-/*.logo{*/
-/*  width:30px;*/
-/*  height:30px;*/
-/*}*/

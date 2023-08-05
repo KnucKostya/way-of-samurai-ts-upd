@@ -12,15 +12,14 @@ import {
   faTelegram,
   faWindows,
 } from '@fortawesome/free-brands-svg-icons'
-import { faMapLocation, faMobileScreen } from '@fortawesome/free-solid-svg-icons'
+import {
+  faMapLocation,
+  faMobileScreen,
+} from '@fortawesome/free-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export const Footer: React.FC = (): ReactElement | null => {
-  // if (section === "sectionLogout" || section === "sectionError") {
-  //     return null
-  // }
-
   return (
     <div className={s.footer}>
       <div className={s.footerInfo}>
@@ -59,7 +58,13 @@ export const Footer: React.FC = (): ReactElement | null => {
             </li>
             <li>
               <FontAwesomeIcon icon={faInstagram} size="lg" pull="left" />
-              <a href={'https://instagram.com/knuckless_dev?igshid=OGQ5ZDc2ODk2ZA=='}>Instagram</a>
+              <a
+                href={
+                  'https://instagram.com/knuckless_dev?igshid=OGQ5ZDc2ODk2ZA=='
+                }
+              >
+                Instagram
+              </a>
             </li>
             <li>
               <FontAwesomeIcon icon={faGithub} size="lg" pull="left" />
@@ -111,15 +116,30 @@ export const Footer: React.FC = (): ReactElement | null => {
           <h4>Download Apps</h4>
           <ul>
             <li>
-              <FontAwesomeIcon className={s.fa} icon={faAndroid} size="lg" pull="left" />
+              <FontAwesomeIcon
+                className={s.fa}
+                icon={faAndroid}
+                size="lg"
+                pull="left"
+              />
               <a href="#">Android</a>
             </li>
             <li>
-              <FontAwesomeIcon className={s.fa} icon={faApple} size="lg" pull="left" />
+              <FontAwesomeIcon
+                className={s.fa}
+                icon={faApple}
+                size="lg"
+                pull="left"
+              />
               <a href="#">IPhone</a>
             </li>
             <li>
-              <FontAwesomeIcon className={s.fa} icon={faWindows} size="lg" pull="left" />
+              <FontAwesomeIcon
+                className={s.fa}
+                icon={faWindows}
+                size="lg"
+                pull="left"
+              />
               <a href="#">Windows</a>
             </li>
           </ul>
@@ -136,8 +156,3 @@ export const Footer: React.FC = (): ReactElement | null => {
     </div>
   )
 }
-
-// TYPES
-// type FooterPropsType = {
-//     section: string
-// }

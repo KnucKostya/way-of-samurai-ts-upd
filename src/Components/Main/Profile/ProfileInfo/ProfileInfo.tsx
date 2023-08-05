@@ -8,7 +8,6 @@ import userAvatar from '../../../../Common/img/user-avatar.webp'
 
 const ProfileInfo = (props: PrePostContentType) => {
   const { profileUser, paramUserId, status, updateStatus } = props
-
   if (!profileUser) {
     return <Preloader />
   }

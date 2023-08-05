@@ -2,7 +2,7 @@ import React from 'react'
 import { combineType } from './UsersContainer'
 import s from './usersContainer.module.css'
 import Users from './Users'
-import Preloader from '../../../Common/Preloader'
+import Preloader from '../../../../Common/Preloader'
 
 class UsersClassContainer extends React.PureComponent<combineType> {
   // constructor(props:combineType) {

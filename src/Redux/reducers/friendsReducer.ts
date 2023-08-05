@@ -143,7 +143,7 @@ export const friendsReducer = (
         ),
       }
     case 'ADD_NEW_FRIEND':
-      // return state
+      console.log(action)
       let newFriend: FriendsType = {
         id: action.id,
         name: action.name,

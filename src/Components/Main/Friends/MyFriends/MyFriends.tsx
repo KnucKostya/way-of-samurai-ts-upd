@@ -23,6 +23,7 @@ export const MyFriends = (): ReactElement => {
     dispatch(UnfollowUserThunk(+id))
   }
 
+  console.log(friendsData)
   const friendElement = friendsData.map(friend => (
     <Friend
       key={friend.id}

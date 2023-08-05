@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import styles from './Friends.module.css'
 import { NavLink, Route } from 'react-router-dom'
 import { MyFriends } from './MyFriends/MyFriends'
-import UsersContainer from '../Users/UsersContainer'
+import UsersContainer from './Users/UsersContainer'
 import { FriendsRequests } from './FriendsRequests/FriendsRequests'
 
 export const Friends = (): ReactElement => {

@@ -15,6 +15,7 @@
   display: inline-block;
 }
 .greeting {
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,6 +24,13 @@
 .warning {
   color: #d9a520;
   text-align: center;
+}
+.showPassword {
+  justify-content: flex-end;
+  cursor: pointer;
+  font-size: 12px;
+  border: none;
+  background-color: white;
 }
 .formInput {
   display: block;

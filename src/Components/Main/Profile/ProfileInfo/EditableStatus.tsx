@@ -36,7 +36,7 @@ class EditableStatus extends React.Component<EditableStatusPropsType, any> {
           <span onDoubleClick={this.activateMode}>
             {this.props.statusValue
               ? this.props.statusValue
-              : 'here can be youth status'}
+              : 'here can be yours status'}
           </span>
         )}
       </div>

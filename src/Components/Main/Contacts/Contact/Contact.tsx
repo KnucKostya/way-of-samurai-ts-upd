@@ -3,7 +3,12 @@ import styles from './Contact.module.css'
 import { NavLink } from 'react-router-dom'
 import userAvatar from '../../../../Common/img/user-avatar.webp'
 
-export const Contact: React.FC<ContactPropsType> = ({ id, email, name, photos }): ReactElement => {
+export const Contact: React.FC<ContactPropsType> = ({
+  id,
+  email,
+  name,
+  photos,
+}): ReactElement => {
   return (
     <div className={styles.contact}>
       <div className={styles.avatar}>
@@ -13,7 +18,9 @@ export const Contact: React.FC<ContactPropsType> = ({ id, email, name, photos })
         <div className={styles.name}>
           <NavLink to={'/messages/' + id}>{name}</NavLink>
         </div>
-        <div className={styles.email}>{email}</div>
+        <div className={styles.email}>
+          {email ? email : 'user hide email address'}
+        </div>
       </div>
     </div>
   )

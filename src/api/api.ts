@@ -15,13 +15,6 @@ const api = {
       return response.data
     })
   },
-
-  authMe: function () {
-    console.warn('replace method')
-    return instance.get(`auth/me`).then(response => {
-      return response.data
-    })
-  },
   unfollow: function (userId: number) {
     return instance.delete(`/follow/${userId}`).then(response => {
       return response.data
@@ -29,6 +22,7 @@ const api = {
   },
   follow: function (userId: number) {
     return instance.post(`/follow/${userId}`).then(response => {
+      console.log(response.data)
       return response.data
     })
   },
@@ -52,8 +46,10 @@ const api = {
 }
 
 export const profileApi = {
-  getProfile: () => {
-    return api.getUsersProfile
+  getProfile: (userID: number) => {
+    return instance.get(`/profile/${userID}`).then(response => {
+      return response.data
+    })
   },
   getStatus: (userID: number) => {
     return instance.get(`profile/status/${userID}`)
@@ -69,7 +65,9 @@ export const profileApi = {
 
 export const authAPI = {
   me: () => {
-    return api.authMe()
+    return instance.get(`auth/me`).then(response => {
+      return response.data
+    })
   },
   login: (email: string, password: string, rememberMe: boolean) => {
     return instance

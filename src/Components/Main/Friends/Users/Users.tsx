@@ -1,10 +1,18 @@
 import React from 'react'
-import { APIusersType, FollowUserThunk, UnfollowUserThunk } from '../../../Redux/usersReducer'
+import {
+  APIusersType,
+  FollowUserThunk,
+  UnfollowUserThunk,
+} from '../../../../Redux/usersReducer'
 import { Redirect } from 'react-router-dom'
-import { Paginator } from '../../../Common/Paginator/Paginator'
-import { Friend } from '../Friends/Friend/Friend'
-import { addNewFriend, toggleFollowingInProgressAC } from '../../../Redux/reducers/friendsReducer'
-import { useTypedDispatch } from '../../../Redux/store'
+import { Paginator } from '../../../../Common/Paginator/Paginator'
+import { Friend } from '../Friend/Friend'
+import {
+  addNewFriend,
+  toggleFollowingInProgressAC,
+} from '../../../../Redux/reducers/friendsReducer'
+import { useTypedDispatch } from '../../../../Redux/store'
+
 ;<Redirect to={'login'} />
 
 export type UsersPropsType = {
@@ -56,17 +64,24 @@ const Users = (props: UsersPropsType) => {
         return (
           <div key={friend.id}>
             <div>
-              {
+              {!friend.followed && (
                 <Friend
                   id={friend.id.toString()}
                   status={friend.status}
                   name={friend.name}
-                  photoSmall={friend.photos.large}
+                  photoSmall={friend.photos.small}
                   photoLarge={friend.photos.large}
                   followed={friend.followed}
-                  callback={changeFollowingUser}
+                  callback={() =>
+                    changeFollowingUser(
+                      friend.id.toString(),
+                      friend.name,
+                      friend.photos.small,
+                      friend.status
+                    )
+                  }
                 />
-              }
+              )}
             </div>
           </div>
         )

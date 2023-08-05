@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter, Route } from 'react-router-dom'
+import { HashRouter, Redirect, Route } from 'react-router-dom'
 import './App.css'
 import s from './Content.module.css'
 import Navbar from './Components/Navbar/Navbar'
@@ -23,7 +23,6 @@ export const App = () => {
         <Contacts />
 
         <div className={s.content}>
-          <Route exact path="/*" render={() => <LoginPage />} />
           <Route
             path="/profile/:userID?"
             render={() => <ProfileClassComponent />}
@@ -34,6 +33,7 @@ export const App = () => {
           <Route path="/music" render={() => <Music />} />
           <Route path="/groups" render={() => <Groups />} />
           <Route path={'/login'} render={() => <LoginPage />}></Route>
+          <Route exact path="/" render={() => <Redirect to={'/login'} />} />
         </div>
         <Footer />
       </div>

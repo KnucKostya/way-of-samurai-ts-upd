@@ -11,12 +11,12 @@ import {
   PageChangedThunk,
   UnfollowUserThunk,
   FollowUserThunk,
-} from '../../../Redux/usersReducer'
+} from '../../../../Redux/usersReducer'
 import UsersClassContainer from './UsersClassContainer'
-import { compose } from 'redux'
 import React from 'react'
-import { RootState } from '../../../Redux/store'
-import WithAuthRedirect from '../../../Common/hoc/AuthRedirect'
+import { RootState } from '../../../../Redux/store'
+import WithAuthRedirect from '../../../../Common/hoc/AuthRedirect'
+import { compose } from 'redux'
 
 const mapStateToProps = (state: RootState) => {
   return {

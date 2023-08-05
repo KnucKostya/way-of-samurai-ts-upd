@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { LoginThunkCreator } from '../../../Redux/reducers/authReducer'
 import s from './LoginForm.module.css'
-import React from 'react'
+import React, { useState } from 'react'
 
 const schema = yup
   .object({
@@ -15,6 +15,8 @@ const schema = yup
   .required()
 
 export const LoginForm = (props: { error: string }) => {
+  const [inputType, setInputType] = useState('password')
+
   const dispatch = useTypedDispatch()
   const {
     register,
@@ -31,6 +33,10 @@ export const LoginForm = (props: { error: string }) => {
     dispatch(LoginThunkCreator(data.login, data.password, data.rememberMe!))
   }
 
+  const setInputTypeHandler = () => {
+    setInputType(inputType === 'password' ? 'text' : 'password')
+  }
+
   return (
     <form
       className={s.loginForm}
@@ -38,20 +44,23 @@ export const LoginForm = (props: { error: string }) => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <h3 className={s.title}>LOGIN</h3>
-      <h6 className={s.greeting}>
-        Welcome to my social network!
-        <div>Here test account if you haven't bought api account</div>
-        <h3 className={s.greeting}>
+      <span>
+        <h5 className={s.greeting}>
+          Welcome to my social network!
+          <br /> Here test account if you haven't bought api account
+        </h5>
+        <h5 className={s.greeting}>
           <div>Login: free@samuraijs.com </div>
           <div>Password: free </div>
-        </h3>
+        </h5>
         <h3 className={s.warning}>Warning!</h3>
-        <h4 className={s.warning}>
-          If you are trying to login with phone - you need to accept cookies in
-          your browser in private policy menu and turn off "Prevent
-          Cross-Site-Tracking", or login from PC or Laptop
-        </h4>
-      </h6>
+        <h5 className={s.warning}>
+          If you are trying to login with phone - you need to accept cookies{' '}
+          <br /> in your browser in private policy menu and <br /> turn off
+          "Prevent Cross-Site-Tracking", or login from PC or Laptop
+        </h5>
+      </span>
+
       <div>
         <input
           className={s.formInput}
@@ -64,13 +73,16 @@ export const LoginForm = (props: { error: string }) => {
         <input
           className={s.formInput}
           id="password"
-          type="password"
+          type={inputType}
           placeholder={'password'}
           {...register('password', { required: true })}
           onClick={async () => {
             await trigger('password', { shouldFocus: true })
           }}
         />
+        <button className={s.showPassword} onClick={setInputTypeHandler}>
+          Show password
+        </button>
         <p className={s.error}>
           {props.error && props.error !== 'You are not authorized'
             ? props.error

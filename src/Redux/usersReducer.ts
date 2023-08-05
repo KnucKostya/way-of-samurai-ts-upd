@@ -1,6 +1,7 @@
 import api from '../api/api'
 import { RootThunkType } from './store'
 import { Dispatch } from 'redux'
+import { toast } from 'react-toastify'
 
 export type initialStateType = {
   users: APIusersType[]
@@ -39,13 +40,17 @@ export const usersReducer = (
     case 'FOLLOW': {
       return {
         ...state,
-        users: state.users.map(m => (m.id === action.userID ? { ...m, followed: true } : m)),
+        users: state.users.map(m =>
+          m.id === action.userID ? { ...m, followed: true } : m
+        ),
       }
     }
     case 'UNFOLLOW': {
       return {
         ...state,
-        users: state.users.map(m => (m.id === action.userID ? { ...m, followed: false } : m)),
+        users: state.users.map(m =>
+          m.id === action.userID ? { ...m, followed: false } : m
+        ),
       }
     }
     case 'SET-USERS': {
@@ -140,7 +145,10 @@ export let getUsersThunk = (): RootThunkType => {
 }
 // -------------------------------------------------thunk`s
 
-export const PageChangedThunk = (currentPage: number, count: number): RootThunkType => {
+export const PageChangedThunk = (
+  currentPage: number,
+  count: number
+): RootThunkType => {
   return async dispatch => {
     dispatch(setLoadingStatus(true))
     dispatch(setCurrentPage(currentPage))
@@ -163,7 +171,7 @@ const followUnfollowFlow = async (
     dispatch(followUnfollowAC(userID))
     dispatch(followingInProgress(false, userID))
   } catch (e: any) {
-    alert(e)
+    toast.error(e)
   }
 }
 

@@ -1,6 +1,6 @@
 import { Postdata, ProfilePageDataType } from '../state'
 import { RootThunkType } from '../store'
-import api, { profileApi } from '../../api/api'
+import { profileApi } from '../../api/api'
 import { responseDataType } from '../../Components/Main/Profile/ProfileClassComponent'
 import { toast } from 'react-toastify'
 import { AxiosError } from 'axios'
@@ -176,7 +176,7 @@ type SetLikeType = ReturnType<typeof SetLikeAC>
 
 export const GetUserProfileThunk = (userID: number): RootThunkType => {
   return (dispatch: any) => {
-    api.getUsersProfile(userID).then((response: any) => {
+    profileApi.getProfile(userID).then((response: any) => {
       dispatch(setUserProfile(response))
     })
   }

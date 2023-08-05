@@ -43,7 +43,11 @@ export type ParamsType = {
 export type CommonType = RouteComponentProps<ParamsType> & combineType
 
 class ProfileClassComponent extends React.Component<CommonType> {
-  componentDidUpdate(nextProps: Readonly<CommonType>, nextState: Readonly<{}>, nextContext: any) {
+  componentDidUpdate(
+    nextProps: Readonly<CommonType>,
+    nextState: Readonly<{}>,
+    nextContext: any
+  ) {
     if (nextProps.match.params.userID !== this.props.match.params.userID) {
       if (this.props.userId) {
         const userID = this.props.userId
@@ -55,13 +59,14 @@ class ProfileClassComponent extends React.Component<CommonType> {
 
   componentDidMount() {
     let userID = +this.props.match.params.userID
-    if (!userID) {
+    if (userID) {
+      this.props.GetUserProfileThunk(userID)
+      this.props.GetStatusThunk(userID)
+    } else if (!userID) {
       if (this.props.userId) {
         userID = this.props.userId
       }
     }
-    this.props.GetUserProfileThunk(userID)
-    this.props.GetStatusThunk(userID)
   }
 
   render() {
